@@ -1,17 +1,40 @@
 {
-    "buildNpmdoc":"mocha",
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "buildNpmdoc": "mocha",
+    "description": "api documentation for [mocha (v3.2.0)](https://mochajs.org) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-mocha.svg)](https://travis-ci.org/npmdoc/node-npmdoc-mocha)",
     "devDependencies": {
-        "mocha": "*",
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "mocha": "*",
         "utility2": "kaizhu256/node-utility2#alpha"
     },
-    "name":"npmdoc-mocha",
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-mocha",
+    "keywords": [
+        "documentation",
+        "mocha"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_mocha.js",
+    "name": "npmdoc-mocha",
+    "nameAlias": "npmdoc_mocha",
+    "nameOriginal": "npmdoc-mocha",
+    "os": [
+        "darwin",
+        "linux"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/npmdoc/node-npmdoc-mocha.git"
     },
     "scripts": {
-        "build-ci": "utility2 shReadmeTest build_ci.sh"
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
     },
-    "version": "0.0.1"
+    "version": "0.0.2"
 }
