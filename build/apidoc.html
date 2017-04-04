@@ -1972,7 +1972,23 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Context() {}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this.options = options;
+if (options.grep) {
+  this.grep(new RegExp(options.grep));
+}
+if (options.fgrep) {
+  this.fgrep(options.fgrep);
+}
+this.suite = new exports.Suite(&#x27;&#x27;, new exports.<span class="apidocCodeKeywordSpan">Context</span>());
+this.ui(options.ui);
+this.bail(options.bail);
+this.reporter(options.reporter, options.reporterOptions);
+if (typeof options.timeout !== &#x27;undefined&#x27; &#x26;&#x26; options.timeout !== null) {
+  this.timeout(options.timeout);
+}
+if (typeof options.retries !== &#x27;undefined&#x27; &#x26;&#x26; options.retries !== null) {
+...</pre></li>
     </ul>
 
 
@@ -2046,7 +2062,23 @@
   this.grep(this._defaultGrep);
   this.globals(this.globalProps().concat(extraGlobals()));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Mocha.prototype.run = function (fn) {
+if (this.files.length) {
+  this.loadFiles();
+}
+var suite = this.suite;
+var options = this.options;
+options.files = this.files;
+var runner = new exports.<span class="apidocCodeKeywordSpan">Runner</span>(suite, options.delay);
+var reporter = new this._reporter(runner, options);
+runner.ignoreLeaks = options.ignoreLeaks !== false;
+runner.fullStackTrace = options.fullStackTrace;
+runner.hasOnly = options.hasOnly;
+runner.asyncOnly = options.asyncOnly;
+runner.allowUncaught = options.allowUncaught;
+if (options.grep) {
+...</pre></li>
     </ul>
 
 
@@ -2083,7 +2115,23 @@
   this._onlySuites = [];
   this.delayed = false;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this.options = options;
+if (options.grep) {
+  this.grep(new RegExp(options.grep));
+}
+if (options.fgrep) {
+  this.fgrep(options.fgrep);
+}
+this.suite = new exports.<span class="apidocCodeKeywordSpan">Suite</span>(&#x27;&#x27;, new exports.Context());
+this.ui(options.ui);
+this.bail(options.bail);
+this.reporter(options.reporter, options.reporterOptions);
+if (typeof options.timeout !== &#x27;undefined&#x27; &#x26;&#x26; options.timeout !== null) {
+  this.timeout(options.timeout);
+}
+if (typeof options.retries !== &#x27;undefined&#x27; &#x26;&#x26; options.retries !== null) {
+...</pre></li>
     </ul>
 
 
@@ -2782,7 +2830,23 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Context() {}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this.options = options;
+if (options.grep) {
+  this.grep(new RegExp(options.grep));
+}
+if (options.fgrep) {
+  this.fgrep(options.fgrep);
+}
+this.suite = new exports.Suite(&#x27;&#x27;, new exports.<span class="apidocCodeKeywordSpan">Context</span>());
+this.ui(options.ui);
+this.bail(options.bail);
+this.reporter(options.reporter, options.reporterOptions);
+if (typeof options.timeout !== &#x27;undefined&#x27; &#x26;&#x26; options.timeout !== null) {
+  this.timeout(options.timeout);
+}
+if (typeof options.retries !== &#x27;undefined&#x27; &#x26;&#x26; options.retries !== null) {
+...</pre></li>
     </ul>
 
 
@@ -2803,7 +2867,23 @@
   this.runnable().enableTimeouts(enabled);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* Set test timeout `enabled`.
+*
+* @api private
+* @param {boolean} enabled
+* @return {Context} self
+*/
+Context.prototype.enableTimeouts = function (enabled) {
+ this.runnable().<span class="apidocCodeKeywordSpan">enableTimeouts</span>(enabled);
+ return this;
+};
+
+/**
+* Set test slowness threshold `ms`.
+*
+* @api private
+...</pre></li>
     </ul>
 
 
@@ -2820,7 +2900,23 @@
     return key === &#x27;runnable&#x27; || key === &#x27;test&#x27; ? undefined : val;
   }, 2);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// msg
+var msg;
+var err = test.err;
+var message;
+if (err.message &#x26;&#x26; typeof err.message.toString === &#x27;function&#x27;) {
+  message = err.message + &#x27;&#x27;;
+} else if (typeof err.inspect === &#x27;function&#x27;) {
+  message = err.<span class="apidocCodeKeywordSpan">inspect</span>() + &#x27;&#x27;;
+} else {
+  message = &#x27;&#x27;;
+}
+var stack = err.stack || message;
+var index = message ? stack.indexOf(message) : -1;
+var actual = err.actual;
+var expected = err.expected;
+...</pre></li>
     </ul>
 
 
@@ -2839,7 +2935,23 @@
   this.runnable().retries(n);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+*
+* @api private
+* @param {number} n
+* @return {Context} self
+*/
+Context.prototype.retries = function (n) {
+ if (!arguments.length) {
+   return this.runnable().<span class="apidocCodeKeywordSpan">retries</span>();
+ }
+ this.runnable().retries(n);
+ return this;
+};
+
+/**
+* Inspect the context void of `._runnable`.
+...</pre></li>
     </ul>
 
 
@@ -2858,7 +2970,23 @@
   this.test = this._runnable = runnable;
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+*
+* @api private
+* @param {number} ms
+* @return {Context} self
+*/
+Context.prototype.timeout = function (ms) {
+ if (!arguments.length) {
+   return this.<span class="apidocCodeKeywordSpan">runnable</span>().timeout();
+ }
+ this.runnable().timeout(ms);
+ return this;
+};
+
+/**
+* Set test timeout `enabled`.
+...</pre></li>
     </ul>
 
 
@@ -2874,7 +3002,23 @@
   this.runnable().skip();
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+* Mark a test as skipped.
+*
+* @api private
+* @return {Context} self
+*/
+Context.prototype.skip = function () {
+ this.runnable().<span class="apidocCodeKeywordSpan">skip</span>();
+ return this;
+};
+
+/**
+* Allow a number of retries on failed tests
+*
+* @api private
+...</pre></li>
     </ul>
 
 
@@ -2890,7 +3034,23 @@
   this.runnable().slow(ms);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* Set test slowness threshold `ms`.
+*
+* @api private
+* @param {number} ms
+* @return {Context} self
+*/
+Context.prototype.slow = function (ms) {
+ this.runnable().<span class="apidocCodeKeywordSpan">slow</span>(ms);
+ return this;
+};
+
+/**
+* Mark a test as skipped.
+*
+* @api private
+...</pre></li>
     </ul>
 
 
@@ -2909,7 +3069,23 @@
   this.runnable().timeout(ms);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+*
+* @api private
+* @param {number} ms
+* @return {Context} self
+*/
+Context.prototype.timeout = function (ms) {
+ if (!arguments.length) {
+   return this.runnable().<span class="apidocCodeKeywordSpan">timeout</span>();
+ }
+ this.runnable().timeout(ms);
+ return this;
+};
+
+/**
+* Set test timeout `enabled`.
+...</pre></li>
     </ul>
 
 
@@ -2983,7 +3159,23 @@
 
   this._error = err;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if (!hook.listeners(&#x27;error&#x27;).length) {
+  hook.on(&#x27;error&#x27;, function (err) {
+    self.failHook(hook, err);
+  });
+}
+
+hook.run(function (err) {
+  var testError = hook.<span class="apidocCodeKeywordSpan">error</span>();
+  if (testError) {
+    self.fail(self.test, testError);
+  }
+  if (err) {
+    if (err instanceof Pending) {
+      if (name === &#x27;beforeEach&#x27; || name === &#x27;afterEach&#x27;) {
+        self.test.pending = true;
+...</pre></li>
     </ul>
 
 
@@ -3035,7 +3227,24 @@
     <li>description and source-code<pre class="apidocCodePre">clearTimeout = function () {
   clearTimeout(this.timer);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Runnable.prototype.resetTimeout = function () {
+var self = this;
+var ms = this.timeout() || 1e9;
+
+if (!this._enableTimeouts) {
+  return;
+}
+this.<span class="apidocCodeKeywordSpan">clearTimeout</span>();
+this.timer = setTimeout(function () {
+  if (!self._enableTimeouts) {
+    return;
+  }
+  self.callback(new Error(&#x27;Timeout of &#x27; + ms +
+    &#x27;ms exceeded. For async tests and hooks, ensure &#x22;done()&#x22; is called; if returning a Promise, ensure it resolves
+.&#x27;));
+  self.timedOut = true;
+...</pre></li>
     </ul>
 
 
@@ -3080,7 +3289,23 @@
   }
   this._currentRetry = n;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @return {Object}
+ */
+function clean (test) {
+  return {
+    title: test.title,
+    fullTitle: test.fullTitle(),
+    duration: test.duration,
+    currentRetry: test.<span class="apidocCodeKeywordSpan">currentRetry</span>()
+  };
+}
+
+}).call(this,require(&#x27;_process&#x27;))
+},{&#x22;./base&#x22;:17,&#x22;_process&#x22;:67,&#x22;json3&#x22;:54}],23:[function(require,module,exports){
+(function (process){
+&#x27;use strict&#x27;;
+...</pre></li>
     </ul>
 
 
@@ -3100,7 +3325,23 @@
   this._enableTimeouts = enabled;
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* Set test timeout `enabled`.
+*
+* @api private
+* @param {boolean} enabled
+* @return {Context} self
+*/
+Context.prototype.enableTimeouts = function (enabled) {
+ this.runnable().<span class="apidocCodeKeywordSpan">enableTimeouts</span>(enabled);
+ return this;
+};
+
+/**
+* Set test slowness threshold `ms`.
+*
+* @api private
+...</pre></li>
     </ul>
 
 
@@ -3115,7 +3356,24 @@
     <li>description and source-code<pre class="apidocCodePre">fullTitle = function () {
   return this.parent.fullTitle() + &#x27; &#x27; + this.title;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      suite.parent._onlySuites = suite.parent._onlySuites.concat(suite);
+      mocha.options.hasOnly = true;
+    }
+    if (typeof opts.fn === &#x27;function&#x27;) {
+      opts.fn.call(suite);
+      suites.shift();
+    } else if (typeof opts.fn === &#x27;undefined&#x27; &#x26;&#x26; !suite.pending) {
+      throw new Error(&#x27;Suite &#x22;&#x27; + suite.<span class="apidocCodeKeywordSpan">fullTitle</span>() + &#x27;&#x22; was
+ defined but no callback was supplied. Supply a callback or explicitly skip the suite.&#x27;);
+    }
+
+    return suite;
+  }
+},
+
+test: {
+...</pre></li>
     </ul>
 
 
@@ -3133,7 +3391,23 @@
   }
   this._allowedGlobals = globals;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+/**
+ * Run mocha, returning the Runner.
+ */
+
+mocha.run = function (fn) {
+var options = mocha.options;
+mocha.<span class="apidocCodeKeywordSpan">globals</span>(&#x27;location&#x27;);
+
+var query = Mocha.utils.parseQuery(global.location.search || &#x27;&#x27;);
+if (query.grep) {
+  mocha.grep(query.grep);
+}
+if (query.fgrep) {
+  mocha.fgrep(query.fgrep);
+...</pre></li>
     </ul>
 
 
@@ -3159,7 +3433,23 @@
     return val;
   }, 2);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// msg
+var msg;
+var err = test.err;
+var message;
+if (err.message &#x26;&#x26; typeof err.message.toString === &#x27;function&#x27;) {
+  message = err.message + &#x27;&#x27;;
+} else if (typeof err.inspect === &#x27;function&#x27;) {
+  message = err.<span class="apidocCodeKeywordSpan">inspect</span>() + &#x27;&#x27;;
+} else {
+  message = &#x27;&#x27;;
+}
+var stack = err.stack || message;
+var index = message ? stack.indexOf(message) : -1;
+var actual = err.actual;
+var expected = err.expected;
+...</pre></li>
     </ul>
 
 
@@ -3174,7 +3464,23 @@
     <li>description and source-code<pre class="apidocCodePre">isPending = function () {
   return this.pending || (this.parent &#x26;&#x26; this.parent.isPending());
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Describe a specification or test-case
+ * with the given `title` and callback `fn`
+ * acting as a thunk.
+ */
+
+context.it = context.specify = function (title, fn) {
+  var suite = suites[0];
+  if (suite.<span class="apidocCodeKeywordSpan">isPending</span>()) {
+    fn = null;
+  }
+  var test = new Test(title, fn);
+  test.file = file;
+  suite.addTest(test);
+  return test;
+};
+...</pre></li>
     </ul>
 
 
@@ -3203,7 +3509,23 @@
     self.timedOut = true;
   }, ms);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ }
+ if (typeof ms === &#x27;string&#x27;) {
+   ms = milliseconds(ms);
+ }
+ debug(&#x27;timeout %d&#x27;, ms);
+ this._timeout = ms;
+ if (this.timer) {
+   this.<span class="apidocCodeKeywordSpan">resetTimeout</span>();
+ }
+ return this;
+};
+
+/**
+* Set &#x26; get slow `ms`.
+*
+...</pre></li>
     </ul>
 
 
@@ -3221,7 +3543,23 @@
   }
   this._retries = n;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+*
+* @api private
+* @param {number} n
+* @return {Context} self
+*/
+Context.prototype.retries = function (n) {
+ if (!arguments.length) {
+   return this.runnable().<span class="apidocCodeKeywordSpan">retries</span>();
+ }
+ this.runnable().retries(n);
+ return this;
+};
+
+/**
+* Inspect the context void of `._runnable`.
+...</pre></li>
     </ul>
 
 
@@ -3363,7 +3701,23 @@
     });
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * root suite execution.
+ *
+ * @param {Suite} suite The root suite.
+ * @return {Function} A function which runs the root suite
+ */
+runWithSuite: function runWithSuite (suite) {
+  return function run () {
+    suite.<span class="apidocCodeKeywordSpan">run</span>();
+  };
+},
+
+/**
+ * Execute before running tests.
+ *
+ * @param {string} name
+...</pre></li>
     </ul>
 
 
@@ -3378,7 +3732,23 @@
     <li>description and source-code<pre class="apidocCodePre">skip = function () {
   throw new Pending(&#x27;sync skip&#x27;);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+* Mark a test as skipped.
+*
+* @api private
+* @return {Context} self
+*/
+Context.prototype.skip = function () {
+ this.runnable().<span class="apidocCodeKeywordSpan">skip</span>();
+ return this;
+};
+
+/**
+* Allow a number of retries on failed tests
+*
+* @api private
+...</pre></li>
     </ul>
 
 
@@ -3401,7 +3771,23 @@
   this._slow = ms;
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* Set test slowness threshold `ms`.
+*
+* @api private
+* @param {number} ms
+* @return {Context} self
+*/
+Context.prototype.slow = function (ms) {
+ this.runnable().<span class="apidocCodeKeywordSpan">slow</span>(ms);
+ return this;
+};
+
+/**
+* Mark a test as skipped.
+*
+* @api private
+...</pre></li>
     </ul>
 
 
@@ -3431,7 +3817,23 @@
   }
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+*
+* @api private
+* @param {number} ms
+* @return {Context} self
+*/
+Context.prototype.timeout = function (ms) {
+ if (!arguments.length) {
+   return this.runnable().<span class="apidocCodeKeywordSpan">timeout</span>();
+ }
+ this.runnable().timeout(ms);
+ return this;
+};
+
+/**
+* Set test timeout `enabled`.
+...</pre></li>
     </ul>
 
 
@@ -3467,7 +3869,23 @@
   this.grep(this._defaultGrep);
   this.globals(this.globalProps().concat(extraGlobals()));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Mocha.prototype.run = function (fn) {
+if (this.files.length) {
+  this.loadFiles();
+}
+var suite = this.suite;
+var options = this.options;
+options.files = this.files;
+var runner = new exports.<span class="apidocCodeKeywordSpan">Runner</span>(suite, options.delay);
+var reporter = new this._reporter(runner, options);
+runner.ignoreLeaks = options.ignoreLeaks !== false;
+runner.fullStackTrace = options.fullStackTrace;
+runner.hasOnly = options.hasOnly;
+runner.asyncOnly = options.asyncOnly;
+runner.allowUncaught = options.allowUncaught;
+if (options.grep) {
+...</pre></li>
     </ul>
 
 
@@ -3505,7 +3923,23 @@
   }
   return createImmediate(args, callback);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+     }
+     self.emit(&#x27;hook end&#x27;, hook);
+     delete hook.ctx.currentTest;
+     next(++i);
+   });
+ }
+
+ Runner.<span class="apidocCodeKeywordSpan">immediately</span>(function () {
+   next(0);
+ });
+};
+
+/**
+* Run hook `name` for the given array of `suites`
+* in order, and callback `fn(err, errSuite)`.
+...</pre></li>
     </ul>
 
 
@@ -3582,7 +4016,23 @@
     this.fail(test, new Error(&#x27;global leak detected: &#x27; + leaks[0]));
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this._abort = false;
+this._delay = delay;
+this.suite = suite;
+this.started = false;
+this.total = suite.total();
+this.failures = 0;
+this.on(&#x27;test end&#x27;, function (test) {
+  self.<span class="apidocCodeKeywordSpan">checkGlobals</span>(test);
+});
+this.on(&#x27;hook end&#x27;, function (hook) {
+  self.checkGlobals(hook);
+});
+this._defaultGrep = /.*/;
+this.grep(this._defaultGrep);
+this.globals(this.globalProps().concat(extraGlobals()));
+...</pre></li>
     </ul>
 
 
@@ -3616,7 +4066,24 @@
 
   this.emit(&#x27;fail&#x27;, test, err);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ }
+ this.prevGlobalsLength = globals.length;
+
+ leaks = filterLeaks(ok, globals);
+ this._globals = this._globals.concat(leaks);
+
+ if (leaks.length &#x3e; 1) {
+   this.<span class="apidocCodeKeywordSpan">fail</span>(test, new Error(&#x27;global leaks detected: &#x27; + leaks.join(&#x27;, &#
+x27;) + &#x27;&#x27;));
+ } else if (leaks.length) {
+   this.fail(test, new Error(&#x27;global leak detected: &#x27; + leaks[0]));
+ }
+};
+
+/**
+* Fail the given `test`.
+...</pre></li>
     </ul>
 
 
@@ -3639,7 +4106,23 @@
     this.emit(&#x27;end&#x27;);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+hook.ctx.currentTest = self.test;
+
+self.emit(&#x27;hook&#x27;, hook);
+
+if (!hook.listeners(&#x27;error&#x27;).length) {
+  hook.on(&#x27;error&#x27;, function (err) {
+    self.<span class="apidocCodeKeywordSpan">failHook</span>(hook, err);
+  });
+}
+
+hook.run(function (err) {
+  var testError = hook.error();
+  if (testError) {
+    self.fail(self.test, testError);
+...</pre></li>
     </ul>
 
 
@@ -3664,7 +4147,23 @@
 
   return props;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+   self.checkGlobals(test);
+ });
+ this.on(&#x27;hook end&#x27;, function (hook) {
+   self.checkGlobals(hook);
+ });
+ this._defaultGrep = /.*/;
+ this.grep(this._defaultGrep);
+ this.globals(this.<span class="apidocCodeKeywordSpan">globalProps</span>().concat(extraGlobals()));
+}
+
+/**
+* Wrapper for setImmediate, process.nextTick, or browser polyfill.
+*
+* @param {Function} fn
+* @api private
+...</pre></li>
     </ul>
 
 
@@ -3684,7 +4183,23 @@
   this._globals = this._globals.concat(arr);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+/**
+ * Run mocha, returning the Runner.
+ */
+
+mocha.run = function (fn) {
+var options = mocha.options;
+mocha.<span class="apidocCodeKeywordSpan">globals</span>(&#x27;location&#x27;);
+
+var query = Mocha.utils.parseQuery(global.location.search || &#x27;&#x27;);
+if (query.grep) {
+  mocha.grep(query.grep);
+}
+if (query.fgrep) {
+  mocha.fgrep(query.fgrep);
+...</pre></li>
     </ul>
 
 
@@ -3703,7 +4218,23 @@
   this.total = this.grepTotal(this.suite);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+mocha.run = function (fn) {
+var options = mocha.options;
+mocha.globals(&#x27;location&#x27;);
+
+var query = Mocha.utils.parseQuery(global.location.search || &#x27;&#x27;);
+if (query.grep) {
+  mocha.<span class="apidocCodeKeywordSpan">grep</span>(query.grep);
+}
+if (query.fgrep) {
+  mocha.fgrep(query.fgrep);
+}
+if (query.invert) {
+  mocha.invert();
+}
+...</pre></li>
     </ul>
 
 
@@ -3731,7 +4262,22 @@
 
   return total;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Base.call(this, runner);
+
+var n = 1;
+var passes = 0;
+var failures = 0;
+
+runner.on(&#x27;start&#x27;, function () {
+  var total = runner.<span class="apidocCodeKeywordSpan">grepTotal</span>(runner.suite);
+  console.log(&#x27;%d..%d&#x27;, 1, total);
+});
+
+runner.on(&#x27;test end&#x27;, function () {
+  ++n;
+});
+...</pre></li>
     </ul>
 
 
@@ -3798,7 +4344,23 @@
     next(0);
   });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    self.suite = suite;
+
+    if (!suite) {
+self.suite = orig;
+return fn();
+    }
+
+    self.<span class="apidocCodeKeywordSpan">hook</span>(name, function (err) {
+if (err) {
+  var errSuite = self.suite;
+  self.suite = orig;
+  return fn(err, errSuite);
+}
+
+next(suites.pop());
+...</pre></li>
     </ul>
 
 
@@ -3814,7 +4376,23 @@
   var suites = [this.suite].concat(this.parents());
   this.hooks(name, suites, fn);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  self.emit(&#x27;pending&#x27;, test);
+  self.emit(&#x27;test end&#x27;, test);
+  return next();
+}
+
+// execute test and hook(s)
+self.emit(&#x27;test&#x27;, self.test = test);
+self.<span class="apidocCodeKeywordSpan">hookDown</span>(&#x27;beforeEach&#x27;, function (err, errSuite) {
+  if (test.isPending()) {
+    self.emit(&#x27;pending&#x27;, test);
+    self.emit(&#x27;test end&#x27;, test);
+    return next();
+  }
+  if (err) {
+    return hookErr(err, errSuite, false);
+...</pre></li>
     </ul>
 
 
@@ -3830,7 +4408,23 @@
   var suites = [this.suite].concat(this.parents()).reverse();
   this.hooks(name, suites, fn);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+// for failed &#x27;after each&#x27; hook start from errSuite parent,
+// otherwise start from errSuite itself
+self.suite = after ? errSuite.parent : errSuite;
+
+if (self.suite) {
+  // call hookUp afterEach
+  self.<span class="apidocCodeKeywordSpan">hookUp</span>(&#x27;afterEach&#x27;, function (err2, errSuite2) {
+    self.suite = orig;
+    // some hooks may fail even now
+    if (err2) {
+      return hookErr(err2, errSuite2, true);
+    }
+    // report error suite
+    fn(errSuite);
+...</pre></li>
     </ul>
 
 
@@ -3867,7 +4461,23 @@
 
   next(suites.pop());
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+*
+* @param {String} name
+* @param {Function} fn
+* @api private
+*/
+Runner.prototype.hookUp = function (name, fn) {
+ var suites = [this.suite].concat(this.parents()).reverse();
+ this.<span class="apidocCodeKeywordSpan">hooks</span>(name, suites, fn);
+};
+
+/**
+* Run hooks from the bottom up.
+*
+* @param {String} name
+* @param {Function} fn
+...</pre></li>
     </ul>
 
 
@@ -3888,7 +4498,23 @@
   }
   return suites;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* Run hooks from the top level down.
+*
+* @param {String} name
+* @param {Function} fn
+* @api private
+*/
+Runner.prototype.hookUp = function (name, fn) {
+ var suites = [this.suite].concat(this.<span class="apidocCodeKeywordSpan">parents</span>()).reverse();
+ this.hooks(name, suites, fn);
+};
+
+/**
+* Run hooks from the bottom up.
+*
+* @param {String} name
+...</pre></li>
     </ul>
 
 
@@ -3950,7 +4576,23 @@
 
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * root suite execution.
+ *
+ * @param {Suite} suite The root suite.
+ * @return {Function} A function which runs the root suite
+ */
+runWithSuite: function runWithSuite (suite) {
+  return function run () {
+    suite.<span class="apidocCodeKeywordSpan">run</span>();
+  };
+},
+
+/**
+ * Execute before running tests.
+ *
+ * @param {string} name
+...</pre></li>
     </ul>
 
 
@@ -4040,7 +4682,23 @@
     self.runTests(suite, next);
   });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+
+  // Avoid grep neglecting large number of tests causing a
+  // huge recursive loop and thus a maximum call stack error.
+  // See comment in `this.runTests()` for more information.
+  if (self._grep !== self._defaultGrep) {
+    Runner.immediately(function () {
+      self.<span class="apidocCodeKeywordSpan">runSuite</span>(curr, next);
+    });
+  } else {
+    self.runSuite(curr, next);
+  }
+}
+
+function done (errSuite) {
+...</pre></li>
     </ul>
 
 
@@ -4076,7 +4734,23 @@
     fn(err);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  self.emit(&#x27;test end&#x27;, test);
+  return next();
+}
+if (err) {
+  return hookErr(err, errSuite, false);
+}
+self.currentRunnable = self.test;
+self.<span class="apidocCodeKeywordSpan">runTest</span>(function (err) {
+  test = self.test;
+  if (err) {
+    var retry = test.currentRetry();
+    if (err instanceof Pending) {
+      test.pending = true;
+      self.emit(&#x27;pending&#x27;, test);
+    } else if (retry &#x3c; test.retries()) {
+...</pre></li>
     </ul>
 
 
@@ -4220,7 +4894,23 @@
   this.hookErr = hookErr;
   next();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var curr = suite.suites[i++];
+if (!curr) {
+  return done();
+}
+
+// Avoid grep neglecting large number of tests causing a
+// huge recursive loop and thus a maximum call stack error.
+// See comment in `this.<span class="apidocCodeKeywordSpan">runTests</span>()` for more information.
+if (self._grep !== self._defaultGrep) {
+  Runner.immediately(function () {
+    self.runSuite(curr, next);
+  });
+} else {
+  self.runSuite(curr, next);
+}
+...</pre></li>
     </ul>
 
 
@@ -4294,7 +4984,23 @@
   // bail
   this.emit(&#x27;end&#x27;);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if (this.hasOnly) {
+  filterOnly(rootSuite);
+}
+
+fn = fn || function () {};
+
+function uncaught (err) {
+  self.<span class="apidocCodeKeywordSpan">uncaught</span>(err);
+}
+
+function start () {
+  self.started = true;
+  self.emit(&#x27;start&#x27;);
+  self.runSuite(rootSuite, function () {
+    debug(&#x27;finished running&#x27;);
+...</pre></li>
     </ul>
 
 
@@ -4336,7 +5042,23 @@
   this._onlySuites = [];
   this.delayed = false;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this.options = options;
+if (options.grep) {
+  this.grep(new RegExp(options.grep));
+}
+if (options.fgrep) {
+  this.fgrep(options.fgrep);
+}
+this.suite = new exports.<span class="apidocCodeKeywordSpan">Suite</span>(&#x27;&#x27;, new exports.Context());
+this.ui(options.ui);
+this.bail(options.bail);
+this.reporter(options.reporter, options.reporterOptions);
+if (typeof options.timeout !== &#x27;undefined&#x27; &#x26;&#x26; options.timeout !== null) {
+  this.timeout(options.timeout);
+}
+if (typeof options.retries !== &#x27;undefined&#x27; &#x26;&#x26; options.retries !== null) {
+...</pre></li>
     </ul>
 
 
@@ -4355,7 +5077,23 @@
   parent.addSuite(suite);
   return suite;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+ * Describe a &#x22;suite&#x22; with the given `title`
+ * and callback `fn` containing nested suites
+ * and/or tests.
+ */
+
+context.describe = context.context = function (title, fn) {
+  return common.suite.<span class="apidocCodeKeywordSpan">create</span>({
+    title: title,
+    file: file,
+    fn: fn
+  });
+};
+
+/**
+...</pre></li>
     </ul>
 
 
@@ -4398,7 +5136,23 @@
   this.emit(&#x27;suite&#x27;, suite);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* @param {string} title
+* @return {Suite}
+*/
+exports.create = function (parent, title) {
+ var suite = new Suite(title, parent.ctx);
+ suite.parent = parent;
+ title = suite.fullTitle();
+ parent.<span class="apidocCodeKeywordSpan">addSuite</span>(suite);
+ return suite;
+};
+
+/**
+* Initialize a new `Suite` with the given `title` and `ctx`.
+*
+* @api private
+...</pre></li>
     </ul>
 
 
@@ -4421,7 +5175,22 @@
   this.emit(&#x27;test&#x27;, test);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+context.it = context.specify = function (title, fn) {
+  var suite = suites[0];
+  if (suite.isPending()) {
+    fn = null;
+  }
+  var test = new Test(title, fn);
+  test.file = file;
+  suite.<span class="apidocCodeKeywordSpan">addTest</span>(test);
+  return test;
+};
+
+/**
+ * Exclusive test-case.
+ */
+...</pre></li>
     </ul>
 
 
@@ -4454,7 +5223,23 @@
   this.emit(&#x27;afterAll&#x27;, hook);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+ * Execute after running tests.
+ *
+ * @param {string} name
+ * @param {Function} fn
+ */
+after: function (name, fn) {
+  suites[0].<span class="apidocCodeKeywordSpan">afterAll</span>(name, fn);
+},
+
+/**
+ * Execute before each test case.
+ *
+ * @param {string} name
+ * @param {Function} fn
+...</pre></li>
     </ul>
 
 
@@ -4487,7 +5272,23 @@
   this.emit(&#x27;afterEach&#x27;, hook);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+ * Execute after each test case.
+ *
+ * @param {string} name
+ * @param {Function} fn
+ */
+afterEach: function (name, fn) {
+  suites[0].<span class="apidocCodeKeywordSpan">afterEach</span>(name, fn);
+},
+
+suite: {
+  /**
+   * Create an exclusive Suite; convenience function
+   * See docstring for create() below.
+   *
+...</pre></li>
     </ul>
 
 
@@ -4507,7 +5308,23 @@
   this._bail = bail;
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  this.grep(new RegExp(options.grep));
+}
+if (options.fgrep) {
+  this.fgrep(options.fgrep);
+}
+this.suite = new exports.Suite(&#x27;&#x27;, new exports.Context());
+this.ui(options.ui);
+this.<span class="apidocCodeKeywordSpan">bail</span>(options.bail);
+this.reporter(options.reporter, options.reporterOptions);
+if (typeof options.timeout !== &#x27;undefined&#x27; &#x26;&#x26; options.timeout !== null) {
+  this.timeout(options.timeout);
+}
+if (typeof options.retries !== &#x27;undefined&#x27; &#x26;&#x26; options.retries !== null) {
+  this.retries(options.retries);
+}
+...</pre></li>
     </ul>
 
 
@@ -4540,7 +5357,23 @@
   this.emit(&#x27;beforeAll&#x27;, hook);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+ * Execute before running tests.
+ *
+ * @param {string} name
+ * @param {Function} fn
+ */
+before: function (name, fn) {
+  suites[0].<span class="apidocCodeKeywordSpan">beforeAll</span>(name, fn);
+},
+
+/**
+ * Execute after running tests.
+ *
+ * @param {string} name
+ * @param {Function} fn
+...</pre></li>
     </ul>
 
 
@@ -4573,7 +5406,23 @@
   this.emit(&#x27;beforeEach&#x27;, hook);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+ * Execute before each test case.
+ *
+ * @param {string} name
+ * @param {Function} fn
+ */
+beforeEach: function (name, fn) {
+  suites[0].<span class="apidocCodeKeywordSpan">beforeEach</span>(name, fn);
+},
+
+/**
+ * Execute after each test case.
+ *
+ * @param {string} name
+ * @param {Function} fn
+...</pre></li>
     </ul>
 
 
@@ -4596,7 +5445,23 @@
   suite.bail(this.bail());
   return suite;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        test = self.test;
+        if (err) {
+var retry = test.currentRetry();
+if (err instanceof Pending) {
+  test.pending = true;
+  self.emit(&#x27;pending&#x27;, test);
+} else if (retry &#x3c; test.retries()) {
+  var clonedTest = test.<span class="apidocCodeKeywordSpan">clone</span>();
+  clonedTest.currentRetry(retry + 1);
+  tests.unshift(clonedTest);
+
+  // Early return + hook trigger so that it doesn&#x27;t
+  // increment the count wrong
+  return self.hookUp(&#x27;afterEach&#x27;, next);
+} else {
+...</pre></li>
     </ul>
 
 
@@ -4615,7 +5480,23 @@
   });
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @param {Suite} suite
+ * @return {number}
+ */
+Runner.prototype.grepTotal = function (suite) {
+var self = this;
+var total = 0;
+
+suite.<span class="apidocCodeKeywordSpan">eachTest</span>(function (test) {
+  var match = self._grep.test(test.fullTitle());
+  if (self._invert) {
+    match = !match;
+  }
+  if (match) {
+    total++;
+  }
+...</pre></li>
     </ul>
 
 
@@ -4635,7 +5516,23 @@
   this._enableTimeouts = enabled;
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* Set test timeout `enabled`.
+*
+* @api private
+* @param {boolean} enabled
+* @return {Context} self
+*/
+Context.prototype.enableTimeouts = function (enabled) {
+ this.runnable().<span class="apidocCodeKeywordSpan">enableTimeouts</span>(enabled);
+ return this;
+};
+
+/**
+* Set test slowness threshold `ms`.
+*
+* @api private
+...</pre></li>
     </ul>
 
 
@@ -4656,7 +5553,24 @@
   }
   return this.title;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      suite.parent._onlySuites = suite.parent._onlySuites.concat(suite);
+      mocha.options.hasOnly = true;
+    }
+    if (typeof opts.fn === &#x27;function&#x27;) {
+      opts.fn.call(suite);
+      suites.shift();
+    } else if (typeof opts.fn === &#x27;undefined&#x27; &#x26;&#x26; !suite.pending) {
+      throw new Error(&#x27;Suite &#x22;&#x27; + suite.<span class="apidocCodeKeywordSpan">fullTitle</span>() + &#x27;&#x22; was
+ defined but no callback was supplied. Supply a callback or explicitly skip the suite.&#x27;);
+    }
+
+    return suite;
+  }
+},
+
+test: {
+...</pre></li>
     </ul>
 
 
@@ -4671,7 +5585,23 @@
     <li>description and source-code<pre class="apidocCodePre">isPending = function () {
   return this.pending || (this.parent &#x26;&#x26; this.parent.isPending());
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Describe a specification or test-case
+ * with the given `title` and callback `fn`
+ * acting as a thunk.
+ */
+
+context.it = context.specify = function (title, fn) {
+  var suite = suites[0];
+  if (suite.<span class="apidocCodeKeywordSpan">isPending</span>()) {
+    fn = null;
+  }
+  var test = new Test(title, fn);
+  test.file = file;
+  suite.addTest(test);
+  return test;
+};
+...</pre></li>
     </ul>
 
 
@@ -4691,7 +5621,23 @@
   this._retries = parseInt(n, 10) || 0;
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+*
+* @api private
+* @param {number} n
+* @return {Context} self
+*/
+Context.prototype.retries = function (n) {
+ if (!arguments.length) {
+   return this.runnable().<span class="apidocCodeKeywordSpan">retries</span>();
+ }
+ this.runnable().retries(n);
+ return this;
+};
+
+/**
+* Inspect the context void of `._runnable`.
+...</pre></li>
     </ul>
 
 
@@ -4708,7 +5654,23 @@
     this.emit(&#x27;run&#x27;);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * root suite execution.
+ *
+ * @param {Suite} suite The root suite.
+ * @return {Function} A function which runs the root suite
+ */
+runWithSuite: function runWithSuite (suite) {
+  return function run () {
+    suite.<span class="apidocCodeKeywordSpan">run</span>();
+  };
+},
+
+/**
+ * Execute before running tests.
+ *
+ * @param {string} name
+...</pre></li>
     </ul>
 
 
@@ -4731,7 +5693,23 @@
   this._slow = ms;
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* Set test slowness threshold `ms`.
+*
+* @api private
+* @param {number} ms
+* @return {Context} self
+*/
+Context.prototype.slow = function (ms) {
+ this.runnable().<span class="apidocCodeKeywordSpan">slow</span>(ms);
+ return this;
+};
+
+/**
+* Mark a test as skipped.
+*
+* @api private
+...</pre></li>
     </ul>
 
 
@@ -4757,7 +5735,23 @@
   this._timeout = parseInt(ms, 10);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+*
+* @api private
+* @param {number} ms
+* @return {Context} self
+*/
+Context.prototype.timeout = function (ms) {
+ if (!arguments.length) {
+   return this.runnable().<span class="apidocCodeKeywordSpan">timeout</span>();
+ }
+ this.runnable().timeout(ms);
+ return this;
+};
+
+/**
+* Set test timeout `enabled`.
+...</pre></li>
     </ul>
 
 
@@ -4774,7 +5768,23 @@
     return sum + suite.total();
   }, 0) + this.tests.length;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+function Runner (suite, delay) {
+var self = this;
+this._globals = [];
+this._abort = false;
+this._delay = delay;
+this.suite = suite;
+this.started = false;
+this.total = suite.<span class="apidocCodeKeywordSpan">total</span>();
+this.failures = 0;
+this.on(&#x27;test end&#x27;, function (test) {
+  self.checkGlobals(test);
+});
+this.on(&#x27;hook end&#x27;, function (hook) {
+  self.checkGlobals(hook);
+});
+...</pre></li>
     </ul>
 
 
@@ -4829,7 +5839,23 @@
   test.ctx = this.ctx;
   return test;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        test = self.test;
+        if (err) {
+var retry = test.currentRetry();
+if (err instanceof Pending) {
+  test.pending = true;
+  self.emit(&#x27;pending&#x27;, test);
+} else if (retry &#x3c; test.retries()) {
+  var clonedTest = test.<span class="apidocCodeKeywordSpan">clone</span>();
+  clonedTest.currentRetry(retry + 1);
+  tests.unshift(clonedTest);
+
+  // Early return + hook trigger so that it doesn&#x27;t
+  // increment the count wrong
+  return self.hookUp(&#x27;afterEach&#x27;, next);
+} else {
+...</pre></li>
     </ul>
 
 
@@ -6597,7 +7623,23 @@
 
   runner.on(&#x27;end&#x27;, self.epilogue.bind(self));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  // failures
+  if (stats.failures) {
+    fmt = color(&#x27;fail&#x27;, &#x27;  %d failing&#x27;);
+
+    console.log(fmt, stats.failures);
+
+    Base.<span class="apidocCodeKeywordSpan">list</span>(this.failures);
+    console.log();
+  }
+
+  console.log();
+};
+
+/**
+...</pre></li>
     </ul>
 
 
@@ -6705,7 +7747,22 @@
 
   runner.on(&#x27;end&#x27;, this.epilogue.bind(this));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Draw on `ctx`.
+ *
+ * @param {CanvasRenderingContext2d} ctx
+ * @return {Progress} Progress instance.
+ */
+Progress.prototype.draw = function (ctx) {
+try {
+  var percent = Math.<span class="apidocCodeKeywordSpan">min</span>(this.percent, 100);
+  var size = this._size;
+  var half = size / 2;
+  var x = half;
+  var y = half;
+  var rad = half - 1;
+  var fontSize = this._fontSize;
+...</pre></li>
     </ul>
 
 
@@ -7091,7 +8148,23 @@
   }
   return &#x27;\u001b[&#x27; + exports.colors[type] + &#x27;m&#x27; + str + &#x27;\u001b[0m&#x27;;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ */
+
+NyanCat.prototype.drawScoreboard = function () {
+var stats = this.stats;
+
+function draw (type, n) {
+  write(&#x27; &#x27;);
+  write(Base.<span class="apidocCodeKeywordSpan">color</span>(type, n));
+  write(&#x27;\n&#x27;);
+}
+
+draw(&#x27;green&#x27;, stats.passes);
+draw(&#x27;fail&#x27;, stats.failures);
+draw(&#x27;pending&#x27;, stats.pending);
+write(&#x27;\n&#x27;);
+...</pre></li>
     </ul>
 
 
@@ -7166,7 +8239,23 @@
     console.log(fmt, (i + 1), test.fullTitle(), msg, stack);
   });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  // failures
+  if (stats.failures) {
+    fmt = color(&#x27;fail&#x27;, &#x27;  %d failing&#x27;);
+
+    console.log(fmt, stats.failures);
+
+    Base.<span class="apidocCodeKeywordSpan">list</span>(this.failures);
+    console.log();
+  }
+
+  console.log();
+};
+
+/**
+...</pre></li>
     </ul>
 
 
@@ -7228,7 +8317,23 @@
 
   console.log();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      process.stdout.write(&#x27;\n  &#x27;);
+    }
+    process.stdout.write(color(&#x27;fail&#x27;, Base.symbols.bang));
+  });
+
+  runner.on(&#x27;end&#x27;, function () {
+    console.log();
+    self.<span class="apidocCodeKeywordSpan">epilogue</span>();
+  });
+}
+
+/**
+ * Inherit from `Base.prototype`.
+ */
+inherits(Dot, Base);
+...</pre></li>
     </ul>
 
 
@@ -7527,7 +8632,25 @@
   el.appendChild(pre);
   pre.style.display = &#x27;none&#x27;;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+
+runner.on(&#x27;pass&#x27;, function (test) {
+  var url = self.testURL(test);
+  var markup = &#x27;&#x3c;li class=&#x22;test pass %e&#x22;&#x3e;&#x3c;h2&#x3e;%e&#x3c;span class=&#x22;duration&#x22;&#x3e;%ems
+&#x3c;/span&#x3e; &#x27; +
+    &#x27;&#x3c;a href=&#x22;%s&#x22; class=&#x22;replay&#x22;&#x3e;‣&#x3c;/a&#x3e;&#x3c;/h2&#x3e;&#x3c;/li&#x3e;&#x27;;
+  var el = fragment(markup, test.speed, test.title, test.duration, url);
+  self.<span class="apidocCodeKeywordSpan">addCodeToggle</span>(el, test.body);
+  appendToStack(el);
+  updateStats();
+});
+
+runner.on(&#x27;fail&#x27;, function (test) {
+  var el = fragment(&#x27;&#x3c;li class=&#x22;test fail&#x22;&#x3e;&#x3c;h2&#x3e;%e &#x3c;a href=&#x22;%e&#x22; class=&#x22;replay
+&#x22;&#x3e;‣&#x3c;/a&#x3e;&#x3c;/h2&#x3e;&#x3c;/li&#x3e;&#x27;,
+    test.title, self.testURL(test));
+...</pre></li>
     </ul>
 
 
@@ -7542,7 +8665,24 @@
     <li>description and source-code<pre class="apidocCodePre">suiteURL = function (suite) {
   return makeUrl(suite.fullTitle());
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+runner.on(&#x27;suite&#x27;, function (suite) {
+  if (suite.root) {
+    return;
+  }
+
+  // suite
+  var url = self.<span class="apidocCodeKeywordSpan">suiteURL</span>(suite);
+  var el = fragment(&#x27;&#x3c;li class=&#x22;suite&#x22;&#x3e;&#x3c;h1&#x3e;&#x3c;a href=&#x22;%s&#x22;&#x3e;%s&#x3c;/a&#x3e;&#
+x3c;/h1&#x3e;&#x3c;/li&#x3e;&#x27;, url, escape(suite.title));
+
+  // container
+  stack[0].appendChild(el);
+  stack.unshift(document.createElement(&#x27;ul&#x27;));
+  el.appendChild(stack[0]);
+});
+...</pre></li>
     </ul>
 
 
@@ -7557,7 +8697,24 @@
     <li>description and source-code<pre class="apidocCodePre">testURL = function (test) {
   return makeUrl(test.fullTitle());
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    updateStats();
+    return;
+  }
+  stack.shift();
+});
+
+runner.on(&#x27;pass&#x27;, function (test) {
+  var url = self.<span class="apidocCodeKeywordSpan">testURL</span>(test);
+  var markup = &#x27;&#x3c;li class=&#x22;test pass %e&#x22;&#x3e;&#x3c;h2&#x3e;%e&#x3c;span class=&#x22;duration&#x22;&#x3e;%ems
+&#x3c;/span&#x3e; &#x27; +
+    &#x27;&#x3c;a href=&#x22;%s&#x22; class=&#x22;replay&#x22;&#x3e;‣&#x3c;/a&#x3e;&#x3c;/h2&#x3e;&#x3c;/li&#x3e;&#x27;;
+  var el = fragment(markup, test.speed, test.title, test.duration, url);
+  self.addCodeToggle(el, test.body);
+  appendToStack(el);
+  updateStats();
+});
+...</pre></li>
     </ul>
 
 
@@ -7741,7 +8898,23 @@
 
   runner.on(&#x27;end&#x27;, self.epilogue.bind(self));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  // failures
+  if (stats.failures) {
+    fmt = color(&#x27;fail&#x27;, &#x27;  %d failing&#x27;);
+
+    console.log(fmt, stats.failures);
+
+    Base.<span class="apidocCodeKeywordSpan">list</span>(this.failures);
+    console.log();
+  }
+
+  console.log();
+};
+
+/**
+...</pre></li>
     </ul>
 
 
@@ -7837,7 +9010,22 @@
 
   runner.on(&#x27;end&#x27;, this.epilogue.bind(this));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Draw on `ctx`.
+ *
+ * @param {CanvasRenderingContext2d} ctx
+ * @return {Progress} Progress instance.
+ */
+Progress.prototype.draw = function (ctx) {
+try {
+  var percent = Math.<span class="apidocCodeKeywordSpan">min</span>(this.percent, 100);
+  var size = this._size;
+  var half = size / 2;
+  var x = half;
+  var y = half;
+  var rad = half - 1;
+  var fontSize = this._fontSize;
+...</pre></li>
     </ul>
 
 
@@ -8057,7 +9245,23 @@
     trajectory.push(rainbowified);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+ * Draw the nyan cat
+ *
+ * @api private
+ */
+
+NyanCat.prototype.draw = function () {
+  this.<span class="apidocCodeKeywordSpan">appendRainbow</span>();
+  this.drawScoreboard();
+  this.drawRainbow();
+  this.drawNyanCat();
+  this.tick = !this.tick;
+};
+
+/**
+...</pre></li>
     </ul>
 
 
@@ -8087,7 +9291,23 @@
     <li>description and source-code<pre class="apidocCodePre">cursorUp = function (n) {
   write(&#x27;\u001b[&#x27; + n + &#x27;A&#x27;);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ }
+
+ draw(&#x27;green&#x27;, stats.passes);
+ draw(&#x27;fail&#x27;, stats.failures);
+ draw(&#x27;pending&#x27;, stats.pending);
+ write(&#x27;\n&#x27;);
+
+ this.<span class="apidocCodeKeywordSpan">cursorUp</span>(this.numberOfLines);
+};
+
+/**
+* Append the rainbow.
+*
+* @api private
+*/
+...</pre></li>
     </ul>
 
 
@@ -8106,7 +9326,23 @@
   this.drawNyanCat();
   this.tick = !this.tick;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+  }
+
+  function updateStats () {
+// TODO: add to stats
+var percent = stats.tests / runner.total * 100 | 0;
+if (progress) {
+  progress.update(percent).<span class="apidocCodeKeywordSpan">draw</span>(ctx);
+}
+
+// update stats
+var ms = new Date() - stats.start;
+text(passes, stats.passes);
+text(failures, stats.failures);
+text(duration, (ms / 1000).toFixed(2));
+...</pre></li>
     </ul>
 
 
@@ -8146,7 +9382,23 @@
 
   this.cursorUp(this.numberOfLines);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* @api private
+*/
+
+NyanCat.prototype.draw = function () {
+ this.appendRainbow();
+ this.drawScoreboard();
+ this.drawRainbow();
+ this.<span class="apidocCodeKeywordSpan">drawNyanCat</span>();
+ this.tick = !this.tick;
+};
+
+/**
+* Draw the &#x22;scoreboard&#x22; showing the number
+* of passes, failures and pending tests.
+*
+...</pre></li>
     </ul>
 
 
@@ -8169,7 +9421,23 @@
 
   this.cursorUp(this.numberOfLines);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+*
+* @api private
+*/
+
+NyanCat.prototype.draw = function () {
+ this.appendRainbow();
+ this.drawScoreboard();
+ this.<span class="apidocCodeKeywordSpan">drawRainbow</span>();
+ this.drawNyanCat();
+ this.tick = !this.tick;
+};
+
+/**
+* Draw the &#x22;scoreboard&#x22; showing the number
+* of passes, failures and pending tests.
+...</pre></li>
     </ul>
 
 
@@ -8197,7 +9465,23 @@
 
   this.cursorUp(this.numberOfLines);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* Draw the nyan cat
+*
+* @api private
+*/
+
+NyanCat.prototype.draw = function () {
+ this.appendRainbow();
+ this.<span class="apidocCodeKeywordSpan">drawScoreboard</span>();
+ this.drawRainbow();
+ this.drawNyanCat();
+ this.tick = !this.tick;
+};
+
+/**
+* Draw the &#x22;scoreboard&#x22; showing the number
+...</pre></li>
     </ul>
 
 
@@ -8220,7 +9504,22 @@
   }
   return &#x27;( - .-)&#x27;;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+padding = self.tick ? &#x27;  &#x27; : &#x27;   &#x27;;
+write(&#x27;_|&#x27; + padding + &#x27;/\\_/\\ &#x27;);
+write(&#x27;\n&#x27;);
+
+write(dist);
+padding = self.tick ? &#x27;_&#x27; : &#x27;__&#x27;;
+var tail = self.tick ? &#x27;~&#x27; : &#x27;^&#x27;;
+write(tail + &#x27;|&#x27; + padding + this.<span class="apidocCodeKeywordSpan">face</span>() + &#x27; &#x27;);
+write(&#x27;\n&#x27;);
+
+write(dist);
+padding = self.tick ? &#x27; &#x27; : &#x27;  &#x27;;
+write(padding + &#x27;&#x22;&#x22;  &#x22;&#x22; &#x27;);
+write(&#x27;\n&#x27;);
+...</pre></li>
     </ul>
 
 
@@ -8246,7 +9545,23 @@
 
   return colors;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var self = this;
+var width = Base.window.width * 0.75 | 0;
+var nyanCatWidth = this.nyanCatWidth = 11;
+
+this.colorIndex = 0;
+this.numberOfLines = 4;
+this.rainbowColors = self.<span class="apidocCodeKeywordSpan">generateColors</span>();
+this.scoreboardWidth = 5;
+this.tick = 0;
+this.trajectories = [[], [], [], []];
+this.trajectoryWidthMax = (width - nyanCatWidth);
+
+runner.on(&#x27;start&#x27;, function () {
+  Base.cursor.hide();
+...</pre></li>
     </ul>
 
 
@@ -8266,7 +9581,23 @@
   this.colorIndex += 1;
   return &#x27;\u001b[38;5;&#x27; + color + &#x27;m&#x27; + str + &#x27;\u001b[0m&#x27;;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Append the rainbow.
+ *
+ * @api private
+ */
+
+NyanCat.prototype.appendRainbow = function () {
+var segment = this.tick ? &#x27;_&#x27; : &#x27;-&#x27;;
+var rainbowified = this.<span class="apidocCodeKeywordSpan">rainbowify</span>(segment);
+
+for (var index = 0; index &#x3c; this.numberOfLines; index++) {
+  var trajectory = this.trajectories[index];
+  if (trajectory.length &#x3e;= this.trajectoryWidthMax) {
+    trajectory.shift();
+  }
+  trajectory.push(rainbowified);
+...</pre></li>
     </ul>
 
 
@@ -8699,7 +10030,23 @@
     fn(failures);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  if (options.useColors !== undefined) {
+    exports.reporters.Base.useColors = options.useColors;
+  }
+  exports.reporters.Base.inlineDiffs = options.useInlineDiffs;
+
+  function done (failures) {
+    if (reporter.done) {
+      reporter.<span class="apidocCodeKeywordSpan">done</span>(failures, fn);
+    } else {
+      fn &#x26;&#x26; fn(failures);
+    }
+  }
+
+  return runner.run(done);
+};
+...</pre></li>
     </ul>
 
 
@@ -8727,7 +10074,23 @@
     this.write(tag(&#x27;testcase&#x27;, attrs, true));
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+/**
+ * Pending test case.
+ *
+ * @param {string} title
+ */
+skip: function (title) {
+  context.<span class="apidocCodeKeywordSpan">test</span>(title);
+},
+
+/**
+ * Number of retry attempts
+ *
+ * @param {number} n
+ */
+...</pre></li>
     </ul>
 
 
@@ -8748,7 +10111,23 @@
     console.log(line);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+/**
+ * Expose some basic cursor interactions that are common among reporters.
+ */
+
+exports.cursor = {
+hide: function () {
+  isatty &#x26;&#x26; process.stdout.<span class="apidocCodeKeywordSpan">write</span>(&#x27;\u001b[?25l&#x27;);
+},
+
+show: function () {
+  isatty &#x26;&#x26; process.stdout.write(&#x27;\u001b[?25h&#x27;);
+},
+
+deleteLine: function () {
+...</pre></li>
     </ul>
 
 
@@ -8829,7 +10208,23 @@
 
   return canonicalizedObj;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    } else {
+      return jsonStringify(value);
+    }
+  }
+
+  for (var prop in value) {
+    if (Object.prototype.hasOwnProperty.call(value, prop)) {
+      return jsonStringify(exports.<span class="apidocCodeKeywordSpan">canonicalize</span>(value, null, typeHint), 2).replace(/,(\n|$)/g, &#x27;$1&#x27;);
+    }
+  }
+
+  return emptyRepresentation(value, typeHint);
+};
+
+/**
+...</pre></li>
     </ul>
 
 
@@ -8857,7 +10252,25 @@ keep body content
 
   return exports.trim(str);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  --indents;
+  console.log(&#x27;%s&#x3c;/section&#x3e;&#x27;, indent());
+  --indents;
+});
+
+runner.on(&#x27;pass&#x27;, function (test) {
+  console.log(&#x27;%s  &#x3c;dt&#x3e;%s&#x3c;/dt&#x3e;&#x27;, indent(), utils.escape(test.title));
+  var code = utils.escape(utils.<span class="apidocCodeKeywordSpan">clean</span>(test.body));
+  console.log(&#x27;%s  &#x3c;dd&#x3e;&#x3c;pre&#x3e;&#x3c;code&#x3e;%s&#x3c;/code&#x3e;&#x3c;/pre&#x3e;&#x3c;/dd&#x3e;&#x27;, indent
+(), code);
+});
+
+runner.on(&#x27;fail&#x27;, function (test, err) {
+  console.log(&#x27;%s  &#x3c;dt class=&#x22;error&#x22;&#x3e;%s&#x3c;/dt&#x3e;&#x27;, indent(), utils.escape(test.title));
+  var code = utils.escape(utils.clean(test.body));
+  console.log(&#x27;%s  &#x3c;dd class=&#x22;error&#x22;&#x3e;&#x3c;pre&#x3e;&#x3c;code&#x3e;%s&#x3c;/code&#x3e;&#x3c;/pre&#x3e;&#
+x3c;/dd&#x3e;&#x27;, indent(), code);
+...</pre></li>
     </ul>
 
 
@@ -8876,7 +10289,24 @@ keep body content
     .replace(/&#x3c;/g, &#x27;&#x26;lt;&#x27;)
     .replace(/&#x3e;/g, &#x27;&#x26;gt;&#x27;);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+runner.on(&#x27;suite&#x27;, function (suite) {
+  if (suite.root) {
+    return;
+  }
+  ++indents;
+  console.log(&#x27;%s&#x3c;section class=&#x22;suite&#x22;&#x3e;&#x27;, indent());
+  ++indents;
+  console.log(&#x27;%s&#x3c;h1&#x3e;%s&#x3c;/h1&#x3e;&#x27;, indent(), utils.<span class="apidocCodeKeywordSpan">escape</span>(suite
+.title));
+  console.log(&#x27;%s&#x3c;dl&#x3e;&#x27;, indent());
+});
+
+runner.on(&#x27;suite end&#x27;, function (suite) {
+  if (suite.root) {
+    return;
+  }
+...</pre></li>
     </ul>
 
 
@@ -8907,7 +10337,23 @@ keep body content
 
   return ret;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var re = new RegExp(&#x27;\\.(&#x27; + ext.join(&#x27;|&#x27;) + &#x27;)$&#x27;);
+
+  readdirSync(dir)
+    .filter(ignored)
+    .forEach(function (path) {
+      path = join(dir, path);
+      if (lstatSync(path).isDirectory()) {
+        exports.<span class="apidocCodeKeywordSpan">files</span>(path, ext, ret);
+      } else if (path.match(re)) {
+        ret.push(path);
+      }
+    });
+
+  return ret;
+};
+...</pre></li>
     </ul>
 
 
@@ -8931,7 +10377,23 @@ keep body content
 
   return ret;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ }
+ var msg = diff.createPatch(&#x27;string&#x27;, err.actual, err.expected);
+ var lines = msg.split(&#x27;\n&#x27;).splice(4);
+ return &#x27;\n      &#x27; +
+   colorLines(&#x27;diff added&#x27;, &#x27;+ expected&#x27;) + &#x27; &#x27; +
+   colorLines(&#x27;diff removed&#x27;, &#x27;- actual&#x27;) +
+   &#x27;\n\n&#x27; +
+   lines.map(cleanUp).<span class="apidocCodeKeywordSpan">filter</span>(notBlank).join(&#x27;\n&#x27;);
+}
+
+/**
+* Return a character diff for `err`.
+*
+* @api private
+* @param {Error} err
+...</pre></li>
     </ul>
 
 
@@ -8948,7 +10410,23 @@ keep body content
     fn.call(scope, arr[i], i);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+/**
+* Function to allow assertion libraries to throw errors directly into mocha.
+* This is useful when running tests in a browser because window.onerror will
+* only receive the &#x27;message&#x27; attribute of the Error.
+*/
+mocha.throwError = function (err) {
+ Mocha.utils.<span class="apidocCodeKeywordSpan">forEach</span>(uncaughtExceptionHandlers, function (fn) {
+   fn(err);
+ });
+ throw err;
+};
+
+/**
+* Override ui to ensure that the ui functions are initialized.
+...</pre></li>
     </ul>
 
 
@@ -8963,7 +10441,23 @@ keep body content
     <li>description and source-code<pre class="apidocCodePre">getError = function (err) {
   return err || exports.undefinedError();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  if (this.allowUncaught) {
+    return callFnAsync(this.fn);
+  }
+  try {
+    callFnAsync(this.fn);
+  } catch (err) {
+    emitted = true;
+    done(utils.<span class="apidocCodeKeywordSpan">getError</span>(err));
+  }
+  return;
+}
+
+if (this.allowUncaught) {
+  callFn(this.fn);
+  done();
+...</pre></li>
     </ul>
 
 
@@ -8981,7 +10475,22 @@ keep body content
     code[i].innerHTML = highlight(code[i].innerHTML);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    mocha.invert();
+  }
+
+  return Mocha.prototype.run.call(mocha, function (err) {
+    // The DOM Document is not available in Web Workers.
+    var document = global.document;
+    if (document &#x26;&#x26; document.getElementById(&#x27;mocha&#x27;) &#x26;&#x26; options.noHighlighting !== true) {
+      Mocha.utils.<span class="apidocCodeKeywordSpan">highlightTags</span>(&#x27;code&#x27;);
+    }
+    if (fn) {
+      fn(err);
+    }
+  });
+};
+...</pre></li>
     </ul>
 
 
@@ -9001,7 +10510,23 @@ keep body content
   }
   return -1;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+process.removeListener = function (e, fn) {
+  if (e === &#x27;uncaughtException&#x27;) {
+    if (originalOnerrorHandler) {
+      global.onerror = originalOnerrorHandler;
+    } else {
+      global.onerror = function () {};
+    }
+    var i = Mocha.utils.<span class="apidocCodeKeywordSpan">indexOf</span>(uncaughtExceptionHandlers, fn);
+    if (i !== -1) {
+      uncaughtExceptionHandlers.splice(i, 1);
+    }
+  }
+};
+
+/**
+...</pre></li>
     </ul>
 
 
@@ -9030,7 +10555,22 @@ keep body content
   ctor.super_ = superCtor;
   Object.setPrototypeOf(ctor.prototype, superCtor.prototype);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var util = require(&#x27;core-util-is&#x27;);
+util.inherits = require(&#x27;inherits&#x27;);
+/*&#x3c;/replacement&#x3e;*/
+
+var Readable = require(&#x27;./_stream_readable&#x27;);
+var Writable = require(&#x27;./_stream_writable&#x27;);
+
+util.<span class="apidocCodeKeywordSpan">inherits</span>(Duplex, Readable);
+
+var keys = objectKeys(Writable.prototype);
+for (var v = 0; v &#x3c; keys.length; v++) {
+  var method = keys[v];
+  if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
+}
+...</pre></li>
     </ul>
 
 
@@ -9043,7 +10583,23 @@ keep body content
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function isArray() { [native code] }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+if (Buffer.isBuffer(value)) {
+  var out = new Buffer(value.length);
+  value.copy(out, 0, 0, value.length);
+  return out;
+}
+if (value) {
+  if (Array.<span class="apidocCodeKeywordSpan">isArray</span>(value) || (typeof ArrayBuffer !== &#x27;undefined&#x27; &#x26;&#x26
+; value.buffer instanceof ArrayBuffer) || &#x27;length&#x27; in value) {
+    return new Buffer(value);
+  }
+  if (value.type === &#x27;Buffer&#x27; &#x26;&#x26; Array.isArray(value.data)) {
+    return new Buffer(value.data);
+  }
+}
+...</pre></li>
     </ul>
 
 
@@ -9058,7 +10614,23 @@ keep body content
     <li>description and source-code<pre class="apidocCodePre">isBuffer = function (value) {
   return typeof Buffer !== &#x27;undefined&#x27; &#x26;&#x26; Buffer.isBuffer(value);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * type(new String(&#x27;foo&#x27;) // &#x27;object&#x27;
+ */
+var type = exports.type = function type (value) {
+  if (value === undefined) {
+    return &#x27;undefined&#x27;;
+  } else if (value === null) {
+    return &#x27;null&#x27;;
+  } else if (typeof Buffer !== &#x27;undefined&#x27; &#x26;&#x26; Buffer.<span class="apidocCodeKeywordSpan">isBuffer</span>(value
+)) {
+    return &#x27;buffer&#x27;;
+  }
+  return Object.prototype.toString.call(value)
+    .replace(/^\[.+\s(.+?)\]$/, &#x27;$1&#x27;)
+    .toLowerCase();
+};
+...</pre></li>
     </ul>
 
 
@@ -9073,7 +10645,24 @@ keep body content
     <li>description and source-code<pre class="apidocCodePre">function isPromise(value) {
   return typeof value === &#x27;object&#x27; &#x26;&#x26; typeof value.then === &#x27;function&#x27;;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      if (err) {
+        if (Object.prototype.toString.call(err) === &#x27;[object Object]&#x27;) {
+          return done(new Error(&#x27;done() invoked with non-Error: &#x27; +
+            JSON.stringify(err)));
+        }
+        return done(new Error(&#x27;done() invoked with non-Error: &#x27; + err));
+      }
+      if (result &#x26;&#x26; utils.<span class="apidocCodeKeywordSpan">isPromise</span>(result)) {
+        return done(new Error(&#x27;Resolution method is overspecified. Specify a callback *or* return a Promise; not both.&#x27
+;));
+      }
+
+      done();
+    });
+  }
+};
+...</pre></li>
     </ul>
 
 
@@ -9088,7 +10677,23 @@ keep body content
     <li>description and source-code<pre class="apidocCodePre">isString = function (obj) {
   return typeof obj === &#x27;string&#x27;;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @param {RegExp|String} re
+ * @return {Mocha}
+ * @api public
+ * @param {RegExp|string} re
+ * @return {Mocha}
+ */
+Mocha.prototype.grep = function (re) {
+if (utils.<span class="apidocCodeKeywordSpan">isString</span>(re)) {
+  // extract args if it&#x27;s regex-like, i.e: [string, pattern, flag]
+  var arg = re.match(/^\/(.*)\/(g|i|)$|.*/);
+  this.options.grep = new RegExp(arg[1] || arg[0], arg[2]);
+} else {
+  this.options.grep = re;
+}
+return this;
+...</pre></li>
     </ul>
 
 
@@ -9101,7 +10706,24 @@ keep body content
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function keys() { [native code] }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  return _stringify(object);
+}
+
+depth = depth || 1;
+var space = spaces * depth;
+var str = isArray(object) ? &#x27;[&#x27; : &#x27;{&#x27;;
+var end = isArray(object) ? &#x27;]&#x27; : &#x27;}&#x27;;
+var length = typeof object.length === &#x27;number&#x27; ? object.length : exports.<span class="apidocCodeKeywordSpan">keys</span
+>(object).length;
+// `.repeat()` polyfill
+function repeat (s, n) {
+  return new Array(n).join(s);
+}
+
+function _stringify (val) {
+  switch (type(val)) {
+...</pre></li>
     </ul>
 
 
@@ -9180,7 +10802,23 @@ keep body content
   }
   return result;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+function inlineDiff (err, escape) {
+var msg = errorDiff(err, &#x27;WordsWithSpace&#x27;, escape);
+
+// linenos
+var lines = msg.split(&#x27;\n&#x27;);
+if (lines.length &#x3e; 4) {
+  var width = String(lines.length).length;
+  msg = lines.<span class="apidocCodeKeywordSpan">map</span>(function (str, i) {
+    return pad(++i, width) + &#x27; |&#x27; + &#x27; &#x27; + str;
+  }).join(&#x27;\n&#x27;);
+}
+
+// legend
+msg = &#x27;\n&#x27; +
+  color(&#x27;diff removed&#x27;, &#x27;actual&#x27;) +
+...</pre></li>
     </ul>
 
 
@@ -9215,7 +10853,23 @@ keep body content
     return obj;
   }, {});
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Run mocha, returning the Runner.
+ */
+
+mocha.run = function (fn) {
+var options = mocha.options;
+mocha.globals(&#x27;location&#x27;);
+
+var query = Mocha.utils.<span class="apidocCodeKeywordSpan">parseQuery</span>(global.location.search || &#x27;&#x27;);
+if (query.grep) {
+  mocha.grep(query.grep);
+}
+if (query.fgrep) {
+  mocha.fgrep(query.fgrep);
+}
+if (query.invert) {
+...</pre></li>
     </ul>
 
 
@@ -9236,7 +10890,23 @@ keep body content
 
   return rval;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ *
+ * @return {Array}
+ * @api private
+ */
+function extraGlobals () {
+  if (typeof process === &#x27;object&#x27; &#x26;&#x26; typeof process.version === &#x27;string&#x27;) {
+var parts = process.version.split(&#x27;.&#x27;);
+var nodeVersion = utils.<span class="apidocCodeKeywordSpan">reduce</span>(parts, function (a, v) {
+  return a &#x3c;&#x3c; 8 | v;
+});
+
+// &#x27;errno&#x27; was renamed to process._errno in v0.9.11.
+
+if (nodeVersion &#x3c; 0x00090B) {
+  return [&#x27;errno&#x27;];
+...</pre></li>
     </ul>
 
 
@@ -9254,7 +10924,23 @@ keep body content
     .replace(/ +/g, &#x27;-&#x27;)
     .replace(/[^-\w]/g, &#x27;&#x27;);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var link;
+  for (var key in obj) {
+    if (key === &#x27;suite&#x27;) {
+      continue;
+    }
+    if (key !== SUITE_PREFIX) {
+      link = &#x27; - [&#x27; + key.substring(1) + &#x27;]&#x27;;
+      link += &#x27;(#&#x27; + utils.<span class="apidocCodeKeywordSpan">slug</span>(obj[key].suite.fullTitle()) + &#x27;)\n&#x27
+;;
+      buf += Array(level).join(&#x27;  &#x27;) + link;
+    }
+    buf += stringifyTOC(obj[key], level);
+  }
+  return buf;
+}
+...</pre></li>
     </ul>
 
 
@@ -9338,7 +11024,23 @@ keep body content
     return stack.join(&#x27;\n&#x27;);
   };
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var inherits = utils.inherits;
+var debug = require(&#x27;debug&#x27;)(&#x27;mocha:runner&#x27;);
+var Runnable = require(&#x27;./runnable&#x27;);
+var filter = utils.filter;
+var indexOf = utils.indexOf;
+var some = utils.some;
+var keys = utils.keys;
+var stackFilter = utils.<span class="apidocCodeKeywordSpan">stackTraceFilter</span>();
+var stringify = utils.stringify;
+var type = utils.type;
+var undefinedError = utils.undefinedError;
+var isArray = utils.isArray;
+
+/**
+* Non-enumerable globals.
+...</pre></li>
     </ul>
 
 
@@ -9382,7 +11084,22 @@ keep body content
 
   return emptyRepresentation(value, typeHint);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+ * Inspect the context void of `._runnable`.
+ *
+ * @api private
+ * @return {string}
+ */
+Context.prototype.inspect = function () {
+  return JSON.<span class="apidocCodeKeywordSpan">stringify</span>(this, function (key, val) {
+    return key === &#x27;runnable&#x27; || key === &#x27;test&#x27; ? undefined : val;
+  }, 2);
+};
+
+},{&#x22;json3&#x22;:54}],7:[function(require,module,exports){
+&#x27;use strict&#x27;;
+...</pre></li>
     </ul>
 
 
@@ -9397,7 +11114,23 @@ keep body content
     <li>description and source-code<pre class="apidocCodePre">trim = function (str) {
   return str.replace(/^\s+|\s+$/g, &#x27;&#x27;);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+// pass toggle
+on(passesLink, &#x27;click&#x27;, function (evt) {
+  evt.preventDefault();
+  unhide();
+  var name = (/pass/).test(report.className) ? &#x27;&#x27; : &#x27; pass&#x27;;
+  report.className = report.className.replace(/fail|pass/g, &#x27;&#x27;) + name;
+  if (report.className.<span class="apidocCodeKeywordSpan">trim</span>()) {
+    hideSuitesWithout(&#x27;test pass&#x27;);
+  }
+});
+
+// failure toggle
+on(failuresLink, &#x27;click&#x27;, function (evt) {
+  evt.preventDefault();
+...</pre></li>
     </ul>
 
 
@@ -9421,7 +11154,23 @@ keep body content
     .replace(/^\[.+\s(.+?)\]$/, &#x27;$1&#x27;)
     .toLowerCase();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+for (var i = 0, len = paths.length; i &#x3c; len; ++i) {
+  loc = path.join(paths[i], name);
+  if (exists(loc)) return loc;
+}
+}
+
+switch(os.<span class="apidocCodeKeywordSpan">type</span>()) {
+case &#x27;Darwin&#x27;:
+  if (which(&#x27;terminal-notifier&#x27;)) {
+    cmd = {
+        type: &#x22;Darwin-NotificationCenter&#x22;
+      , pkg: &#x22;terminal-notifier&#x22;
+      , msg: &#x27;-message&#x27;
+      , title: &#x27;-title&#x27;
+...</pre></li>
     </ul>
 
 
@@ -9436,7 +11185,23 @@ keep body content
     <li>description and source-code<pre class="apidocCodePre">undefinedError = function () {
   return new Error(&#x27;Caught undefined error, did you throw without specifying what?&#x27;);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* Generate an undefined error if `err` is not defined.
+*
+* @param {Error} err
+* @return {Error}
+*/
+
+exports.getError = function (err) {
+ return err || exports.<span class="apidocCodeKeywordSpan">undefinedError</span>();
+};
+
+/**
+* @summary
+* This Filter based on `mocha-clean` module.(see: `github.com/rstacruz/mocha-clean`)
+* @description
+* When invoking this function you get a filter function that get the Error.stack as an input,
+...</pre></li>
     </ul>
 
 
