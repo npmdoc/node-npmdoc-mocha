@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://mochajs.org"
-
-    >mocha (v3.2.0)</a>
+    <a href="https://mochajs.org">mocha (v3.2.0)</a>
 </h1>
 <h4>simple, flexible, fun test framework</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.mocha">module mocha</a><ol>
 
@@ -1986,7 +1979,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Hook(title, fn) {
   Runnable.call(this, title, fn);
-  this.type = &#x27;hook&#x27;;
+  this.type = 'hook';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2003,14 +1996,14 @@
     <li>description and source-code<pre class="apidocCodePre">function Runnable(title, fn) {
   this.title = title;
   this.fn = fn;
-  this.body = (fn || &#x27;&#x27;).toString();
-  this.async = fn &#x26;&#x26; fn.length;
+  this.body = (fn || '').toString();
+  this.async = fn &amp;&amp; fn.length;
   this.sync = !this.async;
   this._timeout = 2000;
   this._slow = 75;
   this._enableTimeouts = true;
   this.timedOut = false;
-  this._trace = new Error(&#x27;done() called multiple times&#x27;);
+  this._trace = new Error('done() called multiple times');
   this._retries = -1;
   this._currentRetry = 0;
   this.pending = false;
@@ -2036,10 +2029,10 @@
   this.started = false;
   this.total = suite.total();
   this.failures = 0;
-  this.on(&#x27;test end&#x27;, function (test) {
+  this.on('test end', function (test) {
     self.checkGlobals(test);
   });
-  this.on(&#x27;hook end&#x27;, function (hook) {
+  this.on('hook end', function (hook) {
     self.checkGlobals(hook);
   });
   this._defaultGrep = /.*/;
@@ -2060,7 +2053,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Suite(title, parentContext) {
   if (!utils.isString(title)) {
-    throw new Error(&#x27;Suite `title` should be a &#x22;string&#x22; but &#x22;&#x27; + typeof title + &#x27;&#x22; was given instead.&#x27;);
+    throw new Error('Suite `title` should be a "string" but "' + typeof title + '" was given instead.');
   }
   this.title = title;
   function Context () {}
@@ -2097,11 +2090,11 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Test(title, fn) {
   if (!isString(title)) {
-    throw new Error(&#x27;Test `title` should be a &#x22;string&#x22; but &#x22;&#x27; + typeof title + &#x27;&#x22; was given instead.&#x27;);
+    throw new Error('Test `title` should be a "string" but "' + typeof title + '" was given instead.');
   }
   Runnable.call(this, title, fn);
   this.pending = !fn;
-  this.type = &#x27;test&#x27;;
+  this.type = 'test';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2126,47 +2119,47 @@
 
   runner.stats = stats;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     stats.start = new Date();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     stats.suites = stats.suites || 0;
     suite.root || stats.suites++;
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     stats.tests = stats.tests || 0;
     stats.tests++;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     stats.passes = stats.passes || 0;
 
-    if (test.duration &#x3e; test.slow()) {
-      test.speed = &#x27;slow&#x27;;
-    } else if (test.duration &#x3e; test.slow() / 2) {
-      test.speed = &#x27;medium&#x27;;
+    if (test.duration &gt; test.slow()) {
+      test.speed = 'slow';
+    } else if (test.duration &gt; test.slow() / 2) {
+      test.speed = 'medium';
     } else {
-      test.speed = &#x27;fast&#x27;;
+      test.speed = 'fast';
     }
 
     stats.passes++;
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     stats.failures = stats.failures || 0;
     stats.failures++;
     test.err = err;
     failures.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     stats.end = new Date();
     stats.duration = new Date() - stats.start;
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     stats.pending++;
   });
 }</pre></li>
@@ -2189,36 +2182,36 @@
   var width = Base.window.width * 0.75 | 0;
   var n = -1;
 
-  runner.on(&#x27;start&#x27;, function () {
-    process.stdout.write(&#x27;\n&#x27;);
+  runner.on('start', function () {
+    process.stdout.write('\n');
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     if (++n % width === 0) {
-      process.stdout.write(&#x27;\n  &#x27;);
+      process.stdout.write('\n  ');
     }
-    process.stdout.write(color(&#x27;pending&#x27;, Base.symbols.comma));
+    process.stdout.write(color('pending', Base.symbols.comma));
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     if (++n % width === 0) {
-      process.stdout.write(&#x27;\n  &#x27;);
+      process.stdout.write('\n  ');
     }
-    if (test.speed === &#x27;slow&#x27;) {
-      process.stdout.write(color(&#x27;bright yellow&#x27;, Base.symbols.dot));
+    if (test.speed === 'slow') {
+      process.stdout.write(color('bright yellow', Base.symbols.dot));
     } else {
       process.stdout.write(color(test.speed, Base.symbols.dot));
     }
   });
 
-  runner.on(&#x27;fail&#x27;, function () {
+  runner.on('fail', function () {
     if (++n % width === 0) {
-      process.stdout.write(&#x27;\n  &#x27;);
+      process.stdout.write('\n  ');
     }
-    process.stdout.write(color(&#x27;fail&#x27;, Base.symbols.bang));
+    process.stdout.write(color('fail', Base.symbols.bang));
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     console.log();
     self.epilogue();
   });
@@ -2241,18 +2234,18 @@
   var self = this;
   var stats = this.stats;
   var stat = fragment(statsTemplate);
-  var items = stat.getElementsByTagName(&#x27;li&#x27;);
-  var passes = items[1].getElementsByTagName(&#x27;em&#x27;)[0];
-  var passesLink = items[1].getElementsByTagName(&#x27;a&#x27;)[0];
-  var failures = items[2].getElementsByTagName(&#x27;em&#x27;)[0];
-  var failuresLink = items[2].getElementsByTagName(&#x27;a&#x27;)[0];
-  var duration = items[3].getElementsByTagName(&#x27;em&#x27;)[0];
-  var canvas = stat.getElementsByTagName(&#x27;canvas&#x27;)[0];
-  var report = fragment(&#x27;&#x3c;ul id=&#x22;mocha-report&#x22;&#x3e;&#x3c;/ul&#x3e;&#x27;);
+  var items = stat.getElementsByTagName('li');
+  var passes = items[1].getElementsByTagName('em')[0];
+  var passesLink = items[1].getElementsByTagName('a')[0];
+  var failures = items[2].getElementsByTagName('em')[0];
+  var failuresLink = items[2].getElementsByTagName('a')[0];
+  var duration = items[3].getElementsByTagName('em')[0];
+  var canvas = stat.getElementsByTagName('canvas')[0];
+  var report = fragment('&lt;ul id="mocha-report"&gt;&lt;/ul&gt;');
   var stack = [report];
   var progress;
   var ctx;
-  var root = document.getElementById(&#x27;mocha&#x27;);
+  var root = document.getElementById('mocha');
 
   if (canvas.getContext) {
     var ratio = window.devicePixelRatio || 1;
@@ -2260,34 +2253,34 @@
     canvas.style.height = canvas.height;
     canvas.width *= ratio;
     canvas.height *= ratio;
-    ctx = canvas.getContext(&#x27;2d&#x27;);
+    ctx = canvas.getContext('2d');
     ctx.scale(ratio, ratio);
     progress = new Progress();
   }
 
   if (!root) {
-    return error(&#x27;#mocha div missing, add it to your document&#x27;);
+    return error('#mocha div missing, add it to your document');
   }
 
   // pass toggle
-  on(passesLink, &#x27;click&#x27;, function (evt) {
+  on(passesLink, 'click', function (evt) {
     evt.preventDefault();
     unhide();
-    var name = (/pass/).test(report.className) ? &#x27;&#x27; : &#x27; pass&#x27;;
-    report.className = report.className.replace(/fail|pass/g, &#x27;&#x27;) + name;
+    var name = (/pass/).test(report.className) ? '' : ' pass';
+    report.className = report.className.replace(/fail|pass/g, '') + name;
     if (report.className.trim()) {
-      hideSuitesWithout(&#x27;test pass&#x27;);
+      hideSuitesWithout('test pass');
     }
   });
 
   // failure toggle
-  on(failuresLink, &#x27;click&#x27;, function (evt) {
+  on(failuresLink, 'click', function (evt) {
     evt.preventDefault();
     unhide();
-    var name = (/fail/).test(report.className) ? &#x27;&#x27; : &#x27; fail&#x27;;
-    report.className = report.className.replace(/fail|pass/g, &#x27;&#x27;) + name;
+    var name = (/fail/).test(report.className) ? '' : ' fail';
+    report.className = report.className.replace(/fail|pass/g, '') + name;
     if (report.className.trim()) {
-      hideSuitesWithout(&#x27;test fail&#x27;);
+      hideSuitesWithout('test fail');
     }
   });
 
@@ -2298,22 +2291,22 @@
     progress.size(40);
   }
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     if (suite.root) {
       return;
     }
 
     // suite
     var url = self.suiteURL(suite);
-    var el = fragment(&#x27;&#x3c;li class=&#x22;suite&#x22;&#x3e;&#x3c;h1&#x3e;&#x3c;a href=&#x22;%s&#x22;&#x3e;%s&#x3c;/a&#x3e;&#x3c;/h1&#x3e;&#x3c;/li&#x3e;&#x27;, url, escape(suite.title));
+    var el = fragment('&lt;li class="suite"&gt;&lt;h1&gt;&lt;a href="%s"&gt;%s&lt;/a&gt;&lt;/h1&gt;&lt;/li&gt;', url, escape(suite.title));
 
     // container
     stack[0].appendChild(el);
-    stack.unshift(document.createElement(&#x27;ul&#x27;));
+    stack.unshift(document.createElement('ul'));
     el.appendChild(stack[0]);
   });
 
-  runner.on(&#x27;suite end&#x27;, function (suite) {
+  runner.on('suite end', function (suite) {
     if (suite.root) {
       updateStats();
       return;
@@ -2321,25 +2314,25 @@
     stack.shift();
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     var url = self.testURL(test);
-    var markup = &#x27;&#x3c;li class=&#x22;test pass %e&#x22;&#x3e;&#x3c;h2&#x3e;%e&#x3c;span class=&#x22;duration&#x22;&#x3e;%ems&#x3c;/span&#x3e; &#x27; +
-      &#x27;&#x3c;a href=&#x22;%s&#x22; class=&#x22;replay&#x22;&#x3e;‣&#x3c;/a&#x3e;&#x3c;/h2&#x3e;&#x3c;/li&#x3e;&#x27;;
+    var markup = '&lt;li class="test pass %e"&gt;&lt;h2&gt;%e&lt;span class="duration"&gt;%ems&lt;/span&gt; ' +
+      '&lt;a href="%s" class="replay"&gt;â€£&lt;/a&gt;&lt;/h2&gt;&lt;/li&gt;';
     var el = fragment(markup, test.speed, test.title, test.duration, url);
     self.addCodeToggle(el, test.body);
     appendToStack(el);
     updateStats();
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
-    var el = fragment(&#x27;&#x3c;li class=&#x22;test fail&#x22;&#x3e;&#x3c;h2&#x3e;%e &#x3c;a href=&#x22;%e&#x22; class=&#x22;replay&#x22;&#x3e;‣&#x3c;/a&#x3e;&#x3c;/h2&#x3e;&#x3c;/li&#x3e;&#x27;,
+  runner.on('fail', function (test) {
+    var el = fragment('&lt;li class="test fail"&gt;&lt;h2&gt;%e &lt;a href="%e" class="replay"&gt;â€£&lt;/a&gt;&lt;/h2&gt;&lt;/li&gt;',
       test.title, self.testURL(test));
     var stackString; // Note: Includes leading newline
     var message = test.err.toString();
 
-    // &#x3c;=IE7 stringifies to [Object Error]. Since it can be overloaded, we
+    // &lt;=IE7 stringifies to [Object Error]. Since it can be overloaded, we
     // check for the result of the stringifying.
-    if (message === &#x27;[object Error]&#x27;) {
+    if (message === '[object Error]') {
       message = test.err.message;
     }
 
@@ -2350,20 +2343,20 @@
       } else {
         stackString = test.err.stack.substr(test.err.message.length + indexOfMessage);
       }
-    } else if (test.err.sourceURL &#x26;&#x26; test.err.line !== undefined) {
-      // Safari doesn&#x27;t give you a stack. Let&#x27;s at least provide a source line.
-      stackString = &#x27;\n(&#x27; + test.err.sourceURL + &#x27;:&#x27; + test.err.line + &#x27;)&#x27;;
+    } else if (test.err.sourceURL &amp;&amp; test.err.line !== undefined) {
+      // Safari doesn't give you a stack. Let's at least provide a source line.
+      stackString = '\n(' + test.err.sourceURL + ':' + test.err.line + ')';
     }
 
-    stackString = stackString || &#x27;&#x27;;
+    stackString = stackString || '';
 
-    if (test.err.htmlMessage &#x26;&#x26; stackString) {
-      el.appendChild(fragment(&#x27;&#x3c;div class=&#x22;html-error&#x22;&#x3e;%s\n&#x3c;pre class=&#x22;error&#x22;&#x3e;%e&#x3c;/pre&#x3e;&#x3c;/div&#x3e;&#x27;,
+    if (test.err.htmlMessage &amp;&amp; stackString) {
+      el.appendChild(fragment('&lt;div class="html-error"&gt;%s\n&lt;pre class="error"&gt;%e&lt;/pre&gt;&lt;/div&gt;',
         test.err.htmlMessage, stackString));
     } else if (test.err.htmlMessage) {
-      el.appendChild(fragment(&#x27;&#x3c;div class=&#x22;html-error&#x22;&#x3e;%s&#x3c;/div&#x3e;&#x27;, test.err.htmlMessage));
+      el.appendChild(fragment('&lt;div class="html-error"&gt;%s&lt;/div&gt;', test.err.htmlMessage));
     } else {
-      el.appendChild(fragment(&#x27;&#x3c;pre class= ...</pre></li>
+      el.appendChild(fragment('&lt;pre class= ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -2383,42 +2376,42 @@
   var width = Base.window.width * 0.75 | 0;
   var total = runner.total;
   var stream = process.stdout;
-  var plane = color(&#x27;plane&#x27;, &#x27;✈&#x27;);
+  var plane = color('plane', 'âœˆ');
   var crashed = -1;
   var n = 0;
 
   function runway () {
-    var buf = Array(width).join(&#x27;-&#x27;);
-    return &#x27;  &#x27; + color(&#x27;runway&#x27;, buf);
+    var buf = Array(width).join('-');
+    return '  ' + color('runway', buf);
   }
 
-  runner.on(&#x27;start&#x27;, function () {
-    stream.write(&#x27;\n\n\n  &#x27;);
+  runner.on('start', function () {
+    stream.write('\n\n\n  ');
     cursor.hide();
   });
 
-  runner.on(&#x27;test end&#x27;, function (test) {
+  runner.on('test end', function (test) {
     // check if the plane crashed
     var col = crashed === -1 ? width * ++n / total | 0 : crashed;
 
     // show the crash
-    if (test.state === &#x27;failed&#x27;) {
-      plane = color(&#x27;plane crash&#x27;, &#x27;✈&#x27;);
+    if (test.state === 'failed') {
+      plane = color('plane crash', 'âœˆ');
       crashed = col;
     }
 
     // render landing strip
-    stream.write(&#x27;\u001b[&#x27; + (width + 1) + &#x27;D\u001b[2A&#x27;);
+    stream.write('\u001b[' + (width + 1) + 'D\u001b[2A');
     stream.write(runway());
-    stream.write(&#x27;\n  &#x27;);
-    stream.write(color(&#x27;runway&#x27;, Array(col).join(&#x27;⋅&#x27;)));
+    stream.write('\n  ');
+    stream.write(color('runway', Array(col).join('â‹…')));
     stream.write(plane);
-    stream.write(color(&#x27;runway&#x27;, Array(width - col).join(&#x27;⋅&#x27;) + &#x27;\n&#x27;));
+    stream.write(color('runway', Array(width - col).join('â‹…') + '\n'));
     stream.write(runway());
-    stream.write(&#x27;\u001b[0m&#x27;);
+    stream.write('\u001b[0m');
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     cursor.show();
     console.log();
     self.epilogue();
@@ -2442,34 +2435,34 @@
   var self = this;
   var n = 0;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     console.log();
   });
 
-  runner.on(&#x27;test&#x27;, function (test) {
-    process.stdout.write(color(&#x27;pass&#x27;, &#x27;    &#x27; + test.fullTitle() + &#x27;: &#x27;));
+  runner.on('test', function (test) {
+    process.stdout.write(color('pass', '    ' + test.fullTitle() + ': '));
   });
 
-  runner.on(&#x27;pending&#x27;, function (test) {
-    var fmt = color(&#x27;checkmark&#x27;, &#x27;  -&#x27;) +
-      color(&#x27;pending&#x27;, &#x27; %s&#x27;);
+  runner.on('pending', function (test) {
+    var fmt = color('checkmark', '  -') +
+      color('pending', ' %s');
     console.log(fmt, test.fullTitle());
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
-    var fmt = color(&#x27;checkmark&#x27;, &#x27;  &#x27; + Base.symbols.ok) +
-      color(&#x27;pass&#x27;, &#x27; %s: &#x27;) +
-      color(test.speed, &#x27;%dms&#x27;);
+  runner.on('pass', function (test) {
+    var fmt = color('checkmark', '  ' + Base.symbols.ok) +
+      color('pass', ' %s: ') +
+      color(test.speed, '%dms');
     cursor.CR();
     console.log(fmt, test.fullTitle(), test.duration);
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
+  runner.on('fail', function (test) {
     cursor.CR();
-    console.log(color(&#x27;fail&#x27;, &#x27;  %d) %s&#x27;), ++n, test.fullTitle());
+    console.log(color('fail', '  %d) %s'), ++n, test.fullTitle());
   });
 
-  runner.on(&#x27;end&#x27;, self.epilogue.bind(self));
+  runner.on('end', self.epilogue.bind(self));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2486,14 +2479,14 @@
     <li>description and source-code<pre class="apidocCodePre">function Min(runner) {
   Base.call(this, runner);
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     // clear screen
-    process.stdout.write(&#x27;\u001b[2J&#x27;);
+    process.stdout.write('\u001b[2J');
     // set cursor position
-    process.stdout.write(&#x27;\u001b[1;3H&#x27;);
+    process.stdout.write('\u001b[1;3H');
   });
 
-  runner.on(&#x27;end&#x27;, this.epilogue.bind(this));
+  runner.on('end', this.epilogue.bind(this));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2522,27 +2515,27 @@
   this.trajectories = [[], [], [], []];
   this.trajectoryWidthMax = (width - nyanCatWidth);
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     Base.cursor.hide();
     self.draw();
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     self.draw();
   });
 
-  runner.on(&#x27;pass&#x27;, function () {
+  runner.on('pass', function () {
     self.draw();
   });
 
-  runner.on(&#x27;fail&#x27;, function () {
+  runner.on('fail', function () {
     self.draw();
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     Base.cursor.show();
-    for (var i = 0; i &#x3c; self.numberOfLines; i++) {
-      write(&#x27;\n&#x27;);
+    for (var i = 0; i &lt; self.numberOfLines; i++) {
+      write('\n');
     }
     self.epilogue();
   });
@@ -2570,46 +2563,46 @@
 
   // default chars
   options = options || {};
-  options.open = options.open || &#x27;[&#x27;;
-  options.complete = options.complete || &#x27;▬&#x27;;
+  options.open = options.open || '[';
+  options.complete = options.complete || 'â–¬';
   options.incomplete = options.incomplete || Base.symbols.dot;
-  options.close = options.close || &#x27;]&#x27;;
+  options.close = options.close || ']';
   options.verbose = false;
 
   // tests started
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     console.log();
     cursor.hide();
   });
 
   // tests complete
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     complete++;
 
     var percent = complete / total;
     var n = width * percent | 0;
     var i = width - n;
 
-    if (n === lastN &#x26;&#x26; !options.verbose) {
-      // Don&#x27;t re-render the line if it hasn&#x27;t changed
+    if (n === lastN &amp;&amp; !options.verbose) {
+      // Don't re-render the line if it hasn't changed
       return;
     }
     lastN = n;
 
     cursor.CR();
-    process.stdout.write(&#x27;\u001b[J&#x27;);
-    process.stdout.write(color(&#x27;progress&#x27;, &#x27;  &#x27; + options.open));
+    process.stdout.write('\u001b[J');
+    process.stdout.write(color('progress', '  ' + options.open));
     process.stdout.write(Array(n).join(options.complete));
     process.stdout.write(Array(i).join(options.incomplete));
-    process.stdout.write(color(&#x27;progress&#x27;, options.close));
+    process.stdout.write(color('progress', options.close));
     if (options.verbose) {
-      process.stdout.write(color(&#x27;progress&#x27;, &#x27; &#x27; + complete + &#x27; of &#x27; + total));
+      process.stdout.write(color('progress', ' ' + complete + ' of ' + total));
     }
   });
 
   // tests are complete, output some stats
   // and the failures if any
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     cursor.show();
     console.log();
     self.epilogue();
@@ -2635,51 +2628,51 @@
   var n = 0;
 
   function indent () {
-    return Array(indents).join(&#x27;  &#x27;);
+    return Array(indents).join('  ');
   }
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     console.log();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     ++indents;
-    console.log(color(&#x27;suite&#x27;, &#x27;%s%s&#x27;), indent(), suite.title);
+    console.log(color('suite', '%s%s'), indent(), suite.title);
   });
 
-  runner.on(&#x27;suite end&#x27;, function () {
+  runner.on('suite end', function () {
     --indents;
     if (indents === 1) {
       console.log();
     }
   });
 
-  runner.on(&#x27;pending&#x27;, function (test) {
-    var fmt = indent() + color(&#x27;pending&#x27;, &#x27;  - %s&#x27;);
+  runner.on('pending', function (test) {
+    var fmt = indent() + color('pending', '  - %s');
     console.log(fmt, test.title);
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     var fmt;
-    if (test.speed === &#x27;fast&#x27;) {
+    if (test.speed === 'fast') {
       fmt = indent() +
-        color(&#x27;checkmark&#x27;, &#x27;  &#x27; + Base.symbols.ok) +
-        color(&#x27;pass&#x27;, &#x27; %s&#x27;);
+        color('checkmark', '  ' + Base.symbols.ok) +
+        color('pass', ' %s');
       console.log(fmt, test.title);
     } else {
       fmt = indent() +
-        color(&#x27;checkmark&#x27;, &#x27;  &#x27; + Base.symbols.ok) +
-        color(&#x27;pass&#x27;, &#x27; %s&#x27;) +
-        color(test.speed, &#x27; (%dms)&#x27;);
+        color('checkmark', '  ' + Base.symbols.ok) +
+        color('pass', ' %s') +
+        color(test.speed, ' (%dms)');
       console.log(fmt, test.title, test.duration);
     }
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
-    console.log(indent() + color(&#x27;fail&#x27;, &#x27;  %d) %s&#x27;), ++n, test.title);
+  runner.on('fail', function (test) {
+    console.log(indent() + color('fail', '  %d) %s'), ++n, test.title);
   });
 
-  runner.on(&#x27;end&#x27;, self.epilogue.bind(self));
+  runner.on('end', self.epilogue.bind(self));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2700,29 +2693,29 @@
   var tests = [];
   var self = this;
 
-  if (options &#x26;&#x26; options.reporterOptions &#x26;&#x26; options.reporterOptions.output) {
+  if (options &amp;&amp; options.reporterOptions &amp;&amp; options.reporterOptions.output) {
     if (!fs.createWriteStream) {
-      throw new Error(&#x27;file output not supported in browser&#x27;);
+      throw new Error('file output not supported in browser');
     }
     mkdirp.sync(path.dirname(options.reporterOptions.output));
     self.fileStream = fs.createWriteStream(options.reporterOptions.output);
   }
 
-  runner.on(&#x27;pending&#x27;, function (test) {
+  runner.on('pending', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
+  runner.on('fail', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
-    self.write(tag(&#x27;testsuite&#x27;, {
-      name: &#x27;Mocha Tests&#x27;,
+  runner.on('end', function () {
+    self.write(tag('testsuite', {
+      name: 'Mocha Tests',
       tests: stats.tests,
       failures: stats.failures,
       errors: stats.failures,
@@ -2735,7 +2728,7 @@
       self.test(t);
     });
 
-    self.write(&#x27;&#x3c;/testsuite&#x3e;&#x27;);
+    self.write('&lt;/testsuite&gt;');
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2817,7 +2810,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">inspect = function () {
   return JSON.stringify(this, function (key, val) {
-    return key === &#x27;runnable&#x27; || key === &#x27;test&#x27; ? undefined : val;
+    return key === 'runnable' || key === 'test' ? undefined : val;
   }, 2);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2928,7 +2921,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Hook(title, fn) {
   Runnable.call(this, title, fn);
-  this.type = &#x27;hook&#x27;;
+  this.type = 'hook';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2945,14 +2938,14 @@
     <li>description and source-code<pre class="apidocCodePre">function Runnable(title, fn) {
   this.title = title;
   this.fn = fn;
-  this.body = (fn || &#x27;&#x27;).toString();
-  this.async = fn &#x26;&#x26; fn.length;
+  this.body = (fn || '').toString();
+  this.async = fn &amp;&amp; fn.length;
   this.sync = !this.async;
   this._timeout = 2000;
   this._slow = 75;
   this._enableTimeouts = true;
   this.timedOut = false;
-  this._trace = new Error(&#x27;done() called multiple times&#x27;);
+  this._trace = new Error('done() called multiple times');
   this._retries = -1;
   this._currentRetry = 0;
   this.pending = false;
@@ -3003,14 +2996,14 @@
     <li>description and source-code<pre class="apidocCodePre">function Runnable(title, fn) {
   this.title = title;
   this.fn = fn;
-  this.body = (fn || &#x27;&#x27;).toString();
-  this.async = fn &#x26;&#x26; fn.length;
+  this.body = (fn || '').toString();
+  this.async = fn &amp;&amp; fn.length;
   this.sync = !this.async;
   this._timeout = 2000;
   this._slow = 75;
   this._enableTimeouts = true;
   this.timedOut = false;
-  this._trace = new Error(&#x27;done() called multiple times&#x27;);
+  this._trace = new Error('done() called multiple times');
   this._retries = -1;
   this._currentRetry = 0;
   this.pending = false;
@@ -3050,14 +3043,14 @@
     <li>description and source-code<pre class="apidocCodePre">function Runnable(title, fn) {
   this.title = title;
   this.fn = fn;
-  this.body = (fn || &#x27;&#x27;).toString();
-  this.async = fn &#x26;&#x26; fn.length;
+  this.body = (fn || '').toString();
+  this.async = fn &amp;&amp; fn.length;
   this.sync = !this.async;
   this._timeout = 2000;
   this._slow = 75;
   this._enableTimeouts = true;
   this.timedOut = false;
-  this._trace = new Error(&#x27;done() called multiple times&#x27;);
+  this._trace = new Error('done() called multiple times');
   this._retries = -1;
   this._currentRetry = 0;
   this.pending = false;
@@ -3096,7 +3089,7 @@
   if (!arguments.length) {
     return this._enableTimeouts;
   }
-  debug(&#x27;enableTimeouts %s&#x27;, enabled);
+  debug('enableTimeouts %s', enabled);
   this._enableTimeouts = enabled;
   return this;
 }</pre></li>
@@ -3113,7 +3106,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">fullTitle = function () {
-  return this.parent.fullTitle() + &#x27; &#x27; + this.title;
+  return this.parent.fullTitle() + ' ' + this.title;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3147,14 +3140,14 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">inspect = function () {
   return JSON.stringify(this, function (key, val) {
-    if (key[0] === &#x27;_&#x27;) {
+    if (key[0] === '_') {
       return;
     }
-    if (key === &#x27;parent&#x27;) {
-      return &#x27;#&#x3c;Suite&#x3e;&#x27;;
+    if (key === 'parent') {
+      return '#&lt;Suite&gt;';
     }
-    if (key === &#x27;ctx&#x27;) {
-      return &#x27;#&#x3c;Context&#x3e;&#x27;;
+    if (key === 'ctx') {
+      return '#&lt;Context&gt;';
     }
     return val;
   }, 2);
@@ -3172,7 +3165,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isPending = function () {
-  return this.pending || (this.parent &#x26;&#x26; this.parent.isPending());
+  return this.pending || (this.parent &amp;&amp; this.parent.isPending());
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3198,8 +3191,8 @@
     if (!self._enableTimeouts) {
       return;
     }
-    self.callback(new Error(&#x27;Timeout of &#x27; + ms +
-      &#x27;ms exceeded. For async tests and hooks, ensure &#x22;done()&#x22; is called; if returning a Promise, ensure it resolves.&#x27;));
+    self.callback(new Error('Timeout of ' + ms +
+      'ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves.'));
     self.timedOut = true;
   }, ms);
 }</pre></li>
@@ -3241,7 +3234,7 @@
   var emitted;
 
   // Sometimes the ctx exists, but it is not runnable
-  if (ctx &#x26;&#x26; ctx.runnable) {
+  if (ctx &amp;&amp; ctx.runnable) {
     ctx.runnable(this);
   }
 
@@ -3251,7 +3244,7 @@
       return;
     }
     emitted = true;
-    self.emit(&#x27;error&#x27;, err || new Error(&#x27;done() called multiple times; stacktrace may be inaccurate&#x27;));
+    self.emit('error', err || new Error('done() called multiple times; stacktrace may be inaccurate'));
   }
 
   // finished
@@ -3267,9 +3260,9 @@
     self.clearTimeout();
     self.duration = new Date() - start;
     finished = true;
-    if (!err &#x26;&#x26; self.duration &#x3e; ms &#x26;&#x26; self._enableTimeouts) {
-      err = new Error(&#x27;Timeout of &#x27; + ms +
-      &#x27;ms exceeded. For async tests and hooks, ensure &#x22;done()&#x22; is called; if returning a Promise, ensure it resolves.&#x27;);
+    if (!err &amp;&amp; self.duration &gt; ms &amp;&amp; self._enableTimeouts) {
+      err = new Error('Timeout of ' + ms +
+      'ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves.');
     }
     fn(err);
   }
@@ -3283,11 +3276,11 @@
 
     // allows skip() to be used in an explicit async context
     this.skip = function asyncSkip () {
-      done(new Pending(&#x27;async skip call&#x27;));
+      done(new Pending('async skip call'));
       // halt execution.  the Runnable will be marked pending
       // by the previous call, and the uncaught handler will ignore
       // the failure.
-      throw new Pending(&#x27;async skip; aborting execution&#x27;);
+      throw new Pending('async skip; aborting execution');
     };
 
     if (this.allowUncaught) {
@@ -3322,7 +3315,7 @@
 
   function callFn (fn) {
     var result = fn.call(ctx);
-    if (result &#x26;&#x26; typeof result.then === &#x27;function&#x27;) {
+    if (result &amp;&amp; typeof result.then === 'function') {
       self.resetTimeout();
       result
         .then(function () {
@@ -3332,11 +3325,11 @@
           return null;
         },
         function (reason) {
-          done(reason || new Error(&#x27;Promise rejected with no or falsy reason&#x27;));
+          done(reason || new Error('Promise rejected with no or falsy reason'));
         });
     } else {
       if (self.asyncOnly) {
-        return done(new Error(&#x27;--async-only option in use without declaring `done()` or returning a promise&#x27;));
+        return done(new Error('--async-only option in use without declaring `done()` or returning a promise'));
       }
 
       done();
@@ -3345,18 +3338,18 @@
 
   function callFnAsync (fn) {
     var result = fn.call(ctx, function (err) {
-      if (err instanceof Error || toString.call(err) === &#x27;[object Error]&#x27;) {
+      if (err instanceof Error || toString.call(err) === '[object Error]') {
         return done(err);
       }
       if (err) {
-        if (Object.prototype.toString.call(err) === &#x27;[object Object]&#x27;) {
-          return done(new Error(&#x27;done() invoked with non-Error: &#x27; +
+        if (Object.prototype.toString.call(err) === '[object Object]') {
+          return done(new Error('done() invoked with non-Error: ' +
             JSON.stringify(err)));
         }
-        return done(new Error(&#x27;done() invoked with non-Error: &#x27; + err));
+        return done(new Error('done() invoked with non-Error: ' + err));
       }
-      if (result &#x26;&#x26; utils.isPromise(result)) {
-        return done(new Error(&#x27;Resolution method is overspecified. Specify a callback *or* return a Promise; not both.&#x27;));
+      if (result &amp;&amp; utils.isPromise(result)) {
+        return done(new Error('Resolution method is overspecified. Specify a callback *or* return a Promise; not both.'));
       }
 
       done();
@@ -3376,7 +3369,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">skip = function () {
-  throw new Pending(&#x27;sync skip&#x27;);
+  throw new Pending('sync skip');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3391,13 +3384,13 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">slow = function (ms) {
-  if (typeof ms === &#x27;undefined&#x27;) {
+  if (typeof ms === 'undefined') {
     return this._slow;
   }
-  if (typeof ms === &#x27;string&#x27;) {
+  if (typeof ms === 'string') {
     ms = milliseconds(ms);
   }
-  debug(&#x27;timeout %d&#x27;, ms);
+  debug('timeout %d', ms);
   this._slow = ms;
   return this;
 }</pre></li>
@@ -3418,13 +3411,13 @@
     return this._timeout;
   }
   // see #1652 for reasoning
-  if (ms === 0 || ms &#x3e; Math.pow(2, 31)) {
+  if (ms === 0 || ms &gt; Math.pow(2, 31)) {
     this._enableTimeouts = false;
   }
-  if (typeof ms === &#x27;string&#x27;) {
+  if (typeof ms === 'string') {
     ms = milliseconds(ms);
   }
-  debug(&#x27;timeout %d&#x27;, ms);
+  debug('timeout %d', ms);
   this._timeout = ms;
   if (this.timer) {
     this.resetTimeout();
@@ -3457,10 +3450,10 @@
   this.started = false;
   this.total = suite.total();
   this.failures = 0;
-  this.on(&#x27;test end&#x27;, function (test) {
+  this.on('test end', function (test) {
     self.checkGlobals(test);
   });
-  this.on(&#x27;hook end&#x27;, function (hook) {
+  this.on('hook end', function (hook) {
     self.checkGlobals(hook);
   });
   this._defaultGrep = /.*/;
@@ -3480,8 +3473,8 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">immediately = function (callback, arg1, arg2, arg3) {
-  if (typeof callback !== &#x27;function&#x27;) {
-    throw new TypeError(&#x27;&#x22;callback&#x22; argument must be a function&#x27;);
+  if (typeof callback !== 'function') {
+    throw new TypeError('"callback" argument must be a function');
   }
 
   var i, args;
@@ -3498,7 +3491,7 @@
       break;
     default:
       args = [arg1, arg2, arg3];
-      for (i = 4; i &#x3c; arguments.length; i++)
+      for (i = 4; i &lt; arguments.length; i++)
         // extend array dynamically, makes .apply run much faster in v6.0.0
         args[i - 1] = arguments[i];
       break;
@@ -3538,7 +3531,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">abort = function () {
-  debug(&#x27;aborting&#x27;);
+  debug('aborting');
   this._abort = true;
 
   return this;
@@ -3576,10 +3569,10 @@
   leaks = filterLeaks(ok, globals);
   this._globals = this._globals.concat(leaks);
 
-  if (leaks.length &#x3e; 1) {
-    this.fail(test, new Error(&#x27;global leaks detected: &#x27; + leaks.join(&#x27;, &#x27;) + &#x27;&#x27;));
+  if (leaks.length &gt; 1) {
+    this.fail(test, new Error('global leaks detected: ' + leaks.join(', ') + ''));
   } else if (leaks.length) {
-    this.fail(test, new Error(&#x27;global leak detected: &#x27; + leaks[0]));
+    this.fail(test, new Error('global leak detected: ' + leaks[0]));
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3600,10 +3593,10 @@
   }
 
   ++this.failures;
-  test.state = &#x27;failed&#x27;;
+  test.state = 'failed';
 
-  if (!(err instanceof Error || err &#x26;&#x26; typeof err.message === &#x27;string&#x27;)) {
-    err = new Error(&#x27;the &#x27; + type(err) + &#x27; &#x27; + stringify(err) + &#x27; was thrown, throw an Error :)&#x27;);
+  if (!(err instanceof Error || err &amp;&amp; typeof err.message === 'string')) {
+    err = new Error('the ' + type(err) + ' ' + stringify(err) + ' was thrown, throw an Error :)');
   }
 
   try {
@@ -3614,7 +3607,7 @@
     // some environments do not take kindly to monkeying with the stack
   }
 
-  this.emit(&#x27;fail&#x27;, test, err);
+  this.emit('fail', test, err);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3629,14 +3622,14 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">failHook = function (hook, err) {
-  if (hook.ctx &#x26;&#x26; hook.ctx.currentTest) {
+  if (hook.ctx &amp;&amp; hook.ctx.currentTest) {
     hook.originalTitle = hook.originalTitle || hook.title;
-    hook.title = hook.originalTitle + &#x27; for &#x22;&#x27; + hook.ctx.currentTest.title + &#x27;&#x22;&#x27;;
+    hook.title = hook.originalTitle + ' for "' + hook.ctx.currentTest.title + '"';
   }
 
   this.fail(hook, err);
   if (this.suite.bail()) {
-    this.emit(&#x27;end&#x27;);
+    this.emit('end');
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3655,7 +3648,7 @@
   var props = keys(global);
 
   // non-enumerables
-  for (var i = 0; i &#x3c; globals.length; ++i) {
+  for (var i = 0; i &lt; globals.length; ++i) {
     if (~indexOf(props, globals[i])) {
       continue;
     }
@@ -3680,7 +3673,7 @@
   if (!arguments.length) {
     return this._globals;
   }
-  debug(&#x27;globals %j&#x27;, arr);
+  debug('globals %j', arr);
   this._globals = this._globals.concat(arr);
   return this;
 }</pre></li>
@@ -3697,7 +3690,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">grep = function (re, invert) {
-  debug(&#x27;grep %s&#x27;, re);
+  debug('grep %s', re);
   this._grep = re;
   this._invert = invert;
   this.total = this.grepTotal(this.suite);
@@ -3745,7 +3738,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">hook = function (name, fn) {
   var suite = this.suite;
-  var hooks = suite[&#x27;_&#x27; + name];
+  var hooks = suite['_' + name];
   var self = this;
 
   function next (i) {
@@ -3757,10 +3750,10 @@
 
     hook.ctx.currentTest = self.test;
 
-    self.emit(&#x27;hook&#x27;, hook);
+    self.emit('hook', hook);
 
-    if (!hook.listeners(&#x27;error&#x27;).length) {
-      hook.on(&#x27;error&#x27;, function (err) {
+    if (!hook.listeners('error').length) {
+      hook.on('error', function (err) {
         self.failHook(hook, err);
       });
     }
@@ -3772,13 +3765,13 @@
       }
       if (err) {
         if (err instanceof Pending) {
-          if (name === &#x27;beforeEach&#x27; || name === &#x27;afterEach&#x27;) {
+          if (name === 'beforeEach' || name === 'afterEach') {
             self.test.pending = true;
           } else {
             utils.forEach(suite.tests, function (test) {
               test.pending = true;
             });
-            // a pending hook won&#x27;t be executed twice.
+            // a pending hook won't be executed twice.
             hook.pending = true;
           }
         } else {
@@ -3788,7 +3781,7 @@
           return fn(err);
         }
       }
-      self.emit(&#x27;hook end&#x27;, hook);
+      self.emit('hook end', hook);
       delete hook.ctx.currentTest;
       next(++i);
     });
@@ -3917,33 +3910,33 @@
 
   function start () {
     self.started = true;
-    self.emit(&#x27;start&#x27;);
+    self.emit('start');
     self.runSuite(rootSuite, function () {
-      debug(&#x27;finished running&#x27;);
-      self.emit(&#x27;end&#x27;);
+      debug('finished running');
+      self.emit('end');
     });
   }
 
-  debug(&#x27;start&#x27;);
+  debug('start');
 
   // references cleanup to avoid memory leaks
-  this.on(&#x27;suite end&#x27;, cleanSuiteReferences);
+  this.on('suite end', cleanSuiteReferences);
 
   // callback
-  this.on(&#x27;end&#x27;, function () {
-    debug(&#x27;end&#x27;);
-    process.removeListener(&#x27;uncaughtException&#x27;, uncaught);
+  this.on('end', function () {
+    debug('end');
+    process.removeListener('uncaughtException', uncaught);
     fn(self.failures);
   });
 
   // uncaught exception
-  process.on(&#x27;uncaughtException&#x27;, uncaught);
+  process.on('uncaughtException', uncaught);
 
   if (this._delay) {
     // for reporters, I guess.
     // might be nice to debounce some dots while we wait.
-    this.emit(&#x27;waiting&#x27;, rootSuite);
-    rootSuite.once(&#x27;run&#x27;, start);
+    this.emit('waiting', rootSuite);
+    rootSuite.once('run', start);
   } else {
     start();
   }
@@ -3968,13 +3961,13 @@
   var total = this.grepTotal(suite);
   var afterAllHookCalled = false;
 
-  debug(&#x27;run suite %s&#x27;, suite.fullTitle());
+  debug('run suite %s', suite.fullTitle());
 
-  if (!total || (self.failures &#x26;&#x26; suite._bail)) {
+  if (!total || (self.failures &amp;&amp; suite._bail)) {
     return fn();
   }
 
-  this.emit(&#x27;suite&#x27;, this.suite = suite);
+  this.emit('suite', this.suite = suite);
 
   function next (errSuite) {
     if (errSuite) {
@@ -4024,8 +4017,8 @@
       // remove reference to test
       delete self.test;
 
-      self.hook(&#x27;afterAll&#x27;, function () {
-        self.emit(&#x27;suite end&#x27;, suite);
+      self.hook('afterAll', function () {
+        self.emit('suite end', suite);
         fn(errSuite);
       });
     }
@@ -4033,7 +4026,7 @@
 
   this.nextSuite = next;
 
-  this.hook(&#x27;beforeAll&#x27;, function (err) {
+  this.hook('beforeAll', function (err) {
     if (err) {
       return done();
     }
@@ -4068,7 +4061,7 @@
     return test.run(fn);
   }
   try {
-    test.on(&#x27;error&#x27;, function (err) {
+    test.on('error', function (err) {
       self.fail(test, err);
     });
     test.run(fn);
@@ -4097,13 +4090,13 @@
     // before/after Each hook for errSuite failed:
     var orig = self.suite;
 
-    // for failed &#x27;after each&#x27; hook start from errSuite parent,
+    // for failed 'after each' hook start from errSuite parent,
     // otherwise start from errSuite itself
     self.suite = after ? errSuite.parent : errSuite;
 
     if (self.suite) {
       // call hookUp afterEach
-      self.hookUp(&#x27;afterEach&#x27;, function (err2, errSuite2) {
+      self.hookUp('afterEach', function (err2, errSuite2) {
         self.suite = orig;
         // some hooks may fail even now
         if (err2) {
@@ -4113,7 +4106,7 @@
         fn(errSuite);
       });
     } else {
-      // there is no need calling other &#x27;after each&#x27; hooks
+      // there is no need calling other 'after each' hooks
       self.suite = orig;
       fn(errSuite);
     }
@@ -4121,7 +4114,7 @@
 
   function next (err, errSuite) {
     // if we bail after first err
-    if (self.failures &#x26;&#x26; suite._bail) {
+    if (self.failures &amp;&amp; suite._bail) {
       return fn();
     }
 
@@ -4148,12 +4141,12 @@
     }
     if (!match) {
       // Run immediately only if we have defined a grep. When we
-      // define a grep — It can cause maximum callstack error if
+      // define a grep â€” It can cause maximum callstack error if
       // the grep is doing a large recursive loop by neglecting
       // all tests. The run immediately function also comes with
-      // a performance cost. So we don&#x27;t want to run immediately
+      // a performance cost. So we don't want to run immediately
       // if we run the whole test suite, because running the whole
-      // test suite don&#x27;t do any immediate recursive loops. Thus,
+      // test suite don't do any immediate recursive loops. Thus,
       // allowing a JS runtime to breathe.
       if (self._grep !== self._defaultGrep) {
         Runner.immediately(next);
@@ -4164,17 +4157,17 @@
     }
 
     if (test.isPending()) {
-      self.emit(&#x27;pending&#x27;, test);
-      self.emit(&#x27;test end&#x27;, test);
+      self.emit('pending', test);
+      self.emit('test end', test);
       return next();
     }
 
     // execute test and hook(s)
-    self.emit(&#x27;test&#x27;, self.test = test);
-    self.hookDown(&#x27;beforeEach&#x27;, function (err, errSuite) {
+    self.emit('test', self.test = test);
+    self.hookDown('beforeEach', function (err, errSuite) {
       if (test.isPending()) {
-        self.emit(&#x27;pending&#x27;, test);
-        self.emit(&#x27;test end&#x27;, test);
+        self.emit('pending', test);
+        self.emit('test end', test);
         return next();
       }
       if (err) {
@@ -4187,31 +4180,31 @@
           var retry = test.currentRetry();
           if (err instanceof Pending) {
             test.pending = true;
-            self.emit(&#x27;pending&#x27;, test);
-          } else if (retry &#x3c; test.retries()) {
+            self.emit('pending', test);
+          } else if (retry &lt; test.retries()) {
             var clonedTest = test.clone();
             clonedTest.currentRetry(retry + 1);
             tests.unshift(clonedTest);
 
-            // Early return + hook trigger so that it doesn&#x27;t
+            // Early return + hook trigger so that it doesn't
             // increment the count wrong
-            return self.hookUp(&#x27;afterEach&#x27;, next);
+            return self.hookUp('afterEach', next);
           } else {
             self.fail(test, err);
           }
-          self.emit(&#x27;test end&#x27;, test);
+          self.emit('test end', test);
 
           if (err instanceof Pending) {
             return next();
           }
 
-          return self.hookUp(&#x27;afterEach&#x27;, next);
+          return self.hookUp('afterEach', next);
         }
 
-        test.state = &#x27;passed&#x27;;
-        self.emit(&#x27;pass&#x27;, test);
-        self.emit(&#x27;test end&#x27;, test);
-        self.hookUp(&#x27;afterEach&#x27;, next);
+        test.state = 'passed';
+        self.emit('pass', test);
+        self.emit('test end', test);
+        self.hookUp('afterEach', next);
       });
     });
   }
@@ -4234,11 +4227,11 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">uncaught = function (err) {
   if (err) {
-    debug(&#x27;uncaught exception %s&#x27;, err !== function () {
+    debug('uncaught exception %s', err !== function () {
       return this;
     }.call(err) ? err : (err.message || err));
   } else {
-    debug(&#x27;uncaught undefined exception&#x27;);
+    debug('uncaught undefined exception');
     err = undefinedError();
   }
   err.uncaught = true;
@@ -4246,16 +4239,16 @@
   var runnable = this.currentRunnable;
 
   if (!runnable) {
-    runnable = new Runnable(&#x27;Uncaught error outside test suite&#x27;);
+    runnable = new Runnable('Uncaught error outside test suite');
     runnable.parent = this.suite;
 
     if (this.started) {
       this.fail(runnable, err);
     } else {
-      // Can&#x27;t recover from this failure
-      this.emit(&#x27;start&#x27;);
+      // Can't recover from this failure
+      this.emit('start');
       this.fail(runnable, err);
-      this.emit(&#x27;end&#x27;);
+      this.emit('end');
     }
 
     return;
@@ -4270,21 +4263,21 @@
   this.fail(runnable, err);
 
   // recover from test
-  if (runnable.type === &#x27;test&#x27;) {
-    this.emit(&#x27;test end&#x27;, runnable);
-    this.hookUp(&#x27;afterEach&#x27;, this.next);
+  if (runnable.type === 'test') {
+    this.emit('test end', runnable);
+    this.hookUp('afterEach', this.next);
     return;
   }
 
  // recover from hooks
-  if (runnable.type === &#x27;hook&#x27;) {
+  if (runnable.type === 'hook') {
     var errSuite = this.suite;
     // if hook failure is in afterEach block
-    if (runnable.fullTitle().indexOf(&#x27;after each&#x27;) &#x3e; -1) {
+    if (runnable.fullTitle().indexOf('after each') &gt; -1) {
       return this.hookErr(err, errSuite, true);
     }
     // if hook failure is in beforeEach block
-    if (runnable.fullTitle().indexOf(&#x27;before each&#x27;) &#x3e; -1) {
+    if (runnable.fullTitle().indexOf('before each') &gt; -1) {
       return this.hookErr(err, errSuite, false);
     }
     // if hook failure is in after or before blocks
@@ -4292,7 +4285,7 @@
   }
 
   // bail
-  this.emit(&#x27;end&#x27;);
+  this.emit('end');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4313,7 +4306,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Suite(title, parentContext) {
   if (!utils.isString(title)) {
-    throw new Error(&#x27;Suite `title` should be a &#x22;string&#x22; but &#x22;&#x27; + typeof title + &#x27;&#x22; was given instead.&#x27;);
+    throw new Error('Suite `title` should be a "string" but "' + typeof title + '" was given instead.');
   }
   this.title = title;
   function Context () {}
@@ -4395,7 +4388,7 @@
   suite.slow(this.slow());
   suite.bail(this.bail());
   this.suites.push(suite);
-  this.emit(&#x27;suite&#x27;, suite);
+  this.emit('suite', suite);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4418,7 +4411,7 @@
   test.slow(this.slow());
   test.ctx = this.ctx;
   this.tests.push(test);
-  this.emit(&#x27;test&#x27;, test);
+  this.emit('test', test);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4437,11 +4430,11 @@
   if (this.isPending()) {
     return this;
   }
-  if (typeof title === &#x27;function&#x27;) {
+  if (typeof title === 'function') {
     fn = title;
     title = fn.name;
   }
-  title = &#x27;&#x22;after all&#x22; hook&#x27; + (title ? &#x27;: &#x27; + title : &#x27;&#x27;);
+  title = '"after all" hook' + (title ? ': ' + title : '');
 
   var hook = new Hook(title, fn);
   hook.parent = this;
@@ -4451,7 +4444,7 @@
   hook.slow(this.slow());
   hook.ctx = this.ctx;
   this._afterAll.push(hook);
-  this.emit(&#x27;afterAll&#x27;, hook);
+  this.emit('afterAll', hook);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4470,11 +4463,11 @@
   if (this.isPending()) {
     return this;
   }
-  if (typeof title === &#x27;function&#x27;) {
+  if (typeof title === 'function') {
     fn = title;
     title = fn.name;
   }
-  title = &#x27;&#x22;after each&#x22; hook&#x27; + (title ? &#x27;: &#x27; + title : &#x27;&#x27;);
+  title = '"after each" hook' + (title ? ': ' + title : '');
 
   var hook = new Hook(title, fn);
   hook.parent = this;
@@ -4484,7 +4477,7 @@
   hook.slow(this.slow());
   hook.ctx = this.ctx;
   this._afterEach.push(hook);
-  this.emit(&#x27;afterEach&#x27;, hook);
+  this.emit('afterEach', hook);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4503,7 +4496,7 @@
   if (!arguments.length) {
     return this._bail;
   }
-  debug(&#x27;bail %s&#x27;, bail);
+  debug('bail %s', bail);
   this._bail = bail;
   return this;
 }</pre></li>
@@ -4523,11 +4516,11 @@
   if (this.isPending()) {
     return this;
   }
-  if (typeof title === &#x27;function&#x27;) {
+  if (typeof title === 'function') {
     fn = title;
     title = fn.name;
   }
-  title = &#x27;&#x22;before all&#x22; hook&#x27; + (title ? &#x27;: &#x27; + title : &#x27;&#x27;);
+  title = '"before all" hook' + (title ? ': ' + title : '');
 
   var hook = new Hook(title, fn);
   hook.parent = this;
@@ -4537,7 +4530,7 @@
   hook.slow(this.slow());
   hook.ctx = this.ctx;
   this._beforeAll.push(hook);
-  this.emit(&#x27;beforeAll&#x27;, hook);
+  this.emit('beforeAll', hook);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4556,11 +4549,11 @@
   if (this.isPending()) {
     return this;
   }
-  if (typeof title === &#x27;function&#x27;) {
+  if (typeof title === 'function') {
     fn = title;
     title = fn.name;
   }
-  title = &#x27;&#x22;before each&#x22; hook&#x27; + (title ? &#x27;: &#x27; + title : &#x27;&#x27;);
+  title = '"before each" hook' + (title ? ': ' + title : '');
 
   var hook = new Hook(title, fn);
   hook.parent = this;
@@ -4570,7 +4563,7 @@
   hook.slow(this.slow());
   hook.ctx = this.ctx;
   this._beforeEach.push(hook);
-  this.emit(&#x27;beforeEach&#x27;, hook);
+  this.emit('beforeEach', hook);
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4587,7 +4580,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">clone = function () {
   var suite = new Suite(this.title);
-  debug(&#x27;clone&#x27;);
+  debug('clone');
   suite.ctx = this.ctx;
   suite.timeout(this.timeout());
   suite.retries(this.retries());
@@ -4631,7 +4624,7 @@
   if (!arguments.length) {
     return this._enableTimeouts;
   }
-  debug(&#x27;enableTimeouts %s&#x27;, enabled);
+  debug('enableTimeouts %s', enabled);
   this._enableTimeouts = enabled;
   return this;
 }</pre></li>
@@ -4651,7 +4644,7 @@
   if (this.parent) {
     var full = this.parent.fullTitle();
     if (full) {
-      return full + &#x27; &#x27; + this.title;
+      return full + ' ' + this.title;
     }
   }
   return this.title;
@@ -4669,7 +4662,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isPending = function () {
-  return this.pending || (this.parent &#x26;&#x26; this.parent.isPending());
+  return this.pending || (this.parent &amp;&amp; this.parent.isPending());
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4687,7 +4680,7 @@
   if (!arguments.length) {
     return this._retries;
   }
-  debug(&#x27;retries %d&#x27;, n);
+  debug('retries %d', n);
   this._retries = parseInt(n, 10) || 0;
   return this;
 }</pre></li>
@@ -4705,7 +4698,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function run() {
   if (this.root) {
-    this.emit(&#x27;run&#x27;);
+    this.emit('run');
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4724,10 +4717,10 @@
   if (!arguments.length) {
     return this._slow;
   }
-  if (typeof ms === &#x27;string&#x27;) {
+  if (typeof ms === 'string') {
     ms = milliseconds(ms);
   }
-  debug(&#x27;slow %d&#x27;, ms);
+  debug('slow %d', ms);
   this._slow = ms;
   return this;
 }</pre></li>
@@ -4747,13 +4740,13 @@
   if (!arguments.length) {
     return this._timeout;
   }
-  if (ms.toString() === &#x27;0&#x27;) {
+  if (ms.toString() === '0') {
     this._enableTimeouts = false;
   }
-  if (typeof ms === &#x27;string&#x27;) {
+  if (typeof ms === 'string') {
     ms = milliseconds(ms);
   }
-  debug(&#x27;timeout %d&#x27;, ms);
+  debug('timeout %d', ms);
   this._timeout = parseInt(ms, 10);
   return this;
 }</pre></li>
@@ -4793,11 +4786,11 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Test(title, fn) {
   if (!isString(title)) {
-    throw new Error(&#x27;Test `title` should be a &#x22;string&#x22; but &#x22;&#x27; + typeof title + &#x27;&#x22; was given instead.&#x27;);
+    throw new Error('Test `title` should be a "string" but "' + typeof title + '" was given instead.');
   }
   Runnable.call(this, title, fn);
   this.pending = !fn;
-  this.type = &#x27;test&#x27;;
+  this.type = 'test';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4843,11 +4836,11 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Test(title, fn) {
   if (!isString(title)) {
-    throw new Error(&#x27;Test `title` should be a &#x22;string&#x22; but &#x22;&#x27; + typeof title + &#x27;&#x22; was given instead.&#x27;);
+    throw new Error('Test `title` should be a "string" but "' + typeof title + '" was given instead.');
   }
   Runnable.call(this, title, fn);
   this.pending = !fn;
-  this.type = &#x27;test&#x27;;
+  this.type = 'test';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4869,16 +4862,16 @@
     <li>description and source-code<pre class="apidocCodePre">bdd = function (suite) {
   var suites = [suite];
 
-  suite.on(&#x27;pre-require&#x27;, function (context, file, mocha) {
-    var common = require(&#x27;./common&#x27;)(suites, context, mocha);
+  suite.on('pre-require', function (context, file, mocha) {
+    var common = require('./common')(suites, context, mocha);
 
     context.before = common.before;
     context.after = common.after;
     context.beforeEach = common.beforeEach;
     context.afterEach = common.afterEach;
-    context.run = mocha.options.delay &#x26;&#x26; common.runWithSuite(suite);
+    context.run = mocha.options.delay &amp;&amp; common.runWithSuite(suite);
 <span class="apidocCodeCommentSpan">    /**
-     * Describe a &#x22;suite&#x22; with the given `title`
+     * Describe a "suite" with the given `title`
      * and callback `fn` containing nested suites
      * and/or tests.
      */
@@ -4971,24 +4964,24 @@
     <li>description and source-code<pre class="apidocCodePre">exports = function (suite) {
   var suites = [suite];
 
-  suite.on(&#x27;require&#x27;, visit);
+  suite.on('require', visit);
 
   function visit (obj, file) {
     var suite;
     for (var key in obj) {
-      if (typeof obj[key] === &#x27;function&#x27;) {
+      if (typeof obj[key] === 'function') {
         var fn = obj[key];
         switch (key) {
-          case &#x27;before&#x27;:
+          case 'before':
             suites[0].beforeAll(fn);
             break;
-          case &#x27;after&#x27;:
+          case 'after':
             suites[0].afterAll(fn);
             break;
-          case &#x27;beforeEach&#x27;:
+          case 'beforeEach':
             suites[0].beforeEach(fn);
             break;
-          case &#x27;afterEach&#x27;:
+          case 'afterEach':
             suites[0].afterEach(fn);
             break;
           default:
@@ -5020,20 +5013,20 @@
     <li>description and source-code<pre class="apidocCodePre">qunit = function (suite) {
   var suites = [suite];
 
-  suite.on(&#x27;pre-require&#x27;, function (context, file, mocha) {
-    var common = require(&#x27;./common&#x27;)(suites, context, mocha);
+  suite.on('pre-require', function (context, file, mocha) {
+    var common = require('./common')(suites, context, mocha);
 
     context.before = common.before;
     context.after = common.after;
     context.beforeEach = common.beforeEach;
     context.afterEach = common.afterEach;
-    context.run = mocha.options.delay &#x26;&#x26; common.runWithSuite(suite);
+    context.run = mocha.options.delay &amp;&amp; common.runWithSuite(suite);
 <span class="apidocCodeCommentSpan">    /**
-     * Describe a &#x22;suite&#x22; with the given `title`.
+     * Describe a "suite" with the given `title`.
      */
 </span>
     context.suite = function (title) {
-      if (suites.length &#x3e; 1) {
+      if (suites.length &gt; 1) {
         suites.shift();
       }
       return common.suite.create({
@@ -5048,7 +5041,7 @@
      */
 
     context.suite.only = function (title) {
-      if (suites.length &#x3e; 1) {
+      if (suites.length &gt; 1) {
         suites.shift();
       }
       return common.suite.only({
@@ -5098,17 +5091,17 @@
     <li>description and source-code<pre class="apidocCodePre">tdd = function (suite) {
   var suites = [suite];
 
-  suite.on(&#x27;pre-require&#x27;, function (context, file, mocha) {
-    var common = require(&#x27;./common&#x27;)(suites, context, mocha);
+  suite.on('pre-require', function (context, file, mocha) {
+    var common = require('./common')(suites, context, mocha);
 
     context.setup = common.beforeEach;
     context.teardown = common.afterEach;
     context.suiteSetup = common.before;
     context.suiteTeardown = common.after;
-    context.run = mocha.options.delay &#x26;&#x26; common.runWithSuite(suite);
+    context.run = mocha.options.delay &amp;&amp; common.runWithSuite(suite);
 
 <span class="apidocCodeCommentSpan">    /**
-     * Describe a &#x22;suite&#x22; with the given `title` and callback `fn` containing
+     * Describe a "suite" with the given `title` and callback `fn` containing
      * nested suites and/or tests.
      */
 </span>    context.suite = function (title, fn) {
@@ -5196,47 +5189,47 @@
 
   runner.stats = stats;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     stats.start = new Date();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     stats.suites = stats.suites || 0;
     suite.root || stats.suites++;
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     stats.tests = stats.tests || 0;
     stats.tests++;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     stats.passes = stats.passes || 0;
 
-    if (test.duration &#x3e; test.slow()) {
-      test.speed = &#x27;slow&#x27;;
-    } else if (test.duration &#x3e; test.slow() / 2) {
-      test.speed = &#x27;medium&#x27;;
+    if (test.duration &gt; test.slow()) {
+      test.speed = 'slow';
+    } else if (test.duration &gt; test.slow() / 2) {
+      test.speed = 'medium';
     } else {
-      test.speed = &#x27;fast&#x27;;
+      test.speed = 'fast';
     }
 
     stats.passes++;
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     stats.failures = stats.failures || 0;
     stats.failures++;
     test.err = err;
     failures.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     stats.end = new Date();
     stats.duration = new Date() - stats.start;
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     stats.pending++;
   });
 }</pre></li>
@@ -5258,41 +5251,41 @@
   var indents = 2;
 
   function indent () {
-    return Array(indents).join(&#x27;  &#x27;);
+    return Array(indents).join('  ');
   }
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     if (suite.root) {
       return;
     }
     ++indents;
-    console.log(&#x27;%s&#x3c;section class=&#x22;suite&#x22;&#x3e;&#x27;, indent());
+    console.log('%s&lt;section class="suite"&gt;', indent());
     ++indents;
-    console.log(&#x27;%s&#x3c;h1&#x3e;%s&#x3c;/h1&#x3e;&#x27;, indent(), utils.escape(suite.title));
-    console.log(&#x27;%s&#x3c;dl&#x3e;&#x27;, indent());
+    console.log('%s&lt;h1&gt;%s&lt;/h1&gt;', indent(), utils.escape(suite.title));
+    console.log('%s&lt;dl&gt;', indent());
   });
 
-  runner.on(&#x27;suite end&#x27;, function (suite) {
+  runner.on('suite end', function (suite) {
     if (suite.root) {
       return;
     }
-    console.log(&#x27;%s&#x3c;/dl&#x3e;&#x27;, indent());
+    console.log('%s&lt;/dl&gt;', indent());
     --indents;
-    console.log(&#x27;%s&#x3c;/section&#x3e;&#x27;, indent());
+    console.log('%s&lt;/section&gt;', indent());
     --indents;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
-    console.log(&#x27;%s  &#x3c;dt&#x3e;%s&#x3c;/dt&#x3e;&#x27;, indent(), utils.escape(test.title));
+  runner.on('pass', function (test) {
+    console.log('%s  &lt;dt&gt;%s&lt;/dt&gt;', indent(), utils.escape(test.title));
     var code = utils.escape(utils.clean(test.body));
-    console.log(&#x27;%s  &#x3c;dd&#x3e;&#x3c;pre&#x3e;&#x3c;code&#x3e;%s&#x3c;/code&#x3e;&#x3c;/pre&#x3e;&#x3c;/dd&#x3e;&#x27;, indent(), code);
+    console.log('%s  &lt;dd&gt;&lt;pre&gt;&lt;code&gt;%s&lt;/code&gt;&lt;/pre&gt;&lt;/dd&gt;', indent(), code);
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
-    console.log(&#x27;%s  &#x3c;dt class=&#x22;error&#x22;&#x3e;%s&#x3c;/dt&#x3e;&#x27;, indent(), utils.escape(test.title));
+  runner.on('fail', function (test, err) {
+    console.log('%s  &lt;dt class="error"&gt;%s&lt;/dt&gt;', indent(), utils.escape(test.title));
     var code = utils.escape(utils.clean(test.body));
-    console.log(&#x27;%s  &#x3c;dd class=&#x22;error&#x22;&#x3e;&#x3c;pre&#x3e;&#x3c;code&#x3e;%s&#x3c;/code&#x3e;&#x3c;/pre&#x3e;&#x3c;/dd&#x3e;&#x27;, indent(), code);
-    console.log(&#x27;%s  &#x3c;dd class=&#x22;error&#x22;&#x3e;%s&#x3c;/dd&#x3e;&#x27;, indent(), utils.escape(err));
+    console.log('%s  &lt;dd class="error"&gt;&lt;pre&gt;&lt;code&gt;%s&lt;/code&gt;&lt;/pre&gt;&lt;/dd&gt;', indent(), code);
+    console.log('%s  &lt;dd class="error"&gt;%s&lt;/dd&gt;', indent(), utils.escape(err));
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -5314,36 +5307,36 @@
   var width = Base.window.width * 0.75 | 0;
   var n = -1;
 
-  runner.on(&#x27;start&#x27;, function () {
-    process.stdout.write(&#x27;\n&#x27;);
+  runner.on('start', function () {
+    process.stdout.write('\n');
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     if (++n % width === 0) {
-      process.stdout.write(&#x27;\n  &#x27;);
+      process.stdout.write('\n  ');
     }
-    process.stdout.write(color(&#x27;pending&#x27;, Base.symbols.comma));
+    process.stdout.write(color('pending', Base.symbols.comma));
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     if (++n % width === 0) {
-      process.stdout.write(&#x27;\n  &#x27;);
+      process.stdout.write('\n  ');
     }
-    if (test.speed === &#x27;slow&#x27;) {
-      process.stdout.write(color(&#x27;bright yellow&#x27;, Base.symbols.dot));
+    if (test.speed === 'slow') {
+      process.stdout.write(color('bright yellow', Base.symbols.dot));
     } else {
       process.stdout.write(color(test.speed, Base.symbols.dot));
     }
   });
 
-  runner.on(&#x27;fail&#x27;, function () {
+  runner.on('fail', function () {
     if (++n % width === 0) {
-      process.stdout.write(&#x27;\n  &#x27;);
+      process.stdout.write('\n  ');
     }
-    process.stdout.write(color(&#x27;fail&#x27;, Base.symbols.bang));
+    process.stdout.write(color('fail', Base.symbols.bang));
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     console.log();
     self.epilogue();
   });
@@ -5366,18 +5359,18 @@
   var self = this;
   var stats = this.stats;
   var stat = fragment(statsTemplate);
-  var items = stat.getElementsByTagName(&#x27;li&#x27;);
-  var passes = items[1].getElementsByTagName(&#x27;em&#x27;)[0];
-  var passesLink = items[1].getElementsByTagName(&#x27;a&#x27;)[0];
-  var failures = items[2].getElementsByTagName(&#x27;em&#x27;)[0];
-  var failuresLink = items[2].getElementsByTagName(&#x27;a&#x27;)[0];
-  var duration = items[3].getElementsByTagName(&#x27;em&#x27;)[0];
-  var canvas = stat.getElementsByTagName(&#x27;canvas&#x27;)[0];
-  var report = fragment(&#x27;&#x3c;ul id=&#x22;mocha-report&#x22;&#x3e;&#x3c;/ul&#x3e;&#x27;);
+  var items = stat.getElementsByTagName('li');
+  var passes = items[1].getElementsByTagName('em')[0];
+  var passesLink = items[1].getElementsByTagName('a')[0];
+  var failures = items[2].getElementsByTagName('em')[0];
+  var failuresLink = items[2].getElementsByTagName('a')[0];
+  var duration = items[3].getElementsByTagName('em')[0];
+  var canvas = stat.getElementsByTagName('canvas')[0];
+  var report = fragment('&lt;ul id="mocha-report"&gt;&lt;/ul&gt;');
   var stack = [report];
   var progress;
   var ctx;
-  var root = document.getElementById(&#x27;mocha&#x27;);
+  var root = document.getElementById('mocha');
 
   if (canvas.getContext) {
     var ratio = window.devicePixelRatio || 1;
@@ -5385,34 +5378,34 @@
     canvas.style.height = canvas.height;
     canvas.width *= ratio;
     canvas.height *= ratio;
-    ctx = canvas.getContext(&#x27;2d&#x27;);
+    ctx = canvas.getContext('2d');
     ctx.scale(ratio, ratio);
     progress = new Progress();
   }
 
   if (!root) {
-    return error(&#x27;#mocha div missing, add it to your document&#x27;);
+    return error('#mocha div missing, add it to your document');
   }
 
   // pass toggle
-  on(passesLink, &#x27;click&#x27;, function (evt) {
+  on(passesLink, 'click', function (evt) {
     evt.preventDefault();
     unhide();
-    var name = (/pass/).test(report.className) ? &#x27;&#x27; : &#x27; pass&#x27;;
-    report.className = report.className.replace(/fail|pass/g, &#x27;&#x27;) + name;
+    var name = (/pass/).test(report.className) ? '' : ' pass';
+    report.className = report.className.replace(/fail|pass/g, '') + name;
     if (report.className.trim()) {
-      hideSuitesWithout(&#x27;test pass&#x27;);
+      hideSuitesWithout('test pass');
     }
   });
 
   // failure toggle
-  on(failuresLink, &#x27;click&#x27;, function (evt) {
+  on(failuresLink, 'click', function (evt) {
     evt.preventDefault();
     unhide();
-    var name = (/fail/).test(report.className) ? &#x27;&#x27; : &#x27; fail&#x27;;
-    report.className = report.className.replace(/fail|pass/g, &#x27;&#x27;) + name;
+    var name = (/fail/).test(report.className) ? '' : ' fail';
+    report.className = report.className.replace(/fail|pass/g, '') + name;
     if (report.className.trim()) {
-      hideSuitesWithout(&#x27;test fail&#x27;);
+      hideSuitesWithout('test fail');
     }
   });
 
@@ -5423,22 +5416,22 @@
     progress.size(40);
   }
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     if (suite.root) {
       return;
     }
 
     // suite
     var url = self.suiteURL(suite);
-    var el = fragment(&#x27;&#x3c;li class=&#x22;suite&#x22;&#x3e;&#x3c;h1&#x3e;&#x3c;a href=&#x22;%s&#x22;&#x3e;%s&#x3c;/a&#x3e;&#x3c;/h1&#x3e;&#x3c;/li&#x3e;&#x27;, url, escape(suite.title));
+    var el = fragment('&lt;li class="suite"&gt;&lt;h1&gt;&lt;a href="%s"&gt;%s&lt;/a&gt;&lt;/h1&gt;&lt;/li&gt;', url, escape(suite.title));
 
     // container
     stack[0].appendChild(el);
-    stack.unshift(document.createElement(&#x27;ul&#x27;));
+    stack.unshift(document.createElement('ul'));
     el.appendChild(stack[0]);
   });
 
-  runner.on(&#x27;suite end&#x27;, function (suite) {
+  runner.on('suite end', function (suite) {
     if (suite.root) {
       updateStats();
       return;
@@ -5446,25 +5439,25 @@
     stack.shift();
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     var url = self.testURL(test);
-    var markup = &#x27;&#x3c;li class=&#x22;test pass %e&#x22;&#x3e;&#x3c;h2&#x3e;%e&#x3c;span class=&#x22;duration&#x22;&#x3e;%ems&#x3c;/span&#x3e; &#x27; +
-      &#x27;&#x3c;a href=&#x22;%s&#x22; class=&#x22;replay&#x22;&#x3e;‣&#x3c;/a&#x3e;&#x3c;/h2&#x3e;&#x3c;/li&#x3e;&#x27;;
+    var markup = '&lt;li class="test pass %e"&gt;&lt;h2&gt;%e&lt;span class="duration"&gt;%ems&lt;/span&gt; ' +
+      '&lt;a href="%s" class="replay"&gt;â€£&lt;/a&gt;&lt;/h2&gt;&lt;/li&gt;';
     var el = fragment(markup, test.speed, test.title, test.duration, url);
     self.addCodeToggle(el, test.body);
     appendToStack(el);
     updateStats();
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
-    var el = fragment(&#x27;&#x3c;li class=&#x22;test fail&#x22;&#x3e;&#x3c;h2&#x3e;%e &#x3c;a href=&#x22;%e&#x22; class=&#x22;replay&#x22;&#x3e;‣&#x3c;/a&#x3e;&#x3c;/h2&#x3e;&#x3c;/li&#x3e;&#x27;,
+  runner.on('fail', function (test) {
+    var el = fragment('&lt;li class="test fail"&gt;&lt;h2&gt;%e &lt;a href="%e" class="replay"&gt;â€£&lt;/a&gt;&lt;/h2&gt;&lt;/li&gt;',
       test.title, self.testURL(test));
     var stackString; // Note: Includes leading newline
     var message = test.err.toString();
 
-    // &#x3c;=IE7 stringifies to [Object Error]. Since it can be overloaded, we
+    // &lt;=IE7 stringifies to [Object Error]. Since it can be overloaded, we
     // check for the result of the stringifying.
-    if (message === &#x27;[object Error]&#x27;) {
+    if (message === '[object Error]') {
       message = test.err.message;
     }
 
@@ -5475,20 +5468,20 @@
       } else {
         stackString = test.err.stack.substr(test.err.message.length + indexOfMessage);
       }
-    } else if (test.err.sourceURL &#x26;&#x26; test.err.line !== undefined) {
-      // Safari doesn&#x27;t give you a stack. Let&#x27;s at least provide a source line.
-      stackString = &#x27;\n(&#x27; + test.err.sourceURL + &#x27;:&#x27; + test.err.line + &#x27;)&#x27;;
+    } else if (test.err.sourceURL &amp;&amp; test.err.line !== undefined) {
+      // Safari doesn't give you a stack. Let's at least provide a source line.
+      stackString = '\n(' + test.err.sourceURL + ':' + test.err.line + ')';
     }
 
-    stackString = stackString || &#x27;&#x27;;
+    stackString = stackString || '';
 
-    if (test.err.htmlMessage &#x26;&#x26; stackString) {
-      el.appendChild(fragment(&#x27;&#x3c;div class=&#x22;html-error&#x22;&#x3e;%s\n&#x3c;pre class=&#x22;error&#x22;&#x3e;%e&#x3c;/pre&#x3e;&#x3c;/div&#x3e;&#x27;,
+    if (test.err.htmlMessage &amp;&amp; stackString) {
+      el.appendChild(fragment('&lt;div class="html-error"&gt;%s\n&lt;pre class="error"&gt;%e&lt;/pre&gt;&lt;/div&gt;',
         test.err.htmlMessage, stackString));
     } else if (test.err.htmlMessage) {
-      el.appendChild(fragment(&#x27;&#x3c;div class=&#x22;html-error&#x22;&#x3e;%s&#x3c;/div&#x3e;&#x27;, test.err.htmlMessage));
+      el.appendChild(fragment('&lt;div class="html-error"&gt;%s&lt;/div&gt;', test.err.htmlMessage));
     } else {
-      el.appendChild(fragment(&#x27;&#x3c;pre class= ...</pre></li>
+      el.appendChild(fragment('&lt;pre class= ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5510,23 +5503,23 @@
   var failures = [];
   var passes = [];
 
-  runner.on(&#x27;test end&#x27;, function (test) {
+  runner.on('test end', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     passes.push(test);
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
+  runner.on('fail', function (test) {
     failures.push(test);
   });
 
-  runner.on(&#x27;pending&#x27;, function (test) {
+  runner.on('pending', function (test) {
     pending.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     var obj = {
       stats: self.stats,
       tests: tests.map(clean),
@@ -5558,23 +5551,23 @@
   var self = this;
   var total = runner.total;
 
-  runner.on(&#x27;start&#x27;, function () {
-    console.log(JSON.stringify([&#x27;start&#x27;, { total: total }]));
+  runner.on('start', function () {
+    console.log(JSON.stringify(['start', { total: total }]));
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
-    console.log(JSON.stringify([&#x27;pass&#x27;, clean(test)]));
+  runner.on('pass', function (test) {
+    console.log(JSON.stringify(['pass', clean(test)]));
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     test = clean(test);
     test.err = err.message;
     test.stack = err.stack || null;
-    console.log(JSON.stringify([&#x27;fail&#x27;, test]));
+    console.log(JSON.stringify(['fail', test]));
   });
 
-  runner.on(&#x27;end&#x27;, function () {
-    process.stdout.write(JSON.stringify([&#x27;end&#x27;, self.stats]));
+  runner.on('end', function () {
+    process.stdout.write(JSON.stringify(['end', self.stats]));
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -5596,42 +5589,42 @@
   var width = Base.window.width * 0.75 | 0;
   var total = runner.total;
   var stream = process.stdout;
-  var plane = color(&#x27;plane&#x27;, &#x27;✈&#x27;);
+  var plane = color('plane', 'âœˆ');
   var crashed = -1;
   var n = 0;
 
   function runway () {
-    var buf = Array(width).join(&#x27;-&#x27;);
-    return &#x27;  &#x27; + color(&#x27;runway&#x27;, buf);
+    var buf = Array(width).join('-');
+    return '  ' + color('runway', buf);
   }
 
-  runner.on(&#x27;start&#x27;, function () {
-    stream.write(&#x27;\n\n\n  &#x27;);
+  runner.on('start', function () {
+    stream.write('\n\n\n  ');
     cursor.hide();
   });
 
-  runner.on(&#x27;test end&#x27;, function (test) {
+  runner.on('test end', function (test) {
     // check if the plane crashed
     var col = crashed === -1 ? width * ++n / total | 0 : crashed;
 
     // show the crash
-    if (test.state === &#x27;failed&#x27;) {
-      plane = color(&#x27;plane crash&#x27;, &#x27;✈&#x27;);
+    if (test.state === 'failed') {
+      plane = color('plane crash', 'âœˆ');
       crashed = col;
     }
 
     // render landing strip
-    stream.write(&#x27;\u001b[&#x27; + (width + 1) + &#x27;D\u001b[2A&#x27;);
+    stream.write('\u001b[' + (width + 1) + 'D\u001b[2A');
     stream.write(runway());
-    stream.write(&#x27;\n  &#x27;);
-    stream.write(color(&#x27;runway&#x27;, Array(col).join(&#x27;⋅&#x27;)));
+    stream.write('\n  ');
+    stream.write(color('runway', Array(col).join('â‹…')));
     stream.write(plane);
-    stream.write(color(&#x27;runway&#x27;, Array(width - col).join(&#x27;⋅&#x27;) + &#x27;\n&#x27;));
+    stream.write(color('runway', Array(width - col).join('â‹…') + '\n'));
     stream.write(runway());
-    stream.write(&#x27;\u001b[0m&#x27;);
+    stream.write('\u001b[0m');
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     cursor.show();
     console.log();
     self.epilogue();
@@ -5655,34 +5648,34 @@
   var self = this;
   var n = 0;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     console.log();
   });
 
-  runner.on(&#x27;test&#x27;, function (test) {
-    process.stdout.write(color(&#x27;pass&#x27;, &#x27;    &#x27; + test.fullTitle() + &#x27;: &#x27;));
+  runner.on('test', function (test) {
+    process.stdout.write(color('pass', '    ' + test.fullTitle() + ': '));
   });
 
-  runner.on(&#x27;pending&#x27;, function (test) {
-    var fmt = color(&#x27;checkmark&#x27;, &#x27;  -&#x27;) +
-      color(&#x27;pending&#x27;, &#x27; %s&#x27;);
+  runner.on('pending', function (test) {
+    var fmt = color('checkmark', '  -') +
+      color('pending', ' %s');
     console.log(fmt, test.fullTitle());
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
-    var fmt = color(&#x27;checkmark&#x27;, &#x27;  &#x27; + Base.symbols.ok) +
-      color(&#x27;pass&#x27;, &#x27; %s: &#x27;) +
-      color(test.speed, &#x27;%dms&#x27;);
+  runner.on('pass', function (test) {
+    var fmt = color('checkmark', '  ' + Base.symbols.ok) +
+      color('pass', ' %s: ') +
+      color(test.speed, '%dms');
     cursor.CR();
     console.log(fmt, test.fullTitle(), test.duration);
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
+  runner.on('fail', function (test) {
     cursor.CR();
-    console.log(color(&#x27;fail&#x27;, &#x27;  %d) %s&#x27;), ++n, test.fullTitle());
+    console.log(color('fail', '  %d) %s'), ++n, test.fullTitle());
   });
 
-  runner.on(&#x27;end&#x27;, self.epilogue.bind(self));
+  runner.on('end', self.epilogue.bind(self));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -5700,10 +5693,10 @@
   Base.call(this, runner);
 
   var level = 0;
-  var buf = &#x27;&#x27;;
+  var buf = '';
 
   function title (str) {
-    return Array(level).join(&#x27;#&#x27;) + &#x27; &#x27; + str;
+    return Array(level).join('#') + ' ' + str;
   }
 
   function mapTOC (suite, obj) {
@@ -5720,16 +5713,16 @@
 
   function stringifyTOC (obj, level) {
     ++level;
-    var buf = &#x27;&#x27;;
+    var buf = '';
     var link;
     for (var key in obj) {
-      if (key === &#x27;suite&#x27;) {
+      if (key === 'suite') {
         continue;
       }
       if (key !== SUITE_PREFIX) {
-        link = &#x27; - [&#x27; + key.substring(1) + &#x27;]&#x27;;
-        link += &#x27;(#&#x27; + utils.slug(obj[key].suite.fullTitle()) + &#x27;)\n&#x27;;
-        buf += Array(level).join(&#x27;  &#x27;) + link;
+        link = ' - [' + key.substring(1) + ']';
+        link += '(#' + utils.slug(obj[key].suite.fullTitle()) + ')\n';
+        buf += Array(level).join('  ') + link;
       }
       buf += stringifyTOC(obj[key], level);
     }
@@ -5743,27 +5736,27 @@
 
   generateTOC(runner.suite);
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     ++level;
     var slug = utils.slug(suite.fullTitle());
-    buf += &#x27;&#x3c;a name=&#x22;&#x27; + slug + &#x27;&#x22;&#x3e;&#x3c;/a&#x3e;&#x27; + &#x27;\n&#x27;;
-    buf += title(suite.title) + &#x27;\n&#x27;;
+    buf += '&lt;a name="' + slug + '"&gt;&lt;/a&gt;' + '\n';
+    buf += title(suite.title) + '\n';
   });
 
-  runner.on(&#x27;suite end&#x27;, function () {
+  runner.on('suite end', function () {
     --level;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     var code = utils.clean(test.body);
-    buf += test.title + &#x27;.\n&#x27;;
-    buf += &#x27;\n```js\n&#x27;;
-    buf += code + &#x27;\n&#x27;;
-    buf += &#x27;```\n\n&#x27;;
+    buf += test.title + '.\n';
+    buf += '\n```js\n';
+    buf += code + '\n';
+    buf += '```\n\n';
   });
 
-  runner.on(&#x27;end&#x27;, function () {
-    process.stdout.write(&#x27;# TOC\n&#x27;);
+  runner.on('end', function () {
+    process.stdout.write('# TOC\n');
     process.stdout.write(generateTOC(runner.suite));
     process.stdout.write(buf);
   });
@@ -5783,14 +5776,14 @@
     <li>description and source-code<pre class="apidocCodePre">function Min(runner) {
   Base.call(this, runner);
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     // clear screen
-    process.stdout.write(&#x27;\u001b[2J&#x27;);
+    process.stdout.write('\u001b[2J');
     // set cursor position
-    process.stdout.write(&#x27;\u001b[1;3H&#x27;);
+    process.stdout.write('\u001b[1;3H');
   });
 
-  runner.on(&#x27;end&#x27;, this.epilogue.bind(this));
+  runner.on('end', this.epilogue.bind(this));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -5819,27 +5812,27 @@
   this.trajectories = [[], [], [], []];
   this.trajectoryWidthMax = (width - nyanCatWidth);
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     Base.cursor.hide();
     self.draw();
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     self.draw();
   });
 
-  runner.on(&#x27;pass&#x27;, function () {
+  runner.on('pass', function () {
     self.draw();
   });
 
-  runner.on(&#x27;fail&#x27;, function () {
+  runner.on('fail', function () {
     self.draw();
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     Base.cursor.show();
-    for (var i = 0; i &#x3c; self.numberOfLines; i++) {
-      write(&#x27;\n&#x27;);
+    for (var i = 0; i &lt; self.numberOfLines; i++) {
+      write('\n');
     }
     self.epilogue();
   });
@@ -5867,46 +5860,46 @@
 
   // default chars
   options = options || {};
-  options.open = options.open || &#x27;[&#x27;;
-  options.complete = options.complete || &#x27;▬&#x27;;
+  options.open = options.open || '[';
+  options.complete = options.complete || 'â–¬';
   options.incomplete = options.incomplete || Base.symbols.dot;
-  options.close = options.close || &#x27;]&#x27;;
+  options.close = options.close || ']';
   options.verbose = false;
 
   // tests started
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     console.log();
     cursor.hide();
   });
 
   // tests complete
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     complete++;
 
     var percent = complete / total;
     var n = width * percent | 0;
     var i = width - n;
 
-    if (n === lastN &#x26;&#x26; !options.verbose) {
-      // Don&#x27;t re-render the line if it hasn&#x27;t changed
+    if (n === lastN &amp;&amp; !options.verbose) {
+      // Don't re-render the line if it hasn't changed
       return;
     }
     lastN = n;
 
     cursor.CR();
-    process.stdout.write(&#x27;\u001b[J&#x27;);
-    process.stdout.write(color(&#x27;progress&#x27;, &#x27;  &#x27; + options.open));
+    process.stdout.write('\u001b[J');
+    process.stdout.write(color('progress', '  ' + options.open));
     process.stdout.write(Array(n).join(options.complete));
     process.stdout.write(Array(i).join(options.incomplete));
-    process.stdout.write(color(&#x27;progress&#x27;, options.close));
+    process.stdout.write(color('progress', options.close));
     if (options.verbose) {
-      process.stdout.write(color(&#x27;progress&#x27;, &#x27; &#x27; + complete + &#x27; of &#x27; + total));
+      process.stdout.write(color('progress', ' ' + complete + ' of ' + total));
     }
   });
 
   // tests are complete, output some stats
   // and the failures if any
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     cursor.show();
     console.log();
     self.epilogue();
@@ -5932,51 +5925,51 @@
   var n = 0;
 
   function indent () {
-    return Array(indents).join(&#x27;  &#x27;);
+    return Array(indents).join('  ');
   }
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     console.log();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     ++indents;
-    console.log(color(&#x27;suite&#x27;, &#x27;%s%s&#x27;), indent(), suite.title);
+    console.log(color('suite', '%s%s'), indent(), suite.title);
   });
 
-  runner.on(&#x27;suite end&#x27;, function () {
+  runner.on('suite end', function () {
     --indents;
     if (indents === 1) {
       console.log();
     }
   });
 
-  runner.on(&#x27;pending&#x27;, function (test) {
-    var fmt = indent() + color(&#x27;pending&#x27;, &#x27;  - %s&#x27;);
+  runner.on('pending', function (test) {
+    var fmt = indent() + color('pending', '  - %s');
     console.log(fmt, test.title);
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     var fmt;
-    if (test.speed === &#x27;fast&#x27;) {
+    if (test.speed === 'fast') {
       fmt = indent() +
-        color(&#x27;checkmark&#x27;, &#x27;  &#x27; + Base.symbols.ok) +
-        color(&#x27;pass&#x27;, &#x27; %s&#x27;);
+        color('checkmark', '  ' + Base.symbols.ok) +
+        color('pass', ' %s');
       console.log(fmt, test.title);
     } else {
       fmt = indent() +
-        color(&#x27;checkmark&#x27;, &#x27;  &#x27; + Base.symbols.ok) +
-        color(&#x27;pass&#x27;, &#x27; %s&#x27;) +
-        color(test.speed, &#x27; (%dms)&#x27;);
+        color('checkmark', '  ' + Base.symbols.ok) +
+        color('pass', ' %s') +
+        color(test.speed, ' (%dms)');
       console.log(fmt, test.title, test.duration);
     }
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
-    console.log(indent() + color(&#x27;fail&#x27;, &#x27;  %d) %s&#x27;), ++n, test.title);
+  runner.on('fail', function (test) {
+    console.log(indent() + color('fail', '  %d) %s'), ++n, test.title);
   });
 
-  runner.on(&#x27;end&#x27;, self.epilogue.bind(self));
+  runner.on('end', self.epilogue.bind(self));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -5997,36 +5990,36 @@
   var passes = 0;
   var failures = 0;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     var total = runner.grepTotal(runner.suite);
-    console.log(&#x27;%d..%d&#x27;, 1, total);
+    console.log('%d..%d', 1, total);
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     ++n;
   });
 
-  runner.on(&#x27;pending&#x27;, function (test) {
-    console.log(&#x27;ok %d %s # SKIP -&#x27;, n, title(test));
+  runner.on('pending', function (test) {
+    console.log('ok %d %s # SKIP -', n, title(test));
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     passes++;
-    console.log(&#x27;ok %d %s&#x27;, n, title(test));
+    console.log('ok %d %s', n, title(test));
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     failures++;
-    console.log(&#x27;not ok %d %s&#x27;, n, title(test));
+    console.log('not ok %d %s', n, title(test));
     if (err.stack) {
-      console.log(err.stack.replace(/^/gm, &#x27;  &#x27;));
+      console.log(err.stack.replace(/^/gm, '  '));
     }
   });
 
-  runner.on(&#x27;end&#x27;, function () {
-    console.log(&#x27;# tests &#x27; + (passes + failures));
-    console.log(&#x27;# pass &#x27; + passes);
-    console.log(&#x27;# fail &#x27; + failures);
+  runner.on('end', function () {
+    console.log('# tests ' + (passes + failures));
+    console.log('# pass ' + passes);
+    console.log('# fail ' + failures);
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -6048,29 +6041,29 @@
   var tests = [];
   var self = this;
 
-  if (options &#x26;&#x26; options.reporterOptions &#x26;&#x26; options.reporterOptions.output) {
+  if (options &amp;&amp; options.reporterOptions &amp;&amp; options.reporterOptions.output) {
     if (!fs.createWriteStream) {
-      throw new Error(&#x27;file output not supported in browser&#x27;);
+      throw new Error('file output not supported in browser');
     }
     mkdirp.sync(path.dirname(options.reporterOptions.output));
     self.fileStream = fs.createWriteStream(options.reporterOptions.output);
   }
 
-  runner.on(&#x27;pending&#x27;, function (test) {
+  runner.on('pending', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
+  runner.on('fail', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
-    self.write(tag(&#x27;testsuite&#x27;, {
-      name: &#x27;Mocha Tests&#x27;,
+  runner.on('end', function () {
+    self.write(tag('testsuite', {
+      name: 'Mocha Tests',
       tests: stats.tests,
       failures: stats.failures,
       errors: stats.failures,
@@ -6083,7 +6076,7 @@
       self.test(t);
     });
 
-    self.write(&#x27;&#x3c;/testsuite&#x3e;&#x27;);
+    self.write('&lt;/testsuite&gt;');
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -6109,47 +6102,47 @@
 
   runner.stats = stats;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     stats.start = new Date();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     stats.suites = stats.suites || 0;
     suite.root || stats.suites++;
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     stats.tests = stats.tests || 0;
     stats.tests++;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     stats.passes = stats.passes || 0;
 
-    if (test.duration &#x3e; test.slow()) {
-      test.speed = &#x27;slow&#x27;;
-    } else if (test.duration &#x3e; test.slow() / 2) {
-      test.speed = &#x27;medium&#x27;;
+    if (test.duration &gt; test.slow()) {
+      test.speed = 'slow';
+    } else if (test.duration &gt; test.slow() / 2) {
+      test.speed = 'medium';
     } else {
-      test.speed = &#x27;fast&#x27;;
+      test.speed = 'fast';
     }
 
     stats.passes++;
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     stats.failures = stats.failures || 0;
     stats.failures++;
     test.err = err;
     failures.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     stats.end = new Date();
     stats.duration = new Date() - stats.start;
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     stats.pending++;
   });
 }</pre></li>
@@ -6171,41 +6164,41 @@
   var indents = 2;
 
   function indent () {
-    return Array(indents).join(&#x27;  &#x27;);
+    return Array(indents).join('  ');
   }
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     if (suite.root) {
       return;
     }
     ++indents;
-    console.log(&#x27;%s&#x3c;section class=&#x22;suite&#x22;&#x3e;&#x27;, indent());
+    console.log('%s&lt;section class="suite"&gt;', indent());
     ++indents;
-    console.log(&#x27;%s&#x3c;h1&#x3e;%s&#x3c;/h1&#x3e;&#x27;, indent(), utils.escape(suite.title));
-    console.log(&#x27;%s&#x3c;dl&#x3e;&#x27;, indent());
+    console.log('%s&lt;h1&gt;%s&lt;/h1&gt;', indent(), utils.escape(suite.title));
+    console.log('%s&lt;dl&gt;', indent());
   });
 
-  runner.on(&#x27;suite end&#x27;, function (suite) {
+  runner.on('suite end', function (suite) {
     if (suite.root) {
       return;
     }
-    console.log(&#x27;%s&#x3c;/dl&#x3e;&#x27;, indent());
+    console.log('%s&lt;/dl&gt;', indent());
     --indents;
-    console.log(&#x27;%s&#x3c;/section&#x3e;&#x27;, indent());
+    console.log('%s&lt;/section&gt;', indent());
     --indents;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
-    console.log(&#x27;%s  &#x3c;dt&#x3e;%s&#x3c;/dt&#x3e;&#x27;, indent(), utils.escape(test.title));
+  runner.on('pass', function (test) {
+    console.log('%s  &lt;dt&gt;%s&lt;/dt&gt;', indent(), utils.escape(test.title));
     var code = utils.escape(utils.clean(test.body));
-    console.log(&#x27;%s  &#x3c;dd&#x3e;&#x3c;pre&#x3e;&#x3c;code&#x3e;%s&#x3c;/code&#x3e;&#x3c;/pre&#x3e;&#x3c;/dd&#x3e;&#x27;, indent(), code);
+    console.log('%s  &lt;dd&gt;&lt;pre&gt;&lt;code&gt;%s&lt;/code&gt;&lt;/pre&gt;&lt;/dd&gt;', indent(), code);
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
-    console.log(&#x27;%s  &#x3c;dt class=&#x22;error&#x22;&#x3e;%s&#x3c;/dt&#x3e;&#x27;, indent(), utils.escape(test.title));
+  runner.on('fail', function (test, err) {
+    console.log('%s  &lt;dt class="error"&gt;%s&lt;/dt&gt;', indent(), utils.escape(test.title));
     var code = utils.escape(utils.clean(test.body));
-    console.log(&#x27;%s  &#x3c;dd class=&#x22;error&#x22;&#x3e;&#x3c;pre&#x3e;&#x3c;code&#x3e;%s&#x3c;/code&#x3e;&#x3c;/pre&#x3e;&#x3c;/dd&#x3e;&#x27;, indent(), code);
-    console.log(&#x27;%s  &#x3c;dd class=&#x22;error&#x22;&#x3e;%s&#x3c;/dd&#x3e;&#x27;, indent(), utils.escape(err));
+    console.log('%s  &lt;dd class="error"&gt;&lt;pre&gt;&lt;code&gt;%s&lt;/code&gt;&lt;/pre&gt;&lt;/dd&gt;', indent(), code);
+    console.log('%s  &lt;dd class="error"&gt;%s&lt;/dd&gt;', indent(), utils.escape(err));
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -6227,36 +6220,36 @@
   var width = Base.window.width * 0.75 | 0;
   var n = -1;
 
-  runner.on(&#x27;start&#x27;, function () {
-    process.stdout.write(&#x27;\n&#x27;);
+  runner.on('start', function () {
+    process.stdout.write('\n');
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     if (++n % width === 0) {
-      process.stdout.write(&#x27;\n  &#x27;);
+      process.stdout.write('\n  ');
     }
-    process.stdout.write(color(&#x27;pending&#x27;, Base.symbols.comma));
+    process.stdout.write(color('pending', Base.symbols.comma));
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     if (++n % width === 0) {
-      process.stdout.write(&#x27;\n  &#x27;);
+      process.stdout.write('\n  ');
     }
-    if (test.speed === &#x27;slow&#x27;) {
-      process.stdout.write(color(&#x27;bright yellow&#x27;, Base.symbols.dot));
+    if (test.speed === 'slow') {
+      process.stdout.write(color('bright yellow', Base.symbols.dot));
     } else {
       process.stdout.write(color(test.speed, Base.symbols.dot));
     }
   });
 
-  runner.on(&#x27;fail&#x27;, function () {
+  runner.on('fail', function () {
     if (++n % width === 0) {
-      process.stdout.write(&#x27;\n  &#x27;);
+      process.stdout.write('\n  ');
     }
-    process.stdout.write(color(&#x27;fail&#x27;, Base.symbols.bang));
+    process.stdout.write(color('fail', Base.symbols.bang));
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     console.log();
     self.epilogue();
   });
@@ -6279,18 +6272,18 @@
   var self = this;
   var stats = this.stats;
   var stat = fragment(statsTemplate);
-  var items = stat.getElementsByTagName(&#x27;li&#x27;);
-  var passes = items[1].getElementsByTagName(&#x27;em&#x27;)[0];
-  var passesLink = items[1].getElementsByTagName(&#x27;a&#x27;)[0];
-  var failures = items[2].getElementsByTagName(&#x27;em&#x27;)[0];
-  var failuresLink = items[2].getElementsByTagName(&#x27;a&#x27;)[0];
-  var duration = items[3].getElementsByTagName(&#x27;em&#x27;)[0];
-  var canvas = stat.getElementsByTagName(&#x27;canvas&#x27;)[0];
-  var report = fragment(&#x27;&#x3c;ul id=&#x22;mocha-report&#x22;&#x3e;&#x3c;/ul&#x3e;&#x27;);
+  var items = stat.getElementsByTagName('li');
+  var passes = items[1].getElementsByTagName('em')[0];
+  var passesLink = items[1].getElementsByTagName('a')[0];
+  var failures = items[2].getElementsByTagName('em')[0];
+  var failuresLink = items[2].getElementsByTagName('a')[0];
+  var duration = items[3].getElementsByTagName('em')[0];
+  var canvas = stat.getElementsByTagName('canvas')[0];
+  var report = fragment('&lt;ul id="mocha-report"&gt;&lt;/ul&gt;');
   var stack = [report];
   var progress;
   var ctx;
-  var root = document.getElementById(&#x27;mocha&#x27;);
+  var root = document.getElementById('mocha');
 
   if (canvas.getContext) {
     var ratio = window.devicePixelRatio || 1;
@@ -6298,34 +6291,34 @@
     canvas.style.height = canvas.height;
     canvas.width *= ratio;
     canvas.height *= ratio;
-    ctx = canvas.getContext(&#x27;2d&#x27;);
+    ctx = canvas.getContext('2d');
     ctx.scale(ratio, ratio);
     progress = new Progress();
   }
 
   if (!root) {
-    return error(&#x27;#mocha div missing, add it to your document&#x27;);
+    return error('#mocha div missing, add it to your document');
   }
 
   // pass toggle
-  on(passesLink, &#x27;click&#x27;, function (evt) {
+  on(passesLink, 'click', function (evt) {
     evt.preventDefault();
     unhide();
-    var name = (/pass/).test(report.className) ? &#x27;&#x27; : &#x27; pass&#x27;;
-    report.className = report.className.replace(/fail|pass/g, &#x27;&#x27;) + name;
+    var name = (/pass/).test(report.className) ? '' : ' pass';
+    report.className = report.className.replace(/fail|pass/g, '') + name;
     if (report.className.trim()) {
-      hideSuitesWithout(&#x27;test pass&#x27;);
+      hideSuitesWithout('test pass');
     }
   });
 
   // failure toggle
-  on(failuresLink, &#x27;click&#x27;, function (evt) {
+  on(failuresLink, 'click', function (evt) {
     evt.preventDefault();
     unhide();
-    var name = (/fail/).test(report.className) ? &#x27;&#x27; : &#x27; fail&#x27;;
-    report.className = report.className.replace(/fail|pass/g, &#x27;&#x27;) + name;
+    var name = (/fail/).test(report.className) ? '' : ' fail';
+    report.className = report.className.replace(/fail|pass/g, '') + name;
     if (report.className.trim()) {
-      hideSuitesWithout(&#x27;test fail&#x27;);
+      hideSuitesWithout('test fail');
     }
   });
 
@@ -6336,22 +6329,22 @@
     progress.size(40);
   }
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     if (suite.root) {
       return;
     }
 
     // suite
     var url = self.suiteURL(suite);
-    var el = fragment(&#x27;&#x3c;li class=&#x22;suite&#x22;&#x3e;&#x3c;h1&#x3e;&#x3c;a href=&#x22;%s&#x22;&#x3e;%s&#x3c;/a&#x3e;&#x3c;/h1&#x3e;&#x3c;/li&#x3e;&#x27;, url, escape(suite.title));
+    var el = fragment('&lt;li class="suite"&gt;&lt;h1&gt;&lt;a href="%s"&gt;%s&lt;/a&gt;&lt;/h1&gt;&lt;/li&gt;', url, escape(suite.title));
 
     // container
     stack[0].appendChild(el);
-    stack.unshift(document.createElement(&#x27;ul&#x27;));
+    stack.unshift(document.createElement('ul'));
     el.appendChild(stack[0]);
   });
 
-  runner.on(&#x27;suite end&#x27;, function (suite) {
+  runner.on('suite end', function (suite) {
     if (suite.root) {
       updateStats();
       return;
@@ -6359,25 +6352,25 @@
     stack.shift();
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     var url = self.testURL(test);
-    var markup = &#x27;&#x3c;li class=&#x22;test pass %e&#x22;&#x3e;&#x3c;h2&#x3e;%e&#x3c;span class=&#x22;duration&#x22;&#x3e;%ems&#x3c;/span&#x3e; &#x27; +
-      &#x27;&#x3c;a href=&#x22;%s&#x22; class=&#x22;replay&#x22;&#x3e;‣&#x3c;/a&#x3e;&#x3c;/h2&#x3e;&#x3c;/li&#x3e;&#x27;;
+    var markup = '&lt;li class="test pass %e"&gt;&lt;h2&gt;%e&lt;span class="duration"&gt;%ems&lt;/span&gt; ' +
+      '&lt;a href="%s" class="replay"&gt;â€£&lt;/a&gt;&lt;/h2&gt;&lt;/li&gt;';
     var el = fragment(markup, test.speed, test.title, test.duration, url);
     self.addCodeToggle(el, test.body);
     appendToStack(el);
     updateStats();
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
-    var el = fragment(&#x27;&#x3c;li class=&#x22;test fail&#x22;&#x3e;&#x3c;h2&#x3e;%e &#x3c;a href=&#x22;%e&#x22; class=&#x22;replay&#x22;&#x3e;‣&#x3c;/a&#x3e;&#x3c;/h2&#x3e;&#x3c;/li&#x3e;&#x27;,
+  runner.on('fail', function (test) {
+    var el = fragment('&lt;li class="test fail"&gt;&lt;h2&gt;%e &lt;a href="%e" class="replay"&gt;â€£&lt;/a&gt;&lt;/h2&gt;&lt;/li&gt;',
       test.title, self.testURL(test));
     var stackString; // Note: Includes leading newline
     var message = test.err.toString();
 
-    // &#x3c;=IE7 stringifies to [Object Error]. Since it can be overloaded, we
+    // &lt;=IE7 stringifies to [Object Error]. Since it can be overloaded, we
     // check for the result of the stringifying.
-    if (message === &#x27;[object Error]&#x27;) {
+    if (message === '[object Error]') {
       message = test.err.message;
     }
 
@@ -6388,20 +6381,20 @@
       } else {
         stackString = test.err.stack.substr(test.err.message.length + indexOfMessage);
       }
-    } else if (test.err.sourceURL &#x26;&#x26; test.err.line !== undefined) {
-      // Safari doesn&#x27;t give you a stack. Let&#x27;s at least provide a source line.
-      stackString = &#x27;\n(&#x27; + test.err.sourceURL + &#x27;:&#x27; + test.err.line + &#x27;)&#x27;;
+    } else if (test.err.sourceURL &amp;&amp; test.err.line !== undefined) {
+      // Safari doesn't give you a stack. Let's at least provide a source line.
+      stackString = '\n(' + test.err.sourceURL + ':' + test.err.line + ')';
     }
 
-    stackString = stackString || &#x27;&#x27;;
+    stackString = stackString || '';
 
-    if (test.err.htmlMessage &#x26;&#x26; stackString) {
-      el.appendChild(fragment(&#x27;&#x3c;div class=&#x22;html-error&#x22;&#x3e;%s\n&#x3c;pre class=&#x22;error&#x22;&#x3e;%e&#x3c;/pre&#x3e;&#x3c;/div&#x3e;&#x27;,
+    if (test.err.htmlMessage &amp;&amp; stackString) {
+      el.appendChild(fragment('&lt;div class="html-error"&gt;%s\n&lt;pre class="error"&gt;%e&lt;/pre&gt;&lt;/div&gt;',
         test.err.htmlMessage, stackString));
     } else if (test.err.htmlMessage) {
-      el.appendChild(fragment(&#x27;&#x3c;div class=&#x22;html-error&#x22;&#x3e;%s&#x3c;/div&#x3e;&#x27;, test.err.htmlMessage));
+      el.appendChild(fragment('&lt;div class="html-error"&gt;%s&lt;/div&gt;', test.err.htmlMessage));
     } else {
-      el.appendChild(fragment(&#x27;&#x3c;pre class= ...</pre></li>
+      el.appendChild(fragment('&lt;pre class= ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -6423,23 +6416,23 @@
   var failures = [];
   var passes = [];
 
-  runner.on(&#x27;test end&#x27;, function (test) {
+  runner.on('test end', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     passes.push(test);
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
+  runner.on('fail', function (test) {
     failures.push(test);
   });
 
-  runner.on(&#x27;pending&#x27;, function (test) {
+  runner.on('pending', function (test) {
     pending.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     var obj = {
       stats: self.stats,
       tests: tests.map(clean),
@@ -6471,23 +6464,23 @@
   var self = this;
   var total = runner.total;
 
-  runner.on(&#x27;start&#x27;, function () {
-    console.log(JSON.stringify([&#x27;start&#x27;, { total: total }]));
+  runner.on('start', function () {
+    console.log(JSON.stringify(['start', { total: total }]));
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
-    console.log(JSON.stringify([&#x27;pass&#x27;, clean(test)]));
+  runner.on('pass', function (test) {
+    console.log(JSON.stringify(['pass', clean(test)]));
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     test = clean(test);
     test.err = err.message;
     test.stack = err.stack || null;
-    console.log(JSON.stringify([&#x27;fail&#x27;, test]));
+    console.log(JSON.stringify(['fail', test]));
   });
 
-  runner.on(&#x27;end&#x27;, function () {
-    process.stdout.write(JSON.stringify([&#x27;end&#x27;, self.stats]));
+  runner.on('end', function () {
+    process.stdout.write(JSON.stringify(['end', self.stats]));
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -6509,42 +6502,42 @@
   var width = Base.window.width * 0.75 | 0;
   var total = runner.total;
   var stream = process.stdout;
-  var plane = color(&#x27;plane&#x27;, &#x27;✈&#x27;);
+  var plane = color('plane', 'âœˆ');
   var crashed = -1;
   var n = 0;
 
   function runway () {
-    var buf = Array(width).join(&#x27;-&#x27;);
-    return &#x27;  &#x27; + color(&#x27;runway&#x27;, buf);
+    var buf = Array(width).join('-');
+    return '  ' + color('runway', buf);
   }
 
-  runner.on(&#x27;start&#x27;, function () {
-    stream.write(&#x27;\n\n\n  &#x27;);
+  runner.on('start', function () {
+    stream.write('\n\n\n  ');
     cursor.hide();
   });
 
-  runner.on(&#x27;test end&#x27;, function (test) {
+  runner.on('test end', function (test) {
     // check if the plane crashed
     var col = crashed === -1 ? width * ++n / total | 0 : crashed;
 
     // show the crash
-    if (test.state === &#x27;failed&#x27;) {
-      plane = color(&#x27;plane crash&#x27;, &#x27;✈&#x27;);
+    if (test.state === 'failed') {
+      plane = color('plane crash', 'âœˆ');
       crashed = col;
     }
 
     // render landing strip
-    stream.write(&#x27;\u001b[&#x27; + (width + 1) + &#x27;D\u001b[2A&#x27;);
+    stream.write('\u001b[' + (width + 1) + 'D\u001b[2A');
     stream.write(runway());
-    stream.write(&#x27;\n  &#x27;);
-    stream.write(color(&#x27;runway&#x27;, Array(col).join(&#x27;⋅&#x27;)));
+    stream.write('\n  ');
+    stream.write(color('runway', Array(col).join('â‹…')));
     stream.write(plane);
-    stream.write(color(&#x27;runway&#x27;, Array(width - col).join(&#x27;⋅&#x27;) + &#x27;\n&#x27;));
+    stream.write(color('runway', Array(width - col).join('â‹…') + '\n'));
     stream.write(runway());
-    stream.write(&#x27;\u001b[0m&#x27;);
+    stream.write('\u001b[0m');
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     cursor.show();
     console.log();
     self.epilogue();
@@ -6568,34 +6561,34 @@
   var self = this;
   var n = 0;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     console.log();
   });
 
-  runner.on(&#x27;test&#x27;, function (test) {
-    process.stdout.write(color(&#x27;pass&#x27;, &#x27;    &#x27; + test.fullTitle() + &#x27;: &#x27;));
+  runner.on('test', function (test) {
+    process.stdout.write(color('pass', '    ' + test.fullTitle() + ': '));
   });
 
-  runner.on(&#x27;pending&#x27;, function (test) {
-    var fmt = color(&#x27;checkmark&#x27;, &#x27;  -&#x27;) +
-      color(&#x27;pending&#x27;, &#x27; %s&#x27;);
+  runner.on('pending', function (test) {
+    var fmt = color('checkmark', '  -') +
+      color('pending', ' %s');
     console.log(fmt, test.fullTitle());
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
-    var fmt = color(&#x27;checkmark&#x27;, &#x27;  &#x27; + Base.symbols.ok) +
-      color(&#x27;pass&#x27;, &#x27; %s: &#x27;) +
-      color(test.speed, &#x27;%dms&#x27;);
+  runner.on('pass', function (test) {
+    var fmt = color('checkmark', '  ' + Base.symbols.ok) +
+      color('pass', ' %s: ') +
+      color(test.speed, '%dms');
     cursor.CR();
     console.log(fmt, test.fullTitle(), test.duration);
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
+  runner.on('fail', function (test) {
     cursor.CR();
-    console.log(color(&#x27;fail&#x27;, &#x27;  %d) %s&#x27;), ++n, test.fullTitle());
+    console.log(color('fail', '  %d) %s'), ++n, test.fullTitle());
   });
 
-  runner.on(&#x27;end&#x27;, self.epilogue.bind(self));
+  runner.on('end', self.epilogue.bind(self));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -6613,10 +6606,10 @@
   Base.call(this, runner);
 
   var level = 0;
-  var buf = &#x27;&#x27;;
+  var buf = '';
 
   function title (str) {
-    return Array(level).join(&#x27;#&#x27;) + &#x27; &#x27; + str;
+    return Array(level).join('#') + ' ' + str;
   }
 
   function mapTOC (suite, obj) {
@@ -6633,16 +6626,16 @@
 
   function stringifyTOC (obj, level) {
     ++level;
-    var buf = &#x27;&#x27;;
+    var buf = '';
     var link;
     for (var key in obj) {
-      if (key === &#x27;suite&#x27;) {
+      if (key === 'suite') {
         continue;
       }
       if (key !== SUITE_PREFIX) {
-        link = &#x27; - [&#x27; + key.substring(1) + &#x27;]&#x27;;
-        link += &#x27;(#&#x27; + utils.slug(obj[key].suite.fullTitle()) + &#x27;)\n&#x27;;
-        buf += Array(level).join(&#x27;  &#x27;) + link;
+        link = ' - [' + key.substring(1) + ']';
+        link += '(#' + utils.slug(obj[key].suite.fullTitle()) + ')\n';
+        buf += Array(level).join('  ') + link;
       }
       buf += stringifyTOC(obj[key], level);
     }
@@ -6656,27 +6649,27 @@
 
   generateTOC(runner.suite);
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     ++level;
     var slug = utils.slug(suite.fullTitle());
-    buf += &#x27;&#x3c;a name=&#x22;&#x27; + slug + &#x27;&#x22;&#x3e;&#x3c;/a&#x3e;&#x27; + &#x27;\n&#x27;;
-    buf += title(suite.title) + &#x27;\n&#x27;;
+    buf += '&lt;a name="' + slug + '"&gt;&lt;/a&gt;' + '\n';
+    buf += title(suite.title) + '\n';
   });
 
-  runner.on(&#x27;suite end&#x27;, function () {
+  runner.on('suite end', function () {
     --level;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     var code = utils.clean(test.body);
-    buf += test.title + &#x27;.\n&#x27;;
-    buf += &#x27;\n```js\n&#x27;;
-    buf += code + &#x27;\n&#x27;;
-    buf += &#x27;```\n\n&#x27;;
+    buf += test.title + '.\n';
+    buf += '\n```js\n';
+    buf += code + '\n';
+    buf += '```\n\n';
   });
 
-  runner.on(&#x27;end&#x27;, function () {
-    process.stdout.write(&#x27;# TOC\n&#x27;);
+  runner.on('end', function () {
+    process.stdout.write('# TOC\n');
     process.stdout.write(generateTOC(runner.suite));
     process.stdout.write(buf);
   });
@@ -6696,14 +6689,14 @@
     <li>description and source-code<pre class="apidocCodePre">function Min(runner) {
   Base.call(this, runner);
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     // clear screen
-    process.stdout.write(&#x27;\u001b[2J&#x27;);
+    process.stdout.write('\u001b[2J');
     // set cursor position
-    process.stdout.write(&#x27;\u001b[1;3H&#x27;);
+    process.stdout.write('\u001b[1;3H');
   });
 
-  runner.on(&#x27;end&#x27;, this.epilogue.bind(this));
+  runner.on('end', this.epilogue.bind(this));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -6732,27 +6725,27 @@
   this.trajectories = [[], [], [], []];
   this.trajectoryWidthMax = (width - nyanCatWidth);
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     Base.cursor.hide();
     self.draw();
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     self.draw();
   });
 
-  runner.on(&#x27;pass&#x27;, function () {
+  runner.on('pass', function () {
     self.draw();
   });
 
-  runner.on(&#x27;fail&#x27;, function () {
+  runner.on('fail', function () {
     self.draw();
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     Base.cursor.show();
-    for (var i = 0; i &#x3c; self.numberOfLines; i++) {
-      write(&#x27;\n&#x27;);
+    for (var i = 0; i &lt; self.numberOfLines; i++) {
+      write('\n');
     }
     self.epilogue();
   });
@@ -6780,46 +6773,46 @@
 
   // default chars
   options = options || {};
-  options.open = options.open || &#x27;[&#x27;;
-  options.complete = options.complete || &#x27;▬&#x27;;
+  options.open = options.open || '[';
+  options.complete = options.complete || 'â–¬';
   options.incomplete = options.incomplete || Base.symbols.dot;
-  options.close = options.close || &#x27;]&#x27;;
+  options.close = options.close || ']';
   options.verbose = false;
 
   // tests started
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     console.log();
     cursor.hide();
   });
 
   // tests complete
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     complete++;
 
     var percent = complete / total;
     var n = width * percent | 0;
     var i = width - n;
 
-    if (n === lastN &#x26;&#x26; !options.verbose) {
-      // Don&#x27;t re-render the line if it hasn&#x27;t changed
+    if (n === lastN &amp;&amp; !options.verbose) {
+      // Don't re-render the line if it hasn't changed
       return;
     }
     lastN = n;
 
     cursor.CR();
-    process.stdout.write(&#x27;\u001b[J&#x27;);
-    process.stdout.write(color(&#x27;progress&#x27;, &#x27;  &#x27; + options.open));
+    process.stdout.write('\u001b[J');
+    process.stdout.write(color('progress', '  ' + options.open));
     process.stdout.write(Array(n).join(options.complete));
     process.stdout.write(Array(i).join(options.incomplete));
-    process.stdout.write(color(&#x27;progress&#x27;, options.close));
+    process.stdout.write(color('progress', options.close));
     if (options.verbose) {
-      process.stdout.write(color(&#x27;progress&#x27;, &#x27; &#x27; + complete + &#x27; of &#x27; + total));
+      process.stdout.write(color('progress', ' ' + complete + ' of ' + total));
     }
   });
 
   // tests are complete, output some stats
   // and the failures if any
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     cursor.show();
     console.log();
     self.epilogue();
@@ -6845,51 +6838,51 @@
   var n = 0;
 
   function indent () {
-    return Array(indents).join(&#x27;  &#x27;);
+    return Array(indents).join('  ');
   }
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     console.log();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     ++indents;
-    console.log(color(&#x27;suite&#x27;, &#x27;%s%s&#x27;), indent(), suite.title);
+    console.log(color('suite', '%s%s'), indent(), suite.title);
   });
 
-  runner.on(&#x27;suite end&#x27;, function () {
+  runner.on('suite end', function () {
     --indents;
     if (indents === 1) {
       console.log();
     }
   });
 
-  runner.on(&#x27;pending&#x27;, function (test) {
-    var fmt = indent() + color(&#x27;pending&#x27;, &#x27;  - %s&#x27;);
+  runner.on('pending', function (test) {
+    var fmt = indent() + color('pending', '  - %s');
     console.log(fmt, test.title);
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     var fmt;
-    if (test.speed === &#x27;fast&#x27;) {
+    if (test.speed === 'fast') {
       fmt = indent() +
-        color(&#x27;checkmark&#x27;, &#x27;  &#x27; + Base.symbols.ok) +
-        color(&#x27;pass&#x27;, &#x27; %s&#x27;);
+        color('checkmark', '  ' + Base.symbols.ok) +
+        color('pass', ' %s');
       console.log(fmt, test.title);
     } else {
       fmt = indent() +
-        color(&#x27;checkmark&#x27;, &#x27;  &#x27; + Base.symbols.ok) +
-        color(&#x27;pass&#x27;, &#x27; %s&#x27;) +
-        color(test.speed, &#x27; (%dms)&#x27;);
+        color('checkmark', '  ' + Base.symbols.ok) +
+        color('pass', ' %s') +
+        color(test.speed, ' (%dms)');
       console.log(fmt, test.title, test.duration);
     }
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
-    console.log(indent() + color(&#x27;fail&#x27;, &#x27;  %d) %s&#x27;), ++n, test.title);
+  runner.on('fail', function (test) {
+    console.log(indent() + color('fail', '  %d) %s'), ++n, test.title);
   });
 
-  runner.on(&#x27;end&#x27;, self.epilogue.bind(self));
+  runner.on('end', self.epilogue.bind(self));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -6910,36 +6903,36 @@
   var passes = 0;
   var failures = 0;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     var total = runner.grepTotal(runner.suite);
-    console.log(&#x27;%d..%d&#x27;, 1, total);
+    console.log('%d..%d', 1, total);
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     ++n;
   });
 
-  runner.on(&#x27;pending&#x27;, function (test) {
-    console.log(&#x27;ok %d %s # SKIP -&#x27;, n, title(test));
+  runner.on('pending', function (test) {
+    console.log('ok %d %s # SKIP -', n, title(test));
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     passes++;
-    console.log(&#x27;ok %d %s&#x27;, n, title(test));
+    console.log('ok %d %s', n, title(test));
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     failures++;
-    console.log(&#x27;not ok %d %s&#x27;, n, title(test));
+    console.log('not ok %d %s', n, title(test));
     if (err.stack) {
-      console.log(err.stack.replace(/^/gm, &#x27;  &#x27;));
+      console.log(err.stack.replace(/^/gm, '  '));
     }
   });
 
-  runner.on(&#x27;end&#x27;, function () {
-    console.log(&#x27;# tests &#x27; + (passes + failures));
-    console.log(&#x27;# pass &#x27; + passes);
-    console.log(&#x27;# fail &#x27; + failures);
+  runner.on('end', function () {
+    console.log('# tests ' + (passes + failures));
+    console.log('# pass ' + passes);
+    console.log('# fail ' + failures);
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -6961,29 +6954,29 @@
   var tests = [];
   var self = this;
 
-  if (options &#x26;&#x26; options.reporterOptions &#x26;&#x26; options.reporterOptions.output) {
+  if (options &amp;&amp; options.reporterOptions &amp;&amp; options.reporterOptions.output) {
     if (!fs.createWriteStream) {
-      throw new Error(&#x27;file output not supported in browser&#x27;);
+      throw new Error('file output not supported in browser');
     }
     mkdirp.sync(path.dirname(options.reporterOptions.output));
     self.fileStream = fs.createWriteStream(options.reporterOptions.output);
   }
 
-  runner.on(&#x27;pending&#x27;, function (test) {
+  runner.on('pending', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
+  runner.on('fail', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
-    self.write(tag(&#x27;testsuite&#x27;, {
-      name: &#x27;Mocha Tests&#x27;,
+  runner.on('end', function () {
+    self.write(tag('testsuite', {
+      name: 'Mocha Tests',
       tests: stats.tests,
       failures: stats.failures,
       errors: stats.failures,
@@ -6996,7 +6989,7 @@
       self.test(t);
     });
 
-    self.write(&#x27;&#x3c;/testsuite&#x3e;&#x27;);
+    self.write('&lt;/testsuite&gt;');
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -7029,47 +7022,47 @@
 
   runner.stats = stats;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     stats.start = new Date();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     stats.suites = stats.suites || 0;
     suite.root || stats.suites++;
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     stats.tests = stats.tests || 0;
     stats.tests++;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     stats.passes = stats.passes || 0;
 
-    if (test.duration &#x3e; test.slow()) {
-      test.speed = &#x27;slow&#x27;;
-    } else if (test.duration &#x3e; test.slow() / 2) {
-      test.speed = &#x27;medium&#x27;;
+    if (test.duration &gt; test.slow()) {
+      test.speed = 'slow';
+    } else if (test.duration &gt; test.slow() / 2) {
+      test.speed = 'medium';
     } else {
-      test.speed = &#x27;fast&#x27;;
+      test.speed = 'fast';
     }
 
     stats.passes++;
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     stats.failures = stats.failures || 0;
     stats.failures++;
     test.err = err;
     failures.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     stats.end = new Date();
     stats.duration = new Date() - stats.start;
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     stats.pending++;
   });
 }</pre></li>
@@ -7089,7 +7082,7 @@
   if (!exports.useColors) {
     return String(str);
   }
-  return &#x27;\u001b[&#x27; + exports.colors[type] + &#x27;m&#x27; + str + &#x27;\u001b[0m&#x27;;
+  return '\u001b[' + exports.colors[type] + 'm' + str + '\u001b[0m';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -7107,20 +7100,20 @@
   console.log();
   failures.forEach(function (test, i) {
     // format
-    var fmt = color(&#x27;error title&#x27;, &#x27;  %s) %s:\n&#x27;) +
-      color(&#x27;error message&#x27;, &#x27;     %s&#x27;) +
-      color(&#x27;error stack&#x27;, &#x27;\n%s\n&#x27;);
+    var fmt = color('error title', '  %s) %s:\n') +
+      color('error message', '     %s') +
+      color('error stack', '\n%s\n');
 
     // msg
     var msg;
     var err = test.err;
     var message;
-    if (err.message &#x26;&#x26; typeof err.message.toString === &#x27;function&#x27;) {
-      message = err.message + &#x27;&#x27;;
-    } else if (typeof err.inspect === &#x27;function&#x27;) {
-      message = err.inspect() + &#x27;&#x27;;
+    if (err.message &amp;&amp; typeof err.message.toString === 'function') {
+      message = err.message + '';
+    } else if (typeof err.inspect === 'function') {
+      message = err.inspect() + '';
     } else {
-      message = &#x27;&#x27;;
+      message = '';
     }
     var stack = err.stack || message;
     var index = message ? stack.indexOf(message) : -1;
@@ -7139,19 +7132,19 @@
 
     // uncaught
     if (err.uncaught) {
-      msg = &#x27;Uncaught &#x27; + msg;
+      msg = 'Uncaught ' + msg;
     }
     // explicitly show diff
-    if (err.showDiff !== false &#x26;&#x26; sameType(actual, expected) &#x26;&#x26; expected !== undefined) {
+    if (err.showDiff !== false &amp;&amp; sameType(actual, expected) &amp;&amp; expected !== undefined) {
       escape = false;
-      if (!(utils.isString(actual) &#x26;&#x26; utils.isString(expected))) {
+      if (!(utils.isString(actual) &amp;&amp; utils.isString(expected))) {
         err.actual = actual = utils.stringify(actual);
         err.expected = expected = utils.stringify(expected);
       }
 
-      fmt = color(&#x27;error title&#x27;, &#x27;  %s) %s:\n%s&#x27;) + color(&#x27;error stack&#x27;, &#x27;\n%s\n&#x27;);
+      fmt = color('error title', '  %s) %s:\n%s') + color('error stack', '\n%s\n');
       var match = message.match(/^([^:]+): expected/);
-      msg = &#x27;\n      &#x27; + color(&#x27;error message&#x27;, match ? match[1] : msg);
+      msg = '\n      ' + color('error message', match ? match[1] : msg);
 
       if (exports.inlineDiffs) {
         msg += inlineDiff(err, escape);
@@ -7161,7 +7154,7 @@
     }
 
     // indent stack trace
-    stack = stack.replace(/^/gm, &#x27;  &#x27;);
+    stack = stack.replace(/^/gm, '  ');
 
     console.log(fmt, (i + 1), test.fullTitle(), msg, stack);
   });
@@ -7200,9 +7193,9 @@
   console.log();
 
   // passes
-  fmt = color(&#x27;bright pass&#x27;, &#x27; &#x27;) +
-    color(&#x27;green&#x27;, &#x27; %d passing&#x27;) +
-    color(&#x27;light&#x27;, &#x27; (%s)&#x27;);
+  fmt = color('bright pass', ' ') +
+    color('green', ' %d passing') +
+    color('light', ' (%s)');
 
   console.log(fmt,
     stats.passes || 0,
@@ -7210,15 +7203,15 @@
 
   // pending
   if (stats.pending) {
-    fmt = color(&#x27;pending&#x27;, &#x27; &#x27;) +
-      color(&#x27;pending&#x27;, &#x27; %d pending&#x27;);
+    fmt = color('pending', ' ') +
+      color('pending', ' %d pending');
 
     console.log(fmt, stats.pending);
   }
 
   // failures
   if (stats.failures) {
-    fmt = color(&#x27;fail&#x27;, &#x27;  %d failing&#x27;);
+    fmt = color('fail', '  %d failing');
 
     console.log(fmt, stats.failures);
 
@@ -7252,36 +7245,36 @@
   var width = Base.window.width * 0.75 | 0;
   var n = -1;
 
-  runner.on(&#x27;start&#x27;, function () {
-    process.stdout.write(&#x27;\n&#x27;);
+  runner.on('start', function () {
+    process.stdout.write('\n');
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     if (++n % width === 0) {
-      process.stdout.write(&#x27;\n  &#x27;);
+      process.stdout.write('\n  ');
     }
-    process.stdout.write(color(&#x27;pending&#x27;, Base.symbols.comma));
+    process.stdout.write(color('pending', Base.symbols.comma));
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     if (++n % width === 0) {
-      process.stdout.write(&#x27;\n  &#x27;);
+      process.stdout.write('\n  ');
     }
-    if (test.speed === &#x27;slow&#x27;) {
-      process.stdout.write(color(&#x27;bright yellow&#x27;, Base.symbols.dot));
+    if (test.speed === 'slow') {
+      process.stdout.write(color('bright yellow', Base.symbols.dot));
     } else {
       process.stdout.write(color(test.speed, Base.symbols.dot));
     }
   });
 
-  runner.on(&#x27;fail&#x27;, function () {
+  runner.on('fail', function () {
     if (++n % width === 0) {
-      process.stdout.write(&#x27;\n  &#x27;);
+      process.stdout.write('\n  ');
     }
-    process.stdout.write(color(&#x27;fail&#x27;, Base.symbols.bang));
+    process.stdout.write(color('fail', Base.symbols.bang));
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     console.log();
     self.epilogue();
   });
@@ -7309,47 +7302,47 @@
 
   runner.stats = stats;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     stats.start = new Date();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     stats.suites = stats.suites || 0;
     suite.root || stats.suites++;
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     stats.tests = stats.tests || 0;
     stats.tests++;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     stats.passes = stats.passes || 0;
 
-    if (test.duration &#x3e; test.slow()) {
-      test.speed = &#x27;slow&#x27;;
-    } else if (test.duration &#x3e; test.slow() / 2) {
-      test.speed = &#x27;medium&#x27;;
+    if (test.duration &gt; test.slow()) {
+      test.speed = 'slow';
+    } else if (test.duration &gt; test.slow() / 2) {
+      test.speed = 'medium';
     } else {
-      test.speed = &#x27;fast&#x27;;
+      test.speed = 'fast';
     }
 
     stats.passes++;
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     stats.failures = stats.failures || 0;
     stats.failures++;
     test.err = err;
     failures.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     stats.end = new Date();
     stats.duration = new Date() - stats.start;
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     stats.pending++;
   });
 }</pre></li>
@@ -7376,18 +7369,18 @@
   var self = this;
   var stats = this.stats;
   var stat = fragment(statsTemplate);
-  var items = stat.getElementsByTagName(&#x27;li&#x27;);
-  var passes = items[1].getElementsByTagName(&#x27;em&#x27;)[0];
-  var passesLink = items[1].getElementsByTagName(&#x27;a&#x27;)[0];
-  var failures = items[2].getElementsByTagName(&#x27;em&#x27;)[0];
-  var failuresLink = items[2].getElementsByTagName(&#x27;a&#x27;)[0];
-  var duration = items[3].getElementsByTagName(&#x27;em&#x27;)[0];
-  var canvas = stat.getElementsByTagName(&#x27;canvas&#x27;)[0];
-  var report = fragment(&#x27;&#x3c;ul id=&#x22;mocha-report&#x22;&#x3e;&#x3c;/ul&#x3e;&#x27;);
+  var items = stat.getElementsByTagName('li');
+  var passes = items[1].getElementsByTagName('em')[0];
+  var passesLink = items[1].getElementsByTagName('a')[0];
+  var failures = items[2].getElementsByTagName('em')[0];
+  var failuresLink = items[2].getElementsByTagName('a')[0];
+  var duration = items[3].getElementsByTagName('em')[0];
+  var canvas = stat.getElementsByTagName('canvas')[0];
+  var report = fragment('&lt;ul id="mocha-report"&gt;&lt;/ul&gt;');
   var stack = [report];
   var progress;
   var ctx;
-  var root = document.getElementById(&#x27;mocha&#x27;);
+  var root = document.getElementById('mocha');
 
   if (canvas.getContext) {
     var ratio = window.devicePixelRatio || 1;
@@ -7395,34 +7388,34 @@
     canvas.style.height = canvas.height;
     canvas.width *= ratio;
     canvas.height *= ratio;
-    ctx = canvas.getContext(&#x27;2d&#x27;);
+    ctx = canvas.getContext('2d');
     ctx.scale(ratio, ratio);
     progress = new Progress();
   }
 
   if (!root) {
-    return error(&#x27;#mocha div missing, add it to your document&#x27;);
+    return error('#mocha div missing, add it to your document');
   }
 
   // pass toggle
-  on(passesLink, &#x27;click&#x27;, function (evt) {
+  on(passesLink, 'click', function (evt) {
     evt.preventDefault();
     unhide();
-    var name = (/pass/).test(report.className) ? &#x27;&#x27; : &#x27; pass&#x27;;
-    report.className = report.className.replace(/fail|pass/g, &#x27;&#x27;) + name;
+    var name = (/pass/).test(report.className) ? '' : ' pass';
+    report.className = report.className.replace(/fail|pass/g, '') + name;
     if (report.className.trim()) {
-      hideSuitesWithout(&#x27;test pass&#x27;);
+      hideSuitesWithout('test pass');
     }
   });
 
   // failure toggle
-  on(failuresLink, &#x27;click&#x27;, function (evt) {
+  on(failuresLink, 'click', function (evt) {
     evt.preventDefault();
     unhide();
-    var name = (/fail/).test(report.className) ? &#x27;&#x27; : &#x27; fail&#x27;;
-    report.className = report.className.replace(/fail|pass/g, &#x27;&#x27;) + name;
+    var name = (/fail/).test(report.className) ? '' : ' fail';
+    report.className = report.className.replace(/fail|pass/g, '') + name;
     if (report.className.trim()) {
-      hideSuitesWithout(&#x27;test fail&#x27;);
+      hideSuitesWithout('test fail');
     }
   });
 
@@ -7433,22 +7426,22 @@
     progress.size(40);
   }
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     if (suite.root) {
       return;
     }
 
     // suite
     var url = self.suiteURL(suite);
-    var el = fragment(&#x27;&#x3c;li class=&#x22;suite&#x22;&#x3e;&#x3c;h1&#x3e;&#x3c;a href=&#x22;%s&#x22;&#x3e;%s&#x3c;/a&#x3e;&#x3c;/h1&#x3e;&#x3c;/li&#x3e;&#x27;, url, escape(suite.title));
+    var el = fragment('&lt;li class="suite"&gt;&lt;h1&gt;&lt;a href="%s"&gt;%s&lt;/a&gt;&lt;/h1&gt;&lt;/li&gt;', url, escape(suite.title));
 
     // container
     stack[0].appendChild(el);
-    stack.unshift(document.createElement(&#x27;ul&#x27;));
+    stack.unshift(document.createElement('ul'));
     el.appendChild(stack[0]);
   });
 
-  runner.on(&#x27;suite end&#x27;, function (suite) {
+  runner.on('suite end', function (suite) {
     if (suite.root) {
       updateStats();
       return;
@@ -7456,25 +7449,25 @@
     stack.shift();
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     var url = self.testURL(test);
-    var markup = &#x27;&#x3c;li class=&#x22;test pass %e&#x22;&#x3e;&#x3c;h2&#x3e;%e&#x3c;span class=&#x22;duration&#x22;&#x3e;%ems&#x3c;/span&#x3e; &#x27; +
-      &#x27;&#x3c;a href=&#x22;%s&#x22; class=&#x22;replay&#x22;&#x3e;‣&#x3c;/a&#x3e;&#x3c;/h2&#x3e;&#x3c;/li&#x3e;&#x27;;
+    var markup = '&lt;li class="test pass %e"&gt;&lt;h2&gt;%e&lt;span class="duration"&gt;%ems&lt;/span&gt; ' +
+      '&lt;a href="%s" class="replay"&gt;â€£&lt;/a&gt;&lt;/h2&gt;&lt;/li&gt;';
     var el = fragment(markup, test.speed, test.title, test.duration, url);
     self.addCodeToggle(el, test.body);
     appendToStack(el);
     updateStats();
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
-    var el = fragment(&#x27;&#x3c;li class=&#x22;test fail&#x22;&#x3e;&#x3c;h2&#x3e;%e &#x3c;a href=&#x22;%e&#x22; class=&#x22;replay&#x22;&#x3e;‣&#x3c;/a&#x3e;&#x3c;/h2&#x3e;&#x3c;/li&#x3e;&#x27;,
+  runner.on('fail', function (test) {
+    var el = fragment('&lt;li class="test fail"&gt;&lt;h2&gt;%e &lt;a href="%e" class="replay"&gt;â€£&lt;/a&gt;&lt;/h2&gt;&lt;/li&gt;',
       test.title, self.testURL(test));
     var stackString; // Note: Includes leading newline
     var message = test.err.toString();
 
-    // &#x3c;=IE7 stringifies to [Object Error]. Since it can be overloaded, we
+    // &lt;=IE7 stringifies to [Object Error]. Since it can be overloaded, we
     // check for the result of the stringifying.
-    if (message === &#x27;[object Error]&#x27;) {
+    if (message === '[object Error]') {
       message = test.err.message;
     }
 
@@ -7485,20 +7478,20 @@
       } else {
         stackString = test.err.stack.substr(test.err.message.length + indexOfMessage);
       }
-    } else if (test.err.sourceURL &#x26;&#x26; test.err.line !== undefined) {
-      // Safari doesn&#x27;t give you a stack. Let&#x27;s at least provide a source line.
-      stackString = &#x27;\n(&#x27; + test.err.sourceURL + &#x27;:&#x27; + test.err.line + &#x27;)&#x27;;
+    } else if (test.err.sourceURL &amp;&amp; test.err.line !== undefined) {
+      // Safari doesn't give you a stack. Let's at least provide a source line.
+      stackString = '\n(' + test.err.sourceURL + ':' + test.err.line + ')';
     }
 
-    stackString = stackString || &#x27;&#x27;;
+    stackString = stackString || '';
 
-    if (test.err.htmlMessage &#x26;&#x26; stackString) {
-      el.appendChild(fragment(&#x27;&#x3c;div class=&#x22;html-error&#x22;&#x3e;%s\n&#x3c;pre class=&#x22;error&#x22;&#x3e;%e&#x3c;/pre&#x3e;&#x3c;/div&#x3e;&#x27;,
+    if (test.err.htmlMessage &amp;&amp; stackString) {
+      el.appendChild(fragment('&lt;div class="html-error"&gt;%s\n&lt;pre class="error"&gt;%e&lt;/pre&gt;&lt;/div&gt;',
         test.err.htmlMessage, stackString));
     } else if (test.err.htmlMessage) {
-      el.appendChild(fragment(&#x27;&#x3c;div class=&#x22;html-error&#x22;&#x3e;%s&#x3c;/div&#x3e;&#x27;, test.err.htmlMessage));
+      el.appendChild(fragment('&lt;div class="html-error"&gt;%s&lt;/div&gt;', test.err.htmlMessage));
     } else {
-      el.appendChild(fragment(&#x27;&#x3c;pre class= ...</pre></li>
+      el.appendChild(fragment('&lt;pre class= ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -7517,15 +7510,15 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">addCodeToggle = function (el, contents) {
-  var h2 = el.getElementsByTagName(&#x27;h2&#x27;)[0];
+  var h2 = el.getElementsByTagName('h2')[0];
 
-  on(h2, &#x27;click&#x27;, function () {
-    pre.style.display = pre.style.display === &#x27;none&#x27; ? &#x27;block&#x27; : &#x27;none&#x27;;
+  on(h2, 'click', function () {
+    pre.style.display = pre.style.display === 'none' ? 'block' : 'none';
   });
 
-  var pre = fragment(&#x27;&#x3c;pre&#x3e;&#x3c;code&#x3e;%e&#x3c;/code&#x3e;&#x3c;/pre&#x3e;&#x27;, utils.clean(contents));
+  var pre = fragment('&lt;pre&gt;&lt;code&gt;%e&lt;/code&gt;&lt;/pre&gt;', utils.clean(contents));
   el.appendChild(pre);
-  pre.style.display = &#x27;none&#x27;;
+  pre.style.display = 'none';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -7581,42 +7574,42 @@
   var width = Base.window.width * 0.75 | 0;
   var total = runner.total;
   var stream = process.stdout;
-  var plane = color(&#x27;plane&#x27;, &#x27;✈&#x27;);
+  var plane = color('plane', 'âœˆ');
   var crashed = -1;
   var n = 0;
 
   function runway () {
-    var buf = Array(width).join(&#x27;-&#x27;);
-    return &#x27;  &#x27; + color(&#x27;runway&#x27;, buf);
+    var buf = Array(width).join('-');
+    return '  ' + color('runway', buf);
   }
 
-  runner.on(&#x27;start&#x27;, function () {
-    stream.write(&#x27;\n\n\n  &#x27;);
+  runner.on('start', function () {
+    stream.write('\n\n\n  ');
     cursor.hide();
   });
 
-  runner.on(&#x27;test end&#x27;, function (test) {
+  runner.on('test end', function (test) {
     // check if the plane crashed
     var col = crashed === -1 ? width * ++n / total | 0 : crashed;
 
     // show the crash
-    if (test.state === &#x27;failed&#x27;) {
-      plane = color(&#x27;plane crash&#x27;, &#x27;✈&#x27;);
+    if (test.state === 'failed') {
+      plane = color('plane crash', 'âœˆ');
       crashed = col;
     }
 
     // render landing strip
-    stream.write(&#x27;\u001b[&#x27; + (width + 1) + &#x27;D\u001b[2A&#x27;);
+    stream.write('\u001b[' + (width + 1) + 'D\u001b[2A');
     stream.write(runway());
-    stream.write(&#x27;\n  &#x27;);
-    stream.write(color(&#x27;runway&#x27;, Array(col).join(&#x27;⋅&#x27;)));
+    stream.write('\n  ');
+    stream.write(color('runway', Array(col).join('â‹…')));
     stream.write(plane);
-    stream.write(color(&#x27;runway&#x27;, Array(width - col).join(&#x27;⋅&#x27;) + &#x27;\n&#x27;));
+    stream.write(color('runway', Array(width - col).join('â‹…') + '\n'));
     stream.write(runway());
-    stream.write(&#x27;\u001b[0m&#x27;);
+    stream.write('\u001b[0m');
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     cursor.show();
     console.log();
     self.epilogue();
@@ -7645,47 +7638,47 @@
 
   runner.stats = stats;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     stats.start = new Date();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     stats.suites = stats.suites || 0;
     suite.root || stats.suites++;
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     stats.tests = stats.tests || 0;
     stats.tests++;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     stats.passes = stats.passes || 0;
 
-    if (test.duration &#x3e; test.slow()) {
-      test.speed = &#x27;slow&#x27;;
-    } else if (test.duration &#x3e; test.slow() / 2) {
-      test.speed = &#x27;medium&#x27;;
+    if (test.duration &gt; test.slow()) {
+      test.speed = 'slow';
+    } else if (test.duration &gt; test.slow() / 2) {
+      test.speed = 'medium';
     } else {
-      test.speed = &#x27;fast&#x27;;
+      test.speed = 'fast';
     }
 
     stats.passes++;
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     stats.failures = stats.failures || 0;
     stats.failures++;
     test.err = err;
     failures.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     stats.end = new Date();
     stats.duration = new Date() - stats.start;
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     stats.pending++;
   });
 }</pre></li>
@@ -7712,34 +7705,34 @@
   var self = this;
   var n = 0;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     console.log();
   });
 
-  runner.on(&#x27;test&#x27;, function (test) {
-    process.stdout.write(color(&#x27;pass&#x27;, &#x27;    &#x27; + test.fullTitle() + &#x27;: &#x27;));
+  runner.on('test', function (test) {
+    process.stdout.write(color('pass', '    ' + test.fullTitle() + ': '));
   });
 
-  runner.on(&#x27;pending&#x27;, function (test) {
-    var fmt = color(&#x27;checkmark&#x27;, &#x27;  -&#x27;) +
-      color(&#x27;pending&#x27;, &#x27; %s&#x27;);
+  runner.on('pending', function (test) {
+    var fmt = color('checkmark', '  -') +
+      color('pending', ' %s');
     console.log(fmt, test.fullTitle());
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
-    var fmt = color(&#x27;checkmark&#x27;, &#x27;  &#x27; + Base.symbols.ok) +
-      color(&#x27;pass&#x27;, &#x27; %s: &#x27;) +
-      color(test.speed, &#x27;%dms&#x27;);
+  runner.on('pass', function (test) {
+    var fmt = color('checkmark', '  ' + Base.symbols.ok) +
+      color('pass', ' %s: ') +
+      color(test.speed, '%dms');
     cursor.CR();
     console.log(fmt, test.fullTitle(), test.duration);
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
+  runner.on('fail', function (test) {
     cursor.CR();
-    console.log(color(&#x27;fail&#x27;, &#x27;  %d) %s&#x27;), ++n, test.fullTitle());
+    console.log(color('fail', '  %d) %s'), ++n, test.fullTitle());
   });
 
-  runner.on(&#x27;end&#x27;, self.epilogue.bind(self));
+  runner.on('end', self.epilogue.bind(self));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -7764,47 +7757,47 @@
 
   runner.stats = stats;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     stats.start = new Date();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     stats.suites = stats.suites || 0;
     suite.root || stats.suites++;
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     stats.tests = stats.tests || 0;
     stats.tests++;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     stats.passes = stats.passes || 0;
 
-    if (test.duration &#x3e; test.slow()) {
-      test.speed = &#x27;slow&#x27;;
-    } else if (test.duration &#x3e; test.slow() / 2) {
-      test.speed = &#x27;medium&#x27;;
+    if (test.duration &gt; test.slow()) {
+      test.speed = 'slow';
+    } else if (test.duration &gt; test.slow() / 2) {
+      test.speed = 'medium';
     } else {
-      test.speed = &#x27;fast&#x27;;
+      test.speed = 'fast';
     }
 
     stats.passes++;
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     stats.failures = stats.failures || 0;
     stats.failures++;
     test.err = err;
     failures.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     stats.end = new Date();
     stats.duration = new Date() - stats.start;
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     stats.pending++;
   });
 }</pre></li>
@@ -7828,14 +7821,14 @@
     <li>description and source-code<pre class="apidocCodePre">function Min(runner) {
   Base.call(this, runner);
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     // clear screen
-    process.stdout.write(&#x27;\u001b[2J&#x27;);
+    process.stdout.write('\u001b[2J');
     // set cursor position
-    process.stdout.write(&#x27;\u001b[1;3H&#x27;);
+    process.stdout.write('\u001b[1;3H');
   });
 
-  runner.on(&#x27;end&#x27;, this.epilogue.bind(this));
+  runner.on('end', this.epilogue.bind(this));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -7860,47 +7853,47 @@
 
   runner.stats = stats;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     stats.start = new Date();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     stats.suites = stats.suites || 0;
     suite.root || stats.suites++;
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     stats.tests = stats.tests || 0;
     stats.tests++;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     stats.passes = stats.passes || 0;
 
-    if (test.duration &#x3e; test.slow()) {
-      test.speed = &#x27;slow&#x27;;
-    } else if (test.duration &#x3e; test.slow() / 2) {
-      test.speed = &#x27;medium&#x27;;
+    if (test.duration &gt; test.slow()) {
+      test.speed = 'slow';
+    } else if (test.duration &gt; test.slow() / 2) {
+      test.speed = 'medium';
     } else {
-      test.speed = &#x27;fast&#x27;;
+      test.speed = 'fast';
     }
 
     stats.passes++;
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     stats.failures = stats.failures || 0;
     stats.failures++;
     test.err = err;
     failures.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     stats.end = new Date();
     stats.duration = new Date() - stats.start;
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     stats.pending++;
   });
 }</pre></li>
@@ -7936,27 +7929,27 @@
   this.trajectories = [[], [], [], []];
   this.trajectoryWidthMax = (width - nyanCatWidth);
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     Base.cursor.hide();
     self.draw();
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     self.draw();
   });
 
-  runner.on(&#x27;pass&#x27;, function () {
+  runner.on('pass', function () {
     self.draw();
   });
 
-  runner.on(&#x27;fail&#x27;, function () {
+  runner.on('fail', function () {
     self.draw();
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     Base.cursor.show();
-    for (var i = 0; i &#x3c; self.numberOfLines; i++) {
-      write(&#x27;\n&#x27;);
+    for (var i = 0; i &lt; self.numberOfLines; i++) {
+      write('\n');
     }
     self.epilogue();
   });
@@ -7984,47 +7977,47 @@
 
   runner.stats = stats;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     stats.start = new Date();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     stats.suites = stats.suites || 0;
     suite.root || stats.suites++;
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     stats.tests = stats.tests || 0;
     stats.tests++;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     stats.passes = stats.passes || 0;
 
-    if (test.duration &#x3e; test.slow()) {
-      test.speed = &#x27;slow&#x27;;
-    } else if (test.duration &#x3e; test.slow() / 2) {
-      test.speed = &#x27;medium&#x27;;
+    if (test.duration &gt; test.slow()) {
+      test.speed = 'slow';
+    } else if (test.duration &gt; test.slow() / 2) {
+      test.speed = 'medium';
     } else {
-      test.speed = &#x27;fast&#x27;;
+      test.speed = 'fast';
     }
 
     stats.passes++;
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     stats.failures = stats.failures || 0;
     stats.failures++;
     test.err = err;
     failures.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     stats.end = new Date();
     stats.duration = new Date() - stats.start;
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     stats.pending++;
   });
 }</pre></li>
@@ -8046,12 +8039,12 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">appendRainbow = function () {
-  var segment = this.tick ? &#x27;_&#x27; : &#x27;-&#x27;;
+  var segment = this.tick ? '_' : '-';
   var rainbowified = this.rainbowify(segment);
 
-  for (var index = 0; index &#x3c; this.numberOfLines; index++) {
+  for (var index = 0; index &lt; this.numberOfLines; index++) {
     var trajectory = this.trajectories[index];
-    if (trajectory.length &#x3e;= this.trajectoryWidthMax) {
+    if (trajectory.length &gt;= this.trajectoryWidthMax) {
       trajectory.shift();
     }
     trajectory.push(rainbowified);
@@ -8070,7 +8063,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">cursorDown = function (n) {
-  write(&#x27;\u001b[&#x27; + n + &#x27;B&#x27;);
+  write('\u001b[' + n + 'B');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -8085,7 +8078,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">cursorUp = function (n) {
-  write(&#x27;\u001b[&#x27; + n + &#x27;A&#x27;);
+  write('\u001b[' + n + 'A');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -8121,28 +8114,28 @@
     <li>description and source-code<pre class="apidocCodePre">drawNyanCat = function () {
   var self = this;
   var startWidth = this.scoreboardWidth + this.trajectories[0].length;
-  var dist = &#x27;\u001b[&#x27; + startWidth + &#x27;C&#x27;;
-  var padding = &#x27;&#x27;;
+  var dist = '\u001b[' + startWidth + 'C';
+  var padding = '';
 
   write(dist);
-  write(&#x27;_,------,&#x27;);
-  write(&#x27;\n&#x27;);
+  write('_,------,');
+  write('\n');
 
   write(dist);
-  padding = self.tick ? &#x27;  &#x27; : &#x27;   &#x27;;
-  write(&#x27;_|&#x27; + padding + &#x27;/\\_/\\ &#x27;);
-  write(&#x27;\n&#x27;);
+  padding = self.tick ? '  ' : '   ';
+  write('_|' + padding + '/\\_/\\ ');
+  write('\n');
 
   write(dist);
-  padding = self.tick ? &#x27;_&#x27; : &#x27;__&#x27;;
-  var tail = self.tick ? &#x27;~&#x27; : &#x27;^&#x27;;
-  write(tail + &#x27;|&#x27; + padding + this.face() + &#x27; &#x27;);
-  write(&#x27;\n&#x27;);
+  padding = self.tick ? '_' : '__';
+  var tail = self.tick ? '~' : '^';
+  write(tail + '|' + padding + this.face() + ' ');
+  write('\n');
 
   write(dist);
-  padding = self.tick ? &#x27; &#x27; : &#x27;  &#x27;;
-  write(padding + &#x27;&#x22;&#x22;  &#x22;&#x22; &#x27;);
-  write(&#x27;\n&#x27;);
+  padding = self.tick ? ' ' : '  ';
+  write(padding + '""  "" ');
+  write('\n');
 
   this.cursorUp(this.numberOfLines);
 }</pre></li>
@@ -8162,9 +8155,9 @@
   var self = this;
 
   this.trajectories.forEach(function (line) {
-    write(&#x27;\u001b[&#x27; + self.scoreboardWidth + &#x27;C&#x27;);
-    write(line.join(&#x27;&#x27;));
-    write(&#x27;\n&#x27;);
+    write('\u001b[' + self.scoreboardWidth + 'C');
+    write(line.join(''));
+    write('\n');
   });
 
   this.cursorUp(this.numberOfLines);
@@ -8185,15 +8178,15 @@
   var stats = this.stats;
 
   function draw (type, n) {
-    write(&#x27; &#x27;);
+    write(' ');
     write(Base.color(type, n));
-    write(&#x27;\n&#x27;);
+    write('\n');
   }
 
-  draw(&#x27;green&#x27;, stats.passes);
-  draw(&#x27;fail&#x27;, stats.failures);
-  draw(&#x27;pending&#x27;, stats.pending);
-  write(&#x27;\n&#x27;);
+  draw('green', stats.passes);
+  draw('fail', stats.failures);
+  draw('pending', stats.pending);
+  write('\n');
 
   this.cursorUp(this.numberOfLines);
 }</pre></li>
@@ -8212,13 +8205,13 @@
     <li>description and source-code<pre class="apidocCodePre">face = function () {
   var stats = this.stats;
   if (stats.failures) {
-    return &#x27;( x .x)&#x27;;
+    return '( x .x)';
   } else if (stats.pending) {
-    return &#x27;( o .o)&#x27;;
+    return '( o .o)';
   } else if (stats.passes) {
-    return &#x27;( ^ .^)&#x27;;
+    return '( ^ .^)';
   }
-  return &#x27;( - .-)&#x27;;
+  return '( - .-)';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -8235,7 +8228,7 @@
     <li>description and source-code<pre class="apidocCodePre">generateColors = function () {
   var colors = [];
 
-  for (var i = 0; i &#x3c; (6 * 7); i++) {
+  for (var i = 0; i &lt; (6 * 7); i++) {
     var pi3 = Math.floor(Math.PI / 3);
     var n = (i * (1.0 / 6));
     var r = Math.floor(3 * Math.sin(n) + 3);
@@ -8264,7 +8257,7 @@
   }
   var color = this.rainbowColors[this.colorIndex % this.rainbowColors.length];
   this.colorIndex += 1;
-  return &#x27;\u001b[38;5;&#x27; + color + &#x27;m&#x27; + str + &#x27;\u001b[0m&#x27;;
+  return '\u001b[38;5;' + color + 'm' + str + '\u001b[0m';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -8294,46 +8287,46 @@
 
   // default chars
   options = options || {};
-  options.open = options.open || &#x27;[&#x27;;
-  options.complete = options.complete || &#x27;▬&#x27;;
+  options.open = options.open || '[';
+  options.complete = options.complete || 'â–¬';
   options.incomplete = options.incomplete || Base.symbols.dot;
-  options.close = options.close || &#x27;]&#x27;;
+  options.close = options.close || ']';
   options.verbose = false;
 
   // tests started
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     console.log();
     cursor.hide();
   });
 
   // tests complete
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     complete++;
 
     var percent = complete / total;
     var n = width * percent | 0;
     var i = width - n;
 
-    if (n === lastN &#x26;&#x26; !options.verbose) {
-      // Don&#x27;t re-render the line if it hasn&#x27;t changed
+    if (n === lastN &amp;&amp; !options.verbose) {
+      // Don't re-render the line if it hasn't changed
       return;
     }
     lastN = n;
 
     cursor.CR();
-    process.stdout.write(&#x27;\u001b[J&#x27;);
-    process.stdout.write(color(&#x27;progress&#x27;, &#x27;  &#x27; + options.open));
+    process.stdout.write('\u001b[J');
+    process.stdout.write(color('progress', '  ' + options.open));
     process.stdout.write(Array(n).join(options.complete));
     process.stdout.write(Array(i).join(options.incomplete));
-    process.stdout.write(color(&#x27;progress&#x27;, options.close));
+    process.stdout.write(color('progress', options.close));
     if (options.verbose) {
-      process.stdout.write(color(&#x27;progress&#x27;, &#x27; &#x27; + complete + &#x27; of &#x27; + total));
+      process.stdout.write(color('progress', ' ' + complete + ' of ' + total));
     }
   });
 
   // tests are complete, output some stats
   // and the failures if any
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     cursor.show();
     console.log();
     self.epilogue();
@@ -8362,47 +8355,47 @@
 
   runner.stats = stats;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     stats.start = new Date();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     stats.suites = stats.suites || 0;
     suite.root || stats.suites++;
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     stats.tests = stats.tests || 0;
     stats.tests++;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     stats.passes = stats.passes || 0;
 
-    if (test.duration &#x3e; test.slow()) {
-      test.speed = &#x27;slow&#x27;;
-    } else if (test.duration &#x3e; test.slow() / 2) {
-      test.speed = &#x27;medium&#x27;;
+    if (test.duration &gt; test.slow()) {
+      test.speed = 'slow';
+    } else if (test.duration &gt; test.slow() / 2) {
+      test.speed = 'medium';
     } else {
-      test.speed = &#x27;fast&#x27;;
+      test.speed = 'fast';
     }
 
     stats.passes++;
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     stats.failures = stats.failures || 0;
     stats.failures++;
     test.err = err;
     failures.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     stats.end = new Date();
     stats.duration = new Date() - stats.start;
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     stats.pending++;
   });
 }</pre></li>
@@ -8431,51 +8424,51 @@
   var n = 0;
 
   function indent () {
-    return Array(indents).join(&#x27;  &#x27;);
+    return Array(indents).join('  ');
   }
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     console.log();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     ++indents;
-    console.log(color(&#x27;suite&#x27;, &#x27;%s%s&#x27;), indent(), suite.title);
+    console.log(color('suite', '%s%s'), indent(), suite.title);
   });
 
-  runner.on(&#x27;suite end&#x27;, function () {
+  runner.on('suite end', function () {
     --indents;
     if (indents === 1) {
       console.log();
     }
   });
 
-  runner.on(&#x27;pending&#x27;, function (test) {
-    var fmt = indent() + color(&#x27;pending&#x27;, &#x27;  - %s&#x27;);
+  runner.on('pending', function (test) {
+    var fmt = indent() + color('pending', '  - %s');
     console.log(fmt, test.title);
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     var fmt;
-    if (test.speed === &#x27;fast&#x27;) {
+    if (test.speed === 'fast') {
       fmt = indent() +
-        color(&#x27;checkmark&#x27;, &#x27;  &#x27; + Base.symbols.ok) +
-        color(&#x27;pass&#x27;, &#x27; %s&#x27;);
+        color('checkmark', '  ' + Base.symbols.ok) +
+        color('pass', ' %s');
       console.log(fmt, test.title);
     } else {
       fmt = indent() +
-        color(&#x27;checkmark&#x27;, &#x27;  &#x27; + Base.symbols.ok) +
-        color(&#x27;pass&#x27;, &#x27; %s&#x27;) +
-        color(test.speed, &#x27; (%dms)&#x27;);
+        color('checkmark', '  ' + Base.symbols.ok) +
+        color('pass', ' %s') +
+        color(test.speed, ' (%dms)');
       console.log(fmt, test.title, test.duration);
     }
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
-    console.log(indent() + color(&#x27;fail&#x27;, &#x27;  %d) %s&#x27;), ++n, test.title);
+  runner.on('fail', function (test) {
+    console.log(indent() + color('fail', '  %d) %s'), ++n, test.title);
   });
 
-  runner.on(&#x27;end&#x27;, self.epilogue.bind(self));
+  runner.on('end', self.epilogue.bind(self));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -8500,47 +8493,47 @@
 
   runner.stats = stats;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     stats.start = new Date();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     stats.suites = stats.suites || 0;
     suite.root || stats.suites++;
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     stats.tests = stats.tests || 0;
     stats.tests++;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     stats.passes = stats.passes || 0;
 
-    if (test.duration &#x3e; test.slow()) {
-      test.speed = &#x27;slow&#x27;;
-    } else if (test.duration &#x3e; test.slow() / 2) {
-      test.speed = &#x27;medium&#x27;;
+    if (test.duration &gt; test.slow()) {
+      test.speed = 'slow';
+    } else if (test.duration &gt; test.slow() / 2) {
+      test.speed = 'medium';
     } else {
-      test.speed = &#x27;fast&#x27;;
+      test.speed = 'fast';
     }
 
     stats.passes++;
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     stats.failures = stats.failures || 0;
     stats.failures++;
     test.err = err;
     failures.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     stats.end = new Date();
     stats.duration = new Date() - stats.start;
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     stats.pending++;
   });
 }</pre></li>
@@ -8568,29 +8561,29 @@
   var tests = [];
   var self = this;
 
-  if (options &#x26;&#x26; options.reporterOptions &#x26;&#x26; options.reporterOptions.output) {
+  if (options &amp;&amp; options.reporterOptions &amp;&amp; options.reporterOptions.output) {
     if (!fs.createWriteStream) {
-      throw new Error(&#x27;file output not supported in browser&#x27;);
+      throw new Error('file output not supported in browser');
     }
     mkdirp.sync(path.dirname(options.reporterOptions.output));
     self.fileStream = fs.createWriteStream(options.reporterOptions.output);
   }
 
-  runner.on(&#x27;pending&#x27;, function (test) {
+  runner.on('pending', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;fail&#x27;, function (test) {
+  runner.on('fail', function (test) {
     tests.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
-    self.write(tag(&#x27;testsuite&#x27;, {
-      name: &#x27;Mocha Tests&#x27;,
+  runner.on('end', function () {
+    self.write(tag('testsuite', {
+      name: 'Mocha Tests',
       tests: stats.tests,
       failures: stats.failures,
       errors: stats.failures,
@@ -8603,7 +8596,7 @@
       self.test(t);
     });
 
-    self.write(&#x27;&#x3c;/testsuite&#x3e;&#x27;);
+    self.write('&lt;/testsuite&gt;');
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -8629,47 +8622,47 @@
 
   runner.stats = stats;
 
-  runner.on(&#x27;start&#x27;, function () {
+  runner.on('start', function () {
     stats.start = new Date();
   });
 
-  runner.on(&#x27;suite&#x27;, function (suite) {
+  runner.on('suite', function (suite) {
     stats.suites = stats.suites || 0;
     suite.root || stats.suites++;
   });
 
-  runner.on(&#x27;test end&#x27;, function () {
+  runner.on('test end', function () {
     stats.tests = stats.tests || 0;
     stats.tests++;
   });
 
-  runner.on(&#x27;pass&#x27;, function (test) {
+  runner.on('pass', function (test) {
     stats.passes = stats.passes || 0;
 
-    if (test.duration &#x3e; test.slow()) {
-      test.speed = &#x27;slow&#x27;;
-    } else if (test.duration &#x3e; test.slow() / 2) {
-      test.speed = &#x27;medium&#x27;;
+    if (test.duration &gt; test.slow()) {
+      test.speed = 'slow';
+    } else if (test.duration &gt; test.slow() / 2) {
+      test.speed = 'medium';
     } else {
-      test.speed = &#x27;fast&#x27;;
+      test.speed = 'fast';
     }
 
     stats.passes++;
   });
 
-  runner.on(&#x27;fail&#x27;, function (test, err) {
+  runner.on('fail', function (test, err) {
     stats.failures = stats.failures || 0;
     stats.failures++;
     test.err = err;
     failures.push(test);
   });
 
-  runner.on(&#x27;end&#x27;, function () {
+  runner.on('end', function () {
     stats.end = new Date();
     stats.duration = new Date() - stats.start;
   });
 
-  runner.on(&#x27;pending&#x27;, function () {
+  runner.on('pending', function () {
     stats.pending++;
   });
 }</pre></li>
@@ -8718,13 +8711,13 @@
     time: (test.duration / 1000) || 0
   };
 
-  if (test.state === &#x27;failed&#x27;) {
+  if (test.state === 'failed') {
     var err = test.err;
-    this.write(tag(&#x27;testcase&#x27;, attrs, false, tag(&#x27;failure&#x27;, {}, false, escape(err.message) + &#x27;\n&#x27; + escape(err.stack))));
+    this.write(tag('testcase', attrs, false, tag('failure', {}, false, escape(err.message) + '\n' + escape(err.stack))));
   } else if (test.isPending()) {
-    this.write(tag(&#x27;testcase&#x27;, attrs, false, tag(&#x27;skipped&#x27;, {}, true)));
+    this.write(tag('testcase', attrs, false, tag('skipped', {}, true)));
   } else {
-    this.write(tag(&#x27;testcase&#x27;, attrs, true));
+    this.write(tag('testcase', attrs, true));
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -8741,9 +8734,9 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">write = function (line) {
   if (this.fileStream) {
-    this.fileStream.write(line + &#x27;\n&#x27;);
-  } else if (typeof process === &#x27;object&#x27; &#x26;&#x26; process.stdout) {
-    process.stdout.write(line + &#x27;\n&#x27;);
+    this.fileStream.write(line + '\n');
+  } else if (typeof process === 'object' &amp;&amp; process.stdout) {
+    process.stdout.write(line + '\n');
   } else {
     console.log(line);
   }
@@ -8780,23 +8773,23 @@
   stack = stack || [];
 
   if (indexOf(stack, value) !== -1) {
-    return &#x27;[Circular]&#x27;;
+    return '[Circular]';
   }
 
   switch (typeHint) {
-    case &#x27;undefined&#x27;:
-    case &#x27;buffer&#x27;:
-    case &#x27;null&#x27;:
+    case 'undefined':
+    case 'buffer':
+    case 'null':
       canonicalizedObj = value;
       break;
-    case &#x27;array&#x27;:
+    case 'array':
       withStack(value, function () {
         canonicalizedObj = exports.map(value, function (item) {
           return exports.canonicalize(item, stack);
         });
       });
       break;
-    case &#x27;function&#x27;:
+    case 'function':
       /* eslint-disable guard-for-in */
       for (prop in value) {
         canonicalizedObj = {};
@@ -8808,7 +8801,7 @@
         break;
       }
     /* falls through */
-    case &#x27;object&#x27;:
+    case 'object':
       canonicalizedObj = canonicalizedObj || {};
       withStack(value, function () {
         exports.forEach(exports.keys(value).sort(), function (key) {
@@ -8816,15 +8809,15 @@
         });
       });
       break;
-    case &#x27;date&#x27;:
-    case &#x27;number&#x27;:
-    case &#x27;regexp&#x27;:
-    case &#x27;boolean&#x27;:
-    case &#x27;symbol&#x27;:
+    case 'date':
+    case 'number':
+    case 'regexp':
+    case 'boolean':
+    case 'symbol':
       canonicalizedObj = value;
       break;
     default:
-      canonicalizedObj = value + &#x27;&#x27;;
+      canonicalizedObj = value + '';
   }
 
   return canonicalizedObj;
@@ -8843,17 +8836,17 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">clean = function (str) {
   str = str
-    .replace(/\r\n?|[\n\u2028\u2029]/g, &#x27;\n&#x27;).replace(/^\uFEFF/, &#x27;&#x27;)
-    // (traditional)-&#x3e;  space/name     parameters    body     (lambda)-&#x3e; parameters       body   multi-statement/single
+    .replace(/\r\n?|[\n\u2028\u2029]/g, '\n').replace(/^\uFEFF/, '')
+    // (traditional)-&gt;  space/name     parameters    body     (lambda)-&gt; parameters       body   multi-statement/single
 keep body content
-    .replace(/^function(?:\s*|\s+[^(]*)\([^)]*\)\s*\{((?:.|\n)*?)\s*\}$|^\([^)]*\)\s*=&#x3e;\s*(?:\{((?:.|\n)*?)\s*\}|((?:.|\n)*))$/, &#x27;$
-1$2$3&#x27;);
+    .replace(/^function(?:\s*|\s+[^(]*)\([^)]*\)\s*\{((?:.|\n)*?)\s*\}$|^\([^)]*\)\s*=&gt;\s*(?:\{((?:.|\n)*?)\s*\}|((?:.|\n)*))$/, '$
+1$2$3');
 
   var spaces = str.match(/^\n?( *)/)[1].length;
   var tabs = str.match(/^\n?(\t*)/)[1].length;
-  var re = new RegExp(&#x27;^\n?&#x27; + (tabs ? &#x27;\t&#x27; : &#x27; &#x27;) + &#x27;{&#x27; + (tabs || spaces) + &#x27;}&#x27;, &#x27;gm&#x27;);
+  var re = new RegExp('^\n?' + (tabs ? '\t' : ' ') + '{' + (tabs || spaces) + '}', 'gm');
 
-  str = str.replace(re, &#x27;&#x27;);
+  str = str.replace(re, '');
 
   return exports.trim(str);
 }</pre></li>
@@ -8871,10 +8864,10 @@ keep body content
     <ul>
     <li>description and source-code<pre class="apidocCodePre">escape = function (html) {
   return String(html)
-    .replace(/&#x26;/g, &#x27;&#x26;amp;&#x27;)
-    .replace(/&#x22;/g, &#x27;&#x26;quot;&#x27;)
-    .replace(/&#x3c;/g, &#x27;&#x26;lt;&#x27;)
-    .replace(/&#x3e;/g, &#x27;&#x26;gt;&#x27;);
+    .replace(/&amp;/g, '&amp;amp;')
+    .replace(/"/g, '&amp;quot;')
+    .replace(/&lt;/g, '&amp;lt;')
+    .replace(/&gt;/g, '&amp;gt;');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -8890,9 +8883,9 @@ keep body content
     <ul>
     <li>description and source-code<pre class="apidocCodePre">files = function (dir, ext, ret) {
   ret = ret || [];
-  ext = ext || [&#x27;js&#x27;];
+  ext = ext || ['js'];
 
-  var re = new RegExp(&#x27;\\.(&#x27; + ext.join(&#x27;|&#x27;) + &#x27;)$&#x27;);
+  var re = new RegExp('\\.(' + ext.join('|') + ')$');
 
   readdirSync(dir)
     .filter(ignored)
@@ -8922,7 +8915,7 @@ keep body content
     <li>description and source-code<pre class="apidocCodePre">filter = function (arr, fn) {
   var ret = [];
 
-  for (var i = 0, l = arr.length; i &#x3c; l; i++) {
+  for (var i = 0, l = arr.length; i &lt; l; i++) {
     var val = arr[i];
     if (fn(val, i, arr)) {
       ret.push(val);
@@ -8944,7 +8937,7 @@ keep body content
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">forEach = function (arr, fn, scope) {
-  for (var i = 0, l = arr.length; i &#x3c; l; i++) {
+  for (var i = 0, l = arr.length; i &lt; l; i++) {
     fn.call(scope, arr[i], i);
   }
 }</pre></li>
@@ -8976,8 +8969,8 @@ keep body content
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">highlightTags = function (name) {
-  var code = document.getElementById(&#x27;mocha&#x27;).getElementsByTagName(name);
-  for (var i = 0, len = code.length; i &#x3c; len; ++i) {
+  var code = document.getElementById('mocha').getElementsByTagName(name);
+  for (var i = 0, len = code.length; i &lt; len; ++i) {
     code[i].innerHTML = highlight(code[i].innerHTML);
   }
 }</pre></li>
@@ -8994,7 +8987,7 @@ keep body content
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">indexOf = function (arr, obj, start) {
-  for (var i = start || 0, l = arr.length; i &#x3c; l; i++) {
+  for (var i = start || 0, l = arr.length; i &lt; l; i++) {
     if (arr[i] === obj) {
       return i;
     }
@@ -9016,16 +9009,16 @@ keep body content
     <li>description and source-code<pre class="apidocCodePre">inherits = function (ctor, superCtor) {
 
   if (ctor === undefined || ctor === null)
-    throw new TypeError(&#x27;The constructor to &#x22;inherits&#x22; must not be &#x27; +
-                        &#x27;null or undefined&#x27;);
+    throw new TypeError('The constructor to "inherits" must not be ' +
+                        'null or undefined');
 
   if (superCtor === undefined || superCtor === null)
-    throw new TypeError(&#x27;The super constructor to &#x22;inherits&#x22; must not &#x27; +
-                        &#x27;be null or undefined&#x27;);
+    throw new TypeError('The super constructor to "inherits" must not ' +
+                        'be null or undefined');
 
   if (superCtor.prototype === undefined)
-    throw new TypeError(&#x27;The super constructor to &#x22;inherits&#x22; must &#x27; +
-                        &#x27;have a prototype&#x27;);
+    throw new TypeError('The super constructor to "inherits" must ' +
+                        'have a prototype');
 
   ctor.super_ = superCtor;
   Object.setPrototypeOf(ctor.prototype, superCtor.prototype);
@@ -9056,7 +9049,7 @@ keep body content
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isBuffer = function (value) {
-  return typeof Buffer !== &#x27;undefined&#x27; &#x26;&#x26; Buffer.isBuffer(value);
+  return typeof Buffer !== 'undefined' &amp;&amp; Buffer.isBuffer(value);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9071,7 +9064,7 @@ keep body content
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function isPromise(value) {
-  return typeof value === &#x27;object&#x27; &#x26;&#x26; typeof value.then === &#x27;function&#x27;;
+  return typeof value === 'object' &amp;&amp; typeof value.then === 'function';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9086,7 +9079,7 @@ keep body content
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isString = function (obj) {
-  return typeof obj === &#x27;string&#x27;;
+  return typeof obj === 'string';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9115,15 +9108,15 @@ keep body content
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function lookupFiles(path, extensions, recursive) {
   var files = [];
-  var re = new RegExp(&#x27;\\.(&#x27; + extensions.join(&#x27;|&#x27;) + &#x27;)$&#x27;);
+  var re = new RegExp('\\.(' + extensions.join('|') + ')$');
 
   if (!exists(path)) {
-    if (exists(path + &#x27;.js&#x27;)) {
-      path += &#x27;.js&#x27;;
+    if (exists(path + '.js')) {
+      path += '.js';
     } else {
       files = glob.sync(path);
       if (!files.length) {
-        throw new Error(&#x22;cannot resolve path (or pattern) &#x27;&#x22; + path + &#x22;&#x27;&#x22;);
+        throw new Error("cannot resolve path (or pattern) '" + path + "'");
       }
       return files;
     }
@@ -9153,7 +9146,7 @@ keep body content
       // ignore error
       return;
     }
-    if (!stat.isFile() || !re.test(file) || basename(file)[0] === &#x27;.&#x27;) {
+    if (!stat.isFile() || !re.test(file) || basename(file)[0] === '.') {
       return;
     }
     files.push(file);
@@ -9175,7 +9168,7 @@ keep body content
     <ul>
     <li>description and source-code<pre class="apidocCodePre">map = function (arr, fn, scope) {
   var result = [];
-  for (var i = 0, l = arr.length; i &#x3c; l; i++) {
+  for (var i = 0, l = arr.length; i &lt; l; i++) {
     result.push(fn.call(scope, arr[i], i, arr));
   }
   return result;
@@ -9206,8 +9199,8 @@ keep body content
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">parseQuery = function (qs) {
-  return reduce(qs.replace(&#x27;?&#x27;, &#x27;&#x27;).split(&#x27;&#x26;&#x27;), function (obj, pair) {
-    var i = pair.indexOf(&#x27;=&#x27;);
+  return reduce(qs.replace('?', '').split('&amp;'), function (obj, pair) {
+    var i = pair.indexOf('=');
     var key = pair.slice(0, i);
     var val = pair.slice(++i);
 
@@ -9230,7 +9223,7 @@ keep body content
     <li>description and source-code<pre class="apidocCodePre">reduce = function (arr, fn, val) {
   var rval = val;
 
-  for (var i = 0, l = arr.length; i &#x3c; l; i++) {
+  for (var i = 0, l = arr.length; i &lt; l; i++) {
     rval = fn(rval, arr[i], i, arr);
   }
 
@@ -9251,8 +9244,8 @@ keep body content
     <li>description and source-code<pre class="apidocCodePre">slug = function (str) {
   return str
     .toLowerCase()
-    .replace(/ +/g, &#x27;-&#x27;)
-    .replace(/[^-\w]/g, &#x27;&#x27;);
+    .replace(/ +/g, '-')
+    .replace(/[^-\w]/g, '');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9267,7 +9260,7 @@ keep body content
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">some = function (arr, fn) {
-  for (var i = 0, l = arr.length; i &#x3c; l; i++) {
+  for (var i = 0, l = arr.length; i &lt; l; i++) {
     if (fn(arr[i])) {
       return true;
     }
@@ -9288,54 +9281,54 @@ keep body content
     <ul>
     <li>description and source-code<pre class="apidocCodePre">stackTraceFilter = function () {
   // TODO: Replace with `process.browser`
-  var is = typeof document === &#x27;undefined&#x27; ? { node: true } : { browser: true };
+  var is = typeof document === 'undefined' ? { node: true } : { browser: true };
   var slash = path.sep;
   var cwd;
   if (is.node) {
     cwd = process.cwd() + slash;
   } else {
-    cwd = (typeof location === &#x27;undefined&#x27; ? window.location : location).href.replace(/\/[^\/]*$/, &#x27;/&#x27;);
-    slash = &#x27;/&#x27;;
+    cwd = (typeof location === 'undefined' ? window.location : location).href.replace(/\/[^\/]*$/, '/');
+    slash = '/';
   }
 
   function isMochaInternal (line) {
-    return (~line.indexOf(&#x27;node_modules&#x27; + slash + &#x27;mocha&#x27; + slash)) ||
-      (~line.indexOf(&#x27;node_modules&#x27; + slash + &#x27;mocha.js&#x27;)) ||
-      (~line.indexOf(&#x27;bower_components&#x27; + slash + &#x27;mocha.js&#x27;)) ||
-      (~line.indexOf(slash + &#x27;mocha.js&#x27;));
+    return (~line.indexOf('node_modules' + slash + 'mocha' + slash)) ||
+      (~line.indexOf('node_modules' + slash + 'mocha.js')) ||
+      (~line.indexOf('bower_components' + slash + 'mocha.js')) ||
+      (~line.indexOf(slash + 'mocha.js'));
   }
 
   function isNodeInternal (line) {
-    return (~line.indexOf(&#x27;(timers.js:&#x27;)) ||
-      (~line.indexOf(&#x27;(events.js:&#x27;)) ||
-      (~line.indexOf(&#x27;(node.js:&#x27;)) ||
-      (~line.indexOf(&#x27;(module.js:&#x27;)) ||
-      (~line.indexOf(&#x27;GeneratorFunctionPrototype.next (native)&#x27;)) ||
+    return (~line.indexOf('(timers.js:')) ||
+      (~line.indexOf('(events.js:')) ||
+      (~line.indexOf('(node.js:')) ||
+      (~line.indexOf('(module.js:')) ||
+      (~line.indexOf('GeneratorFunctionPrototype.next (native)')) ||
       false;
   }
 
   return function (stack) {
-    stack = stack.split(&#x27;\n&#x27;);
+    stack = stack.split('\n');
 
     stack = reduce(stack, function (list, line) {
       if (isMochaInternal(line)) {
         return list;
       }
 
-      if (is.node &#x26;&#x26; isNodeInternal(line)) {
+      if (is.node &amp;&amp; isNodeInternal(line)) {
         return list;
       }
 
       // Clean up cwd(absolute)
       if (/\(?.+:\d+:\d+\)?$/.test(line)) {
-        line = line.replace(cwd, &#x27;&#x27;);
+        line = line.replace(cwd, '');
       }
 
       list.push(line);
       return list;
     }, []);
 
-    return stack.join(&#x27;\n&#x27;);
+    return stack.join('\n');
   };
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -9353,22 +9346,22 @@ keep body content
     <li>description and source-code<pre class="apidocCodePre">stringify = function (value) {
   var typeHint = type(value);
 
-  if (!~indexOf([&#x27;object&#x27;, &#x27;array&#x27;, &#x27;function&#x27;], typeHint)) {
-    if (typeHint === &#x27;buffer&#x27;) {
+  if (!~indexOf(['object', 'array', 'function'], typeHint)) {
+    if (typeHint === 'buffer') {
       var json = value.toJSON();
       // Based on the toJSON result
-      return jsonStringify(json.data &#x26;&#x26; json.type ? json.data : json, 2)
-        .replace(/,(\n|$)/g, &#x27;$1&#x27;);
+      return jsonStringify(json.data &amp;&amp; json.type ? json.data : json, 2)
+        .replace(/,(\n|$)/g, '$1');
     }
 
     // IE7/IE8 has a bizarre String constructor; needs to be coerced
     // into an array and back to obj.
-    if (typeHint === &#x27;string&#x27; &#x26;&#x26; typeof value === &#x27;object&#x27;) {
-      value = reduce(value.split(&#x27;&#x27;), function (acc, char, idx) {
+    if (typeHint === 'string' &amp;&amp; typeof value === 'object') {
+      value = reduce(value.split(''), function (acc, char, idx) {
         acc[idx] = char;
         return acc;
       }, {});
-      typeHint = &#x27;object&#x27;;
+      typeHint = 'object';
     } else {
       return jsonStringify(value);
     }
@@ -9376,7 +9369,7 @@ keep body content
 
   for (var prop in value) {
     if (Object.prototype.hasOwnProperty.call(value, prop)) {
-      return jsonStringify(exports.canonicalize(value, null, typeHint), 2).replace(/,(\n|$)/g, &#x27;$1&#x27;);
+      return jsonStringify(exports.canonicalize(value, null, typeHint), 2).replace(/,(\n|$)/g, '$1');
     }
   }
 
@@ -9395,7 +9388,7 @@ keep body content
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">trim = function (str) {
-  return str.replace(/^\s+|\s+$/g, &#x27;&#x27;);
+  return str.replace(/^\s+|\s+$/g, '');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9411,14 +9404,14 @@ keep body content
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function type(value) {
   if (value === undefined) {
-    return &#x27;undefined&#x27;;
+    return 'undefined';
   } else if (value === null) {
-    return &#x27;null&#x27;;
-  } else if (typeof Buffer !== &#x27;undefined&#x27; &#x26;&#x26; Buffer.isBuffer(value)) {
-    return &#x27;buffer&#x27;;
+    return 'null';
+  } else if (typeof Buffer !== 'undefined' &amp;&amp; Buffer.isBuffer(value)) {
+    return 'buffer';
   }
   return Object.prototype.toString.call(value)
-    .replace(/^\[.+\s(.+?)\]$/, &#x27;$1&#x27;)
+    .replace(/^\[.+\s(.+?)\]$/, '$1')
     .toLowerCase();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -9434,7 +9427,7 @@ keep body content
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">undefinedError = function () {
-  return new Error(&#x27;Caught undefined error, did you throw without specifying what?&#x27;);
+  return new Error('Caught undefined error, did you throw without specifying what?');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9451,9 +9444,9 @@ keep body content
     <li>description and source-code<pre class="apidocCodePre">watch = function (files, fn) {
   var options = { interval: 100 };
   files.forEach(function (file) {
-    debug(&#x27;file %s&#x27;, file);
+    debug('file %s', file);
     watchFile(file, options, function (curr, prev) {
-      if (prev.mtime &#x3c; curr.mtime) {
+      if (prev.mtime &lt; curr.mtime) {
         fn(file);
       }
     });
@@ -9471,3 +9464,4 @@ keep body content
     ]
 </div>
 </div>
+</body></html>
