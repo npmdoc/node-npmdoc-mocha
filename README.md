@@ -1,6 +1,6 @@
 # npmdoc-mocha
 
-#### api documentation for  [mocha (v3.2.0)](https://mochajs.org)  [![npm package](https://img.shields.io/npm/v/npmdoc-mocha.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-mocha) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-mocha.svg)](https://travis-ci.org/npmdoc/node-npmdoc-mocha)
+#### basic api documentation for  [mocha (v3.3.0)](https://mochajs.org)  [![npm package](https://img.shields.io/npm/v/npmdoc-mocha.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-mocha) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-mocha.svg)](https://travis-ci.org/npmdoc/node-npmdoc-mocha)
 
 #### simple, flexible, fun test framework
 
@@ -895,6 +895,10 @@
             "url": "https://github.com/rmunson"
         },
         {
+            "name": "Rustem Mustafin",
+            "url": "https://github.com/rulikkk"
+        },
+        {
             "name": "Ryan",
             "url": "https://github.com/ryan-shaw"
         },
@@ -1134,10 +1138,10 @@
     "dependencies": {
         "browser-stdout": "1.3.0",
         "commander": "2.9.0",
-        "debug": "2.2.0",
-        "diff": "1.4.0",
+        "debug": "2.6.0",
+        "diff": "3.2.0",
         "escape-string-regexp": "1.0.5",
-        "glob": "7.0.5",
+        "glob": "7.1.1",
         "growl": "1.9.2",
         "json3": "3.3.2",
         "lodash.create": "3.1.1",
@@ -1149,31 +1153,30 @@
         "assert": "^1.4.1",
         "browserify": "^13.0.0",
         "coffee-script": "^1.10.0",
-        "eslint": "^2.13.1",
-        "eslint-config-semistandard": "^6.0.2",
-        "eslint-config-standard": "^5.0.0",
-        "eslint-plugin-promise": "^2.0.1",
-        "eslint-plugin-standard": "1.3.2",
+        "coveralls": "^2.11.15",
         "expect.js": "^0.3.1",
-        "karma": "^1.1.0",
+        "istanbul-combine": "^0.3.0",
+        "karma": "1.3.0",
         "karma-browserify": "^5.0.5",
         "karma-chrome-launcher": "^2.0.0",
         "karma-expect": "^1.1.2",
         "karma-mocha": "^1.3.0",
-        "karma-phantomjs-launcher": "^0.2.3",
-        "karma-sauce-launcher": "^1.0.0",
+        "karma-phantomjs-launcher": "^1.0.2",
+        "karma-sauce-launcher": "github:coderbyheart/karma-sauce-launcher",
         "karma-spec-reporter": "0.0.26",
+        "nyc": "^10.0.0",
         "os-name": "^2.0.1",
         "phantomjs": "1.9.8",
         "rimraf": "^2.5.2",
-        "should": "^9.0.2",
+        "semistandard": "^9.2.1",
+        "should": "^11.1.1",
         "through2": "^2.0.1",
         "watchify": "^3.7.0"
     },
     "directories": {},
     "dist": {
-        "shasum": "7dc4f45e5088075171a68896814e6ae9eb7a85e3",
-        "tarball": "https://registry.npmjs.org/mocha/-/mocha-3.2.0.tgz"
+        "shasum": "d29b7428d3f52c82e2e65df1ecb7064e1aabbfb5",
+        "tarball": "https://registry.npmjs.org/mocha/-/mocha-3.3.0.tgz"
     },
     "engines": {
         "node": ">= 0.10.x",
@@ -1190,7 +1193,13 @@
         "LICENSE",
         "bower.json"
     ],
-    "gitHead": "b51e36014d9c6db07aee3057579c35315ec4efd7",
+    "gitHead": "fb1687ec16e8ae347ca4498560f984e575224d59",
+    "greenkeeper": {
+        "ignore": [
+            "phantomjs",
+            "lodash.create"
+        ]
+    },
     "homepage": "https://mochajs.org",
     "keywords": [
         "mocha",
@@ -1207,6 +1216,9 @@
         },
         {
             "name": "dasilvacontin"
+        },
+        {
+            "name": "munter"
         }
     ],
     "name": "mocha",
@@ -1216,9 +1228,19 @@
         "url": "git+https://github.com/mochajs/mocha.git"
     },
     "scripts": {
-        "test": "make test"
+        "coverage": "COVERAGE=true npm run test",
+        "postcoverage": "istanbul-combine -d coverage -r lcov -r html coverage/reports/*/*.json",
+        "precoverage": "rm -rf coverage",
+        "preversion": "make test && make mocha.js && git add mocha.js",
+        "test": "make test && make clean"
     },
-    "version": "3.2.0"
+    "semistandard": {
+        "ignore": [
+            "/mocha.js",
+            "/lib/to-iso-string/**/*.js"
+        ]
+    },
+    "version": "3.3.0"
 }
 ```
 
